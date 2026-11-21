@@ -50,6 +50,17 @@ android {
         }
     }
 
+    // Šapat: fixed key for test builds, so a new build installs over the old one and keeps the chats.
+    // Test only; release builds get their own key, kept off the repository.
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("sapat-test.keystore")
+            storePassword = "android"
+            keyAlias = "sapat-test"
+            keyPassword = "android"
+        }
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix = rootProject.extra["application_id.suffix"] as String
