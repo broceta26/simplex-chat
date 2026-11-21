@@ -1128,7 +1128,7 @@ private fun BoxScope.ChatList(searchText: MutableState<TextFieldValue>, listStat
           }
         }
       }
-    } else if (chatModel.bannerSlotFree(ChatListBanner.BadgePitch) && !supporterBannerShown.value && noShownBadge() && chatModel.chats.value.size > 3) {
+    } else if (false && chatModel.bannerSlotFree(ChatListBanner.BadgePitch) && !supporterBannerShown.value && noShownBadge() && chatModel.chats.value.size > 3) {
       item {
         SideEffect { chatModel.chatListBanner = ChatListBanner.BadgePitch }
         Box(Modifier.zIndex(1f).padding(16.dp)) {

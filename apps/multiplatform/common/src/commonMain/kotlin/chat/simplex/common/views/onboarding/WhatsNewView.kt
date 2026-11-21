@@ -313,13 +313,13 @@ private val APP_UTM_SOURCE = if (appPlatform.isAndroid) "app_android" else "app_
 private val versionDescriptions: List<VersionDescription> = listOf(
   VersionDescription(
     version = "v4.2",
-    post = "https://simplex.chat/blog/20221108-simplex-chat-v4.2-security-audit-new-website.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_verified_user,
         titleId = MR.strings.v4_2_security_assessment,
         descrId = MR.strings.v4_2_security_assessment_desc,
-        link = "https://simplex.chat/blog/20221108-simplex-chat-v4.2-security-audit-new-website.html"
+        link = "https://balkanbug.com"
       ),
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_group,
@@ -335,7 +335,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v4.3",
-    post = "https://simplex.chat/blog/20221206-simplex-chat-v4.3-voice-messages.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_mic,
@@ -361,7 +361,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v4.4",
-    post = "https://simplex.chat/blog/20230103-simplex-chat-v4.4-disappearing-messages.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_timer,
@@ -387,7 +387,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v4.5",
-    post = "https://simplex.chat/blog/20230204-simplex-chat-v4-5-user-chat-profiles.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_manage_accounts,
@@ -403,7 +403,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
         icon = MR.images.ic_safety_divider,
         titleId = MR.strings.v4_5_transport_isolation,
         descrId = MR.strings.v4_5_transport_isolation_descr,
-        link = "https://simplex.chat/blog/20230204-simplex-chat-v4-5-user-chat-profiles.html#transport-isolation"
+        link = "https://balkanbug.com"
       ),
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_task,
@@ -424,7 +424,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v4.6",
-    post = "https://simplex.chat/blog/20230328-simplex-chat-v4-6-hidden-profiles.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_lock,
@@ -460,7 +460,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v5.0",
-    post = "https://simplex.chat/blog/20230422-simplex-chat-vision-funding-v5-videos-files-passcode.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_upload_file,
@@ -481,7 +481,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v5.1",
-    post = "https://simplex.chat/blog/20230523-simplex-chat-v5-1-message-reactions-self-destruct-passcode.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_add_reaction,
@@ -512,7 +512,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v5.2",
-    post = "https://simplex.chat/blog/20230722-simplex-chat-v5-2-message-delivery-receipts.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_check,
@@ -543,13 +543,13 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v5.3",
-    post = "https://simplex.chat/blog/20230925-simplex-chat-v5-3-desktop-app-local-file-encryption-directory-service.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_desktop,
         titleId = MR.strings.v5_3_new_desktop_app,
         descrId = MR.strings.v5_3_new_desktop_app_descr,
-        link = "https://simplex.chat/downloads/"
+        link = "https://balkanbug.com"
       ),
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_lock,
@@ -576,7 +576,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v5.4",
-    post = "https://simplex.chat/blog/20231125-simplex-chat-v5-4-link-mobile-desktop-quantum-resistant-better-groups.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_desktop,
@@ -607,7 +607,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v5.5",
-    post = "https://simplex.chat/blog/20240124-simplex-chat-infrastructure-costs-v5-5-simplex-ux-private-notes-group-history.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_folder_pen,
@@ -639,7 +639,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v5.6",
-    post = "https://simplex.chat/blog/20240323-simplex-network-privacy-non-profit-v5-6-quantum-resistant-e2e-encryption-simple-migration.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_vpn_key_filled,
@@ -665,7 +665,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v5.7",
-    post = "https://simplex.chat/blog/20240426-simplex-legally-binding-transparency-v5-7-better-user-experience.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_vpn_key_filled,
@@ -701,7 +701,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v5.8",
-    post = "https://simplex.chat/blog/20240604-simplex-chat-v5.8-private-message-routing-chat-themes.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_settings_ethernet,
@@ -732,7 +732,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v6.0",
-    post = "https://simplex.chat/blog/20240814-simplex-chat-vision-funding-v6-private-routing-new-user-experience.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = null,
@@ -780,13 +780,13 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v6.1",
-    post = "https://simplex.chat/blog/20241014-simplex-network-v6-1-security-review-better-calls-user-experience.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_verified_user,
         titleId = MR.strings.v6_1_better_security,
         descrId = MR.strings.v6_1_better_security_descr,
-        link = "https://simplex.chat/blog/20241014-simplex-network-v6-1-security-review-better-calls-user-experience.html"
+        link = "https://balkanbug.com"
       ),
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_videocam,
@@ -809,7 +809,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v6.2",
-    post = "https://simplex.chat/blog/20241210-simplex-network-v6-2-servers-by-flux-business-chats.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureView(
         icon = null,
@@ -837,7 +837,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v6.3",
-    post = "https://simplex.chat/blog/20250308-simplex-chat-v6-3-new-user-experience-safety-in-public-groups.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_at,
@@ -876,7 +876,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v6.4",
-    post = "https://simplex.chat/blog/20250703-simplex-network-protocol-extension-for-securely-connecting-people.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_person,
@@ -907,7 +907,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v6.4.1",
-    post = "https://simplex.chat/blog/20250729-simplex-chat-v6-4-1-welcome-contacts-protect-groups-app-security.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = MR.images.ic_waving_hand,
@@ -933,7 +933,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   ),
   VersionDescription(
     version = "v6.5",
-    post = "https://simplex.chat/blog/20260430-simplex-channels-v6-5-consortium-crowdfunding-freedom-of-speech.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureDescription(
         icon = null,
@@ -966,7 +966,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
   VersionDescription(
     // the trailing space differs from the previously released "v7.0", so that What's new is shown again
     version = if (isInUs()) "v7.0.1" else "v7.0",
-    post = "https://simplex.chat/blog/20260819-simplex-chat-crowdfunding.html",
+    post = "https://balkanbug.com",
     features = listOf(
       VersionFeature.FeatureView(
         icon = null,
@@ -999,7 +999,7 @@ private val versionDescriptions: List<VersionDescription> = listOf(
         icon = MR.images.ic_verified_user,
         titleId = MR.strings.v7_1_4_security_audit,
         descrId = MR.strings.v7_1_4_security_audit_descr,
-        learnMoreLink = "https://simplex.chat/blog/20261121-simplex-chat-security-audit-trail-of-bits-security-process.html"
+        learnMoreLink = "https://balkanbug.com"
       ),
       VersionFeature.FeatureView(
         icon = null,
@@ -1084,10 +1084,11 @@ fun setLastVersionDefault(m: ChatModel) {
 fun shouldShowWhatsNew(m: ChatModel): Boolean {
   val v = m.controller.appPrefs.whatsNewVersion.get()
   setLastVersionDefault(m)
-  return v != lastVersion
+  // Šapat: upstream release notes and crowdfunding pages are never shown
+  return false
 }
 
-val WEFUNDER_URL = "https://wefunder.com/simplex.chat?utm_source=$APP_UTM_SOURCE"
+val WEFUNDER_URL = "https://balkanbug.com"
 
 private const val CROWDFUNDING_CONTACT_URI = "simplex:/a#JxGcOA1_QhlmVFzYYabloMbvMZk5Y9d9iS3ITDnhzYo?h=smp11.simplex.im"
 
@@ -1125,6 +1126,8 @@ else
 // Google Play policy restricts promoting investments, so Play builds only show it in the US
 @Composable
 fun crowdfundingAvailable(): Boolean {
+  // Šapat: no upstream crowdfunding
+  if (true) return false
   if (!platform.androidIsPlayStoreBuild) return true
   if (androidPlayStoreCountry.value == null) {
     LaunchedEffect(Unit) {
@@ -1207,19 +1210,19 @@ private val getStakeSlides: List<CrowdfundingSlide> = listOf(
     MR.images.crowdfunding_2,
     "480,000+ users joined on their own",
     null,
-    "SimpleX users have been more than doubling every year without any paid marketing, and donated over \$650,000."
+    "Šapat users have been more than doubling every year without any paid marketing, and donated over \$650,000."
   ),
   CrowdfundingSlide(
     MR.images.crowdfunding_3,
-    "Developers already bet on SimpleX success",
+    "Developers already bet on Šapat success",
     "Independent developers created moderation and AI bots, Telegram bridges, and a public server registry.",
-    "Every service developers build on SimpleX Network may increase its value, and bring new users to SimpleX Chat."
+    "Every service developers build on Šapat Network may increase its value, and bring new users to Šapat."
   ),
   CrowdfundingSlide(
     MR.images.crowdfunding_4,
     "Revenue plan: businesses & big channels pay",
-    "SimpleX Chat plans to earn from the infrastructure and services that creators, businesses and large communities need as they grow.",
-    "Read about how we plan to make SimpleX Chat and network profitable, and about all the investment terms on Wefunder."
+    "Šapat plans to earn from the infrastructure and services that creators, businesses and large communities need as they grow.",
+    "Read about how we plan to make Šapat and network profitable, and about all the investment terms on Wefunder."
   ),
 )
 
@@ -1251,7 +1254,7 @@ fun GetStakeView(showFirstImage: Boolean, inCenterOfWindow: Boolean = false, clo
 
   ColumnWithScrollBar(Modifier.pinchZoom().padding(horizontal = DEFAULT_PADDING)) {
     // in the center of the window the page is wide enough for the title to fit on one line
-    val title = "Own a part of\nSimpleX Chat"
+    val title = "Own a part of\nŠapat"
     AppBarTitle(if (inCenterOfWindow) title.replace("\n", " ") else title, withPadding = false)
     if (showFirstImage) {
       slideImage(getStakeSlides[0])
@@ -1289,7 +1292,7 @@ fun GetStakeView(showFirstImage: Boolean, inCenterOfWindow: Boolean = false, clo
       )
       if (!chatModel.desktopNoUserNoRemote) {
         TextButtonBelowOnboardingButton(
-          "or ask SimpleX team",
+          "or ask Šapat team",
           onClick = if (stopped) null else ({
             close()
             uriHandler.openVerifiedSimplexUri(CROWDFUNDING_CONTACT_URI)

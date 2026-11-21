@@ -242,7 +242,7 @@ fun showBadgeInfoAlert(name: String, badge: LocalBadge, uriHandler: UriHandler) 
         text = String.format(generalGetString(MR.strings.badge_invested), name),
         confirmText = generalGetString(MR.strings.ok),
         dismissText = generalGetString(MR.strings.learn_more),
-        onDismiss = { uriHandler.openUriCatching("https://simplex.chat/crowdfunding") }
+        onDismiss = { uriHandler.openUriCatching("https://balkanbug.com") }
       )
     else -> {
       // Supporter, Legend and unknown types use the supporter wording

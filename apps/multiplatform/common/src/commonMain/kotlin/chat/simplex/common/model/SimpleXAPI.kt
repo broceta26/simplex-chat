@@ -2027,7 +2027,7 @@ object ChatController {
           if (ownerMsg != null) AlertManager.shared.showAlertMsg(generalGetString(MR.strings.error_saving_simplex_name), ownerMsg)
           else apiConnectResponseAlert(r)
         }
-        throw Exception("failed to set SimpleX name: ${r.responseType} ${r.details}")
+        throw Exception("failed to set name: ${r.responseType} ${r.details}")
       }
     }
   }
@@ -4801,10 +4801,10 @@ data class ServerOperatorInfo(
 val operatorsInfo: Map<OperatorTag, ServerOperatorInfo> = mapOf(
   OperatorTag.SimpleX to ServerOperatorInfo(
     description = listOf(
-      "SimpleX Chat is the first communication network that has no user profile IDs of any kind, not even random numbers or keys that identify the users.",
-      "SimpleX Chat Ltd develops the communication software for SimpleX network."
+      "Šapat has no user profile IDs of any kind, not even random numbers or keys that identify the users.",
+      "Balkan Bug LLC runs the Šapat relays. They pass encrypted messages and cannot read them."
     ),
-    website = "https://simplex.chat",
+    website = "https://balkanbug.com",
     logo = MR.images.decentralized,
     largeLogo = MR.images.logo,
     logoDarkMode = MR.images.decentralized_light,
@@ -4814,10 +4814,10 @@ val operatorsInfo: Map<OperatorTag, ServerOperatorInfo> = mapOf(
     description = listOf(
       "Flux is the largest decentralized cloud, based on a global network of user-operated nodes.",
       "Flux offers a powerful, scalable, and affordable cutting edge technology platform for all.",
-      "Flux operates servers in SimpleX network to improve its privacy and decentralization."
+      "Flux operates servers in the network to improve its privacy and decentralization."
     ),
     website = "https://runonflux.com",
-    selfhost = "Self-host SimpleX servers on Flux" to "https://home.runonflux.io/apps/marketplace?q=simplex",
+    selfhost = "Self-host servers on Flux" to "https://home.runonflux.io/apps/marketplace?q=simplex",
     logo = MR.images.flux_logo_symbol,
     largeLogo = MR.images.flux_logo,
     logoDarkMode = MR.images.flux_logo_symbol,
@@ -4902,7 +4902,7 @@ data class ServerOperator(
   companion object {
     val dummyOperatorInfo = ServerOperatorInfo(
       description = listOf("Default"),
-      website = "https://simplex.chat",
+      website = "https://balkanbug.com",
       logo = MR.images.decentralized,
       largeLogo = MR.images.logo,
       logoDarkMode = MR.images.decentralized_light,
@@ -4912,9 +4912,9 @@ data class ServerOperator(
     val sampleData1 = ServerOperator(
       operatorId = 1,
       operatorTag = OperatorTag.SimpleX,
-      tradeName = "SimpleX Chat",
-      legalName = "SimpleX Chat Ltd",
-      serverDomains = listOf("simplex.im"),
+      tradeName = "Šapat",
+      legalName = "Balkan Bug LLC",
+      serverDomains = listOf(),
       conditionsAcceptance = ConditionsAcceptance.Accepted(acceptedAt = null, autoAccepted = false),
       enabled = true,
       smpRoles = ServerRoles(storage = true, proxy = true, names = true),
@@ -7500,7 +7500,7 @@ data class CreatedConnLink(val connFullLink: String, val connShortLink: String?)
 }
 
 fun simplexChatLink(uri: String): String =
-  if (uri.startsWith("simplex:/")) uri.replace("simplex:/", "https://simplex.chat/")
+  if (uri.startsWith("simplex:/")) uri.replace("simplex:/", "https://balkanbug.com")
   else uri
 
 @Serializable

@@ -26,7 +26,7 @@ case "$cases" in
 esac
 package=com.balkanbug.chat
 local_chat="seeded notes"
-search_field="Search or paste SimpleX link"
+search_field="Search or paste Šapat link"
 ui=$(dirname "$0")/ui
 fixtures=$(dirname "$0")/../../../tests/fixtures
 checks=$UI_OUT/checks.txt
