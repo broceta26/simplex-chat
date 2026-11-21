@@ -1,4 +1,3 @@
-import base64
 import json
 import os
 import tempfile
@@ -12,8 +11,6 @@ os.environ["SAPAT_DIR_RESOLVER_BIND"] = "127.0.0.1"
 os.environ["SAPAT_DIR_API_BIND"] = "127.0.0.1"
 
 import directory as d  # noqa: E402
-from Crypto.PublicKey import ECC  # noqa: E402
-from Crypto.Signature import eddsa  # noqa: E402
 
 RP, AP = 18700, 18780
 ADDR = "simplex:/a#abcdefghijklmnop?h=148.251.84.251"
@@ -21,21 +18,20 @@ ADDR = "simplex:/a#abcdefghijklmnop?h=148.251.84.251"
 
 class Client:
     def __init__(self):
-        self.key = ECC.generate(curve="ed25519")
-        self.pub = base64.b64encode(self.key.public_key().export_key(format="raw")).decode()
+        self.token = None
 
     def call(self, op, value="", **fields):
-        ts = int(time.time())
-        msg = f"sapat-dir|{op}|{self.pub}|{value}|{ts}".encode()
-        sig = base64.b64encode(eddsa.new(self.key, "rfc8032").sign(msg)).decode()
-        body = dict(pubkey=self.pub, ts=ts, sig=sig, **fields)
-        return post(op, body)
+        st, r = post(op, fields, self.token)
+        if op == "register" and st == 200:
+            self.token = r["token"]
+        return st, r
 
 
-def post(op, body):
-    req = urllib.request.Request(
-        f"http://127.0.0.1:{AP}/api/v1/{op}", data=json.dumps(body).encode(), headers={"Content-Type": "application/json"}
-    )
+def post(op, body, token=None):
+    headers = {"Content-Type": "application/json"}
+    if token:
+        headers["Authorization"] = "Bearer " + token
+    req = urllib.request.Request(f"http://127.0.0.1:{AP}/api/v1/{op}", data=json.dumps(body).encode(), headers=headers)
     try:
         with urllib.request.urlopen(req) as r:
             return r.status, json.loads(r.read())
@@ -80,7 +76,7 @@ class DirectoryTest(unittest.TestCase):
         self.assertEqual(a.call("name", "x", name="x")[1], {"error": "badName"})
         self.assertEqual(a.call("reserve")[1], {"error": "cannotReserveYet"})
         with d.db() as c:
-            c.execute("UPDATE profiles SET created_at = created_at - ? WHERE pubkey = ?", (d.RESERVE_AFTER + 1, a.pub))
+            c.execute("UPDATE profiles SET created_at = created_at - ? WHERE pubkey = ?", (d.RESERVE_AFTER + 1, d.token_hash(a.token)))
         st, me = a.call("reserve")
         self.assertTrue(me["reserved"])
         self.assertEqual(a.call("name", "drugo", name="drugo"), (409, {"error": "nameReserved"}))
@@ -91,7 +87,7 @@ class DirectoryTest(unittest.TestCase):
         b.call("register", ADDR, address=ADDR)
         a.call("name", "pera", name="pera")
         with d.db() as c:
-            c.execute("UPDATE profiles SET seen_at = seen_at - ? WHERE pubkey = ?", (d.TEMP_NAME_IDLE + 1, a.pub))
+            c.execute("UPDATE profiles SET seen_at = seen_at - ? WHERE pubkey = ?", (d.TEMP_NAME_IDLE + 1, d.token_hash(a.token)))
         self.assertEqual(resolve("pera.simplex")["registration"]["type"], "reserved")
         self.assertEqual(b.call("name", "pera", name="pera")[0], 200)
 
@@ -103,16 +99,12 @@ class DirectoryTest(unittest.TestCase):
         self.assertEqual(resolve(f"{old}.simplex")["registration"]["type"], "reserved")
         self.assertEqual(resolve(f"{new}.simplex")["registration"]["type"], "registered")
 
-    def test_bad_signature_and_old_timestamp(self):
-        a, b = Client(), Client()
-        ts = int(time.time())
-        msg = f"sapat-dir|register|{a.pub}|{ADDR}|{ts}".encode()
-        sig = base64.b64encode(eddsa.new(b.key, "rfc8032").sign(msg)).decode()
-        self.assertEqual(post("register", dict(pubkey=a.pub, ts=ts, sig=sig, address=ADDR)), (403, {"error": "badSignature"}))
-        old = ts - 1000
-        msg = f"sapat-dir|register|{a.pub}|{ADDR}|{old}".encode()
-        sig = base64.b64encode(eddsa.new(a.key, "rfc8032").sign(msg)).decode()
-        self.assertEqual(post("register", dict(pubkey=a.pub, ts=old, sig=sig, address=ADDR)), (400, {"error": "badTimestamp"}))
+    def test_token_required(self):
+        a = Client()
+        a.call("register", ADDR, address=ADDR)
+        self.assertEqual(post("me", {}), (401, {"error": "noToken"}))
+        self.assertEqual(post("me", {}, "x" * 43), (404, {"error": "noProfile"}))
+        self.assertEqual(a.call("me")[0], 200)
 
 
 if __name__ == "__main__":
