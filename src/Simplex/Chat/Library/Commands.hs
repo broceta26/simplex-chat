@@ -499,8 +499,8 @@ processChatCommand cxt nm = \case
     pure $ CRActiveUser user
     where
       createPresetContactCards :: DB.Connection -> User -> ExceptT StoreError IO ()
-      createPresetContactCards db user = do
-        createContact db cxt user simplexTeamContactProfile
+      -- Šapat: no preset contact cards (the upstream card connects to the upstream team).
+      createPresetContactCards _ _ = pure ()
       chooseServers :: Maybe User -> CM ([UpdatedUserOperatorServers], (NonEmpty (ServerCfg 'PSMP), NonEmpty (ServerCfg 'PXFTP)))
       chooseServers user_ = do
         as <- asks randomAgentServers
