@@ -251,7 +251,7 @@ class AppPreferences {
   }, settingsThemes)
   val themeOverrides = mkThemeOverridesPreference()
   val profileImageCornerRadius = mkFloatPreference(SHARED_PREFS_PROFILE_IMAGE_CORNER_RADIUS, 50f)
-  val chatItemRoundness = mkFloatPreference(SHARED_PREFS_CHAT_ITEM_ROUNDNESS, 0.75f)
+  val chatItemRoundness = mkFloatPreference(SHARED_PREFS_CHAT_ITEM_ROUNDNESS, 0.9f)
   val chatItemTail = mkBoolPreference(SHARED_PREFS_CHAT_ITEM_TAIL, true)
   val fontScale = mkFloatPreference(SHARED_PREFS_FONT_SCALE, 1f)
   val densityScale = mkFloatPreference(SHARED_PREFS_DENSITY_SCALE, 1f)
@@ -8970,7 +8970,7 @@ data class AppSettings(
         iosCallKitEnabled = true,
         iosCallKitCallsInRecents = false,
         uiProfileImageCornerRadius = 50f,
-        uiChatItemRoundness = 0.75f,
+        uiChatItemRoundness = 0.9f,
         uiChatItemTail = true,
         uiColorScheme = DefaultTheme.SYSTEM_THEME_NAME,
         uiDarkColorScheme = DefaultTheme.SIMPLEX.themeName,
