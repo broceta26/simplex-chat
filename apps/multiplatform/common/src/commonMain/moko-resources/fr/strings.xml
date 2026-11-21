@@ -273,7 +273,7 @@
     <string name="toast_permission_denied">Autorisation refusée !</string>
     <string name="use_camera_button">Appareil\nphoto</string>
     <string name="thank_you_for_installing_simplex">Merci d\'avoir installé Šapat !</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Vous pouvez <font color="#0088ff">vous connecter aux développeurs de Šapat pour leur poser des questions et recevoir des réponses :</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Vous pouvez <font color="#4f79a6">vous connecter aux développeurs de Šapat pour leur poser des questions et recevoir des réponses :</font>.]]></string>
     <string name="above_then_preposition_continuation">ci-dessus, puis :</string>
     <string name="if_you_choose_to_reject_the_sender_will_not_be_notified">Si vous choisissez de la rejeter, l\'expéditeur·rice NE sera PAS notifié·e.</string>
     <string name="accept_contact_button">Accepter</string>
@@ -1088,7 +1088,7 @@
     <string name="color_received_message">Message reçu</string>
     <string name="import_theme_error_desc">Assurez-vous que le fichier a une syntaxe YAML correcte. Exporter le thème pour avoir un exemple de la structure du fichier du thème.</string>
     <string name="profile_update_will_be_sent_to_contacts">La mise à jour du profil sera envoyée à vos contacts Šapat.</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Pour en savoir plus, consultez le <font color="#0088ff">Guide de l\'utilisateur</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Pour en savoir plus, consultez le <font color="#4f79a6">Guide de l\'utilisateur</font>.]]></string>
     <string name="save_auto_accept_settings">Enregistrer les paramètres de l\'adresse Šapat</string>
     <string name="scan_qr_to_connect_to_contact">Pour se connecter, votre contact peut scanner un QR code ou utiliser un lien dans l\'app.</string>
     <string name="app_passcode_replaced_with_self_destruct">Le code d\'accès de l\'application est remplacé par un code d\'autodestruction.</string>
@@ -2936,7 +2936,7 @@
     <string name="member_info_section_title_contributor">Contributeur</string>
     <string name="badges_choose_your_badge_lede">Des fichiers plus volumineux disponibles plus longtemps.</string>
     <string name="badges_how_long_title">Combien de temps ?</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[En savoir plus sur <font color="#0088ff">notre blog</font>.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[En savoir plus sur <font color="#4f79a6">notre blog</font>.]]></string>
     <string name="badges_larger_files_longer">Soutenez Šapat pour envoyer des fichiers plus volumineux disponibles plus longtemps</string>
     <string name="badges_check_your_order_title">Vérifier votre commande</string>
     <string name="badges_order_duration">Durée</string>

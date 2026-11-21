@@ -894,7 +894,7 @@
     <string name="user_unhide">Mostrar</string>
     <string name="user_unmute">Ativar som</string>
     <string name="v4_3_voice_messages">Mensagens de voz</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Você pode <font color="#0088ff">se conectar aos desenvolvedores do Šapat para fazer qualquer pergunta e receber atualizações</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Você pode <font color="#4f79a6">se conectar aos desenvolvedores do Šapat para fazer qualquer pergunta e receber atualizações</font>.]]></string>
     <string name="connection_you_accepted_will_be_cancelled">A conexão que você aceitou será cancelada!</string>
     <string name="contact_you_shared_link_with_wont_be_able_to_connect">O contato com o qual você compartilhou este link NÃO será capaz de se conectar!</string>
     <string name="icon_descr_simplex_team">Equipe Šapat</string>
@@ -1083,7 +1083,7 @@
     <string name="group_welcome_preview">Prévia</string>
     <string name="color_secondary">Secundária</string>
     <string name="import_theme">Importar tema</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Leia mais em <font color="#0088ff">Guia do Usuário</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Leia mais em <font color="#4f79a6">Guia do Usuário</font>.]]></string>
     <string name="enter_welcome_message_optional">Digite a mensagem de boas-vindas... (opcional)</string>
     <string name="save_auto_accept_settings">Salvar configurações do endereço Šapat</string>
     <string name="opening_database">Abrindo banco de dados…</string>
@@ -2945,7 +2945,7 @@
     <string name="emoji_category_people">Pessoas e gestos</string>
     <string name="badges_link_held_title">O perfil já tem um selo</string>
     <string name="badges_credential_purchase_id">ID da compra</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Leia mais em <font color="#0088ff">nosso blog</font>.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Leia mais em <font color="#4f79a6">nosso blog</font>.]]></string>
     <string name="callstate_reconnecting">reconectando…</string>
     <string name="call_not_encrypted_desc">%s atendeu à chamada sem criptografia de ponta a ponta.</string>
     <string name="keystore_key_storage_strongbox">Elemento seguro</string>

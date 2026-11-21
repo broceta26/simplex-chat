@@ -5505,7 +5505,8 @@ enum class SMPProxyMode {
   @SerialName("never") Never;
 
   companion object {
-    val default = Always
+    // Šapat: one relay for now; proxying through the same relay fails. Back to Always with the second relay.
+    val default = Never
   }
 }
 

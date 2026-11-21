@@ -854,7 +854,7 @@
     <string name="alert_text_connection_pending_they_need_to_be_online_can_delete_and_retry">Bağlantının tamamlanması için kişinizin çevrimiçi olması gerekir. \nBu bağlantıyı iptal edebilir ve kişiyi kaldırabilirsiniz (ve daha sonra yeni bir bağlantıyla deneyebilirsiniz).</string>
     <string name="contact_sent_large_file">Kişiniz desteklenen maksimum boyuttan (%1$s) daha büyük bir dosya gönderdi.</string>
     <string name="video_will_be_received_when_contact_completes_uploading">Kişiniz yüklemeyi tamamladığında video alınacaktır.</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Soru sormak ve güncellemeleri almak için <font color="#0088ff">Šapat geliştiricilerine bağlanabilirsiniz</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Soru sormak ve güncellemeleri almak için <font color="#4f79a6">Šapat geliştiricilerine bağlanabilirsiniz</font>.]]></string>
     <string name="you_can_hide_or_mute_user_profile">Bir kullanıcının profilini gizleyebilir veya sessize alabilirsiniz - menü için basılı tutun.</string>
     <string name="you_must_use_the_most_recent_version_of_database">Sohbet veritabanınızın en son sürümünü SADECE bir cihazda kullanmalısınız, aksi takdirde bazı kişilerden daha fazla mesaj alamayabilirsiniz.</string>
     <string name="wrong_passphrase">Yanlış veritabanı parolası</string>
@@ -920,7 +920,7 @@
     <string name="ask_your_contact_to_enable_voice">Lütfen irtibat kişinizden sesli mesaj göndermeyi etkinleştirmesini isteyin.</string>
     <string name="live_message">Canlı mesaj!</string>
     <string name="to_connect_via_link_title">Link ile bağlanmak için</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Daha fazla bilgi için <font color="#0088ff">Kullanıcı Kılavuzu</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Daha fazla bilgi için <font color="#4f79a6">Kullanıcı Kılavuzu</font>.]]></string>
     <string name="paste_button">Yapıştır</string>
     <string name="this_string_is_not_a_connection_link">Bu dize bir bağlantı linki değil!</string>
     <string name="rate_the_app">Uygulamaya puan verin</string>
@@ -2826,7 +2826,7 @@
     <string name="badges_how_it_works_p1">Rozet, cihazınızdaki profilinizde saklanan anonim bir kimlik bilgisidir. Bu kimlik bilgisi asla kimseye gönderilmez.</string>
     <string name="badges_how_it_works_p2">Bir kişiye veya sunucuya rozetiniz olduğunu kanıtlamak için uygulama, yalnızca rozet türünü ve haftaya yuvarlanmış bitiş tarihini gösteren yeni bir kanıt oluşturur.</string>
     <string name="badges_how_it_works_p3">Hiç kimse iki farklı kanıtı birbirine veya satın alıma bağlayamaz.</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Daha fazlasını <font color="#0088ff">blogumuzda</font> okuyun.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Daha fazlasını <font color="#4f79a6">blogumuzda</font> okuyun.]]></string>
     <string name="badges_preview_my_nickname">Takma adım</string>
     <string name="badges_banner_title">Šapat\'i destekle</string>
     <string name="badges_banner_subtitle">Rozet + daha iyi dosyalar al</string>

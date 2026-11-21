@@ -70,7 +70,7 @@
     <string name="connect__a_new_random_profile_will_be_shared">Es compartirà un nou perfil aleatori.</string>
     <string name="one_time_link_can_be_used_with_one_contact_only"><![CDATA[l\'enllaç d\'un cop es pot utilitzar <i>només amb un contacte</i>: compartiu-lo en persona o mitjançant qualsevol missatger.]]></string>
     <string name="deleted_chats">Contactes arxivats</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Llegir més a la <font color="#0088ff">Guia de l\'usuari</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Llegir més a la <font color="#4f79a6">Guia de l\'usuari</font>.]]></string>
     <string name="network_settings">Configuració de xarxa avançada</string>
     <string name="network_settings_title">Configuració avançada</string>
     <string name="network_enable_socks_info">Accedir als servidors mitjançant el servidor SOCKS al port %d? S\'ha d\'iniciar abans d\'activar aquesta opció.</string>
@@ -535,7 +535,7 @@
     <string name="chunks_downloaded">Blocs descarregats</string>
     <string name="error_saving_file">Error en desar el fitxer</string>
     <string name="switch_receiving_address_question">Canviar l\'adreça de recepció?</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Podeu <font color="#0088ff">connectar amb els desenvolupadors de Šapat per fer qualsevol pregunta i rebre actualitzacions</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Podeu <font color="#4f79a6">connectar amb els desenvolupadors de Šapat per fer qualsevol pregunta i rebre actualitzacions</font>.]]></string>
     <string name="error_saving_ICE_servers">Error en desar els servidors ICE</string>
     <string name="network_proxy_incorrect_config_title">Error en desar el servidor intermediari</string>
     <string name="chat_database_section">Base de dades dels xats</string>
@@ -2511,7 +2511,7 @@
     <string name="badges_how_it_works_p1">Una insígnia és una credencial anònima desada al vostre perfil al dispositiu. Aquesta credencial no s\'envia mai a ningú.</string>
     <string name="badges_how_it_works_p2">Per demostrar a un contacte o a un servidor que teniu una insígnia, l\'aplicació genera una prova nova que només revela el tipus d\'insígnia i la data de caducitat, arrodonida a una setmana.</string>
     <string name="badges_how_it_works_p3">Ningú no pot vincular dues proves diferents entre si ni amb la compra.</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Més informació al <font color="#0088ff">nostre blog</font>.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Més informació al <font color="#4f79a6">nostre blog</font>.]]></string>
     <string name="badges_preview_my_nickname">El meu sobrenom</string>
     <string name="badges_banner_title">Doneu suport a Šapat</string>
     <string name="badges_banner_subtitle">Obteniu una insígnia + millors fitxers</string>

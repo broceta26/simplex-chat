@@ -389,7 +389,7 @@
     <string name="no_details">بدون جزئیات</string>
     <string name="camera_not_available">دوربین موجود نیست</string>
     <string name="gallery_image_button">تصویر</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[می‌توانید <font color="#0088ff">برای پرسش هر سوال و دریافت اطلاعات به توسعه‌دهندگان Šapat متصل شوید</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[می‌توانید <font color="#4f79a6">برای پرسش هر سوال و دریافت اطلاعات به توسعه‌دهندگان Šapat متصل شوید</font>.]]></string>
     <string name="add_contact_button_to_create_link_or_connect_via_link"><![CDATA[<b>افزودن مخاطب</b>: برای ایجاد لینک دعوت جدید، یا اتصال از طریق لینکی که دریافت کردید.]]></string>
     <string name="to_connect_via_link_title">اتصال از طریق لینک</string>
     <string name="image_will_be_received_when_contact_is_online">تصویر وقتی دریافت خواهد شد که مخاطبتان آنلاین شود، لطفا صبر کنید یا بعدا بررسی کنید!</string>
@@ -539,7 +539,7 @@
     <string name="smp_servers_check_address">نشانی‌ سرور را بررسی و دوباره امتحان کنید.</string>
     <string name="alert_text_connection_pending_they_need_to_be_online_can_delete_and_retry">لازم است مخاطبتان آنلاین باشد تا اتصال کامل شود. \nمی‌توانید این اتصال را لغو و مخاطب را حذف کنید (و بعدا با یک لینک جدید امتحان کنید).</string>
     <string name="icon_descr_address">نشانی‌ Šapat</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[مطالعه بیشتر در <font color="#0088ff">راهنمای کاربر</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[مطالعه بیشتر در <font color="#4f79a6">راهنمای کاربر</font>.]]></string>
     <string name="this_string_is_not_a_connection_link">این رشته متن، یک لینک اتصال نیست!</string>
     <string name="code_you_scanned_is_not_simplex_link_qr_code">کدی که اسکن کردید یک کد QR لینک Šapat نیست.</string>
     <string name="scan_code">اسکن کد</string>
@@ -2505,7 +2505,7 @@
     <string name="badges_how_it_works_p1">نشان یک اعتبارنامه ناشناس است که در پروفایل شما روی دستگاهتان ذخیره می‌شود. این اعتبارنامه هرگز برای کسی ارسال نمی‌شود.</string>
     <string name="badges_how_it_works_p2">برای اثبات داشتن نشان به یک مخاطب یا سرور، برنامه یک اثبات جدید تولید می‌کند که فقط نوع نشان و تاریخ انقضای آن را، گردشده به یک هفته، آشکار می‌کند.</string>
     <string name="badges_how_it_works_p3">هیچ‌کس نمی‌تواند دو اثبات متفاوت را به یکدیگر یا به خرید مرتبط کند.</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[مطالعه بیشتر در <font color="#0088ff">وبلاگ ما</font>.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[مطالعه بیشتر در <font color="#4f79a6">وبلاگ ما</font>.]]></string>
     <string name="badges_preview_my_nickname">نام مستعار من</string>
     <string name="badges_banner_title">حمایت از Šapat</string>
     <string name="badges_banner_subtitle">دریافت نشان + فایل‌های بهتر</string>

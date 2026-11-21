@@ -756,7 +756,7 @@
     <string name="mute_chat">Без звук</string>
     <string name="image_descr_qr_code">QR код</string>
     <string name="icon_descr_more_button">Повече</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Прочетете повече в <font color="#0088ff">Ръководство за потребителя</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Прочетете повече в <font color="#4f79a6">Ръководство за потребителя</font>.]]></string>
     <string name="mark_code_verified">Маркирай като проверено</string>
     <string name="is_not_verified">%s не е потвърдено</string>
     <string name="is_verified">%s е потвърдено</string>
@@ -1244,7 +1244,7 @@
     <string name="connect_plan_you_are_admin">Вие сте админ</string>
     <string name="connect_plan_you_are_owner">Вие сте собственик</string>
     <string name="gallery_video_button">Видео</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Можете да <font color="#0088ff">се свържете с разработчиците на Šapat, за да задавате въпроси и да получавате актуализации</font>;.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Можете да <font color="#4f79a6">се свържете с разработчиците на Šapat, за да задавате въпроси и да получавате актуализации</font>;.]]></string>
     <string name="contact_wants_to_connect_with_you">иска да се свърже с вас!</string>
     <string name="your_current_profile">Вашият текущ профил</string>
     <string name="your_profile_is_stored_on_device_and_shared_only_with_contacts_simplex_cannot_see_it">Вашият профил се съхранява на вашето устройство и се споделя само с вашите контакти. Šapat сървърите не могат да видят вашия профил.</string>

@@ -819,7 +819,7 @@
     <string name="chat_preferences_yes">是</string>
     <string name="you_will_be_connected_when_group_host_device_is_online">你将在群主设备上线时连接到该群，请稍等或稍后再检查！</string>
     <string name="auth_you_will_be_required_to_authenticate_when_you_start_or_resume">当你启动应用或在应用程序驻留后台超过30 秒后，你将需要进行身份验证。</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[你可以 <font color="#0088ff"> 连接到 \u0020Šapat \u0020开发者提出任何问题并接收更新 </font>。]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[你可以 <font color="#4f79a6"> 连接到 \u0020Šapat \u0020开发者提出任何问题并接收更新 </font>。]]></string>
     <string name="you_accepted_connection">你已接受连接</string>
     <string name="integrity_msg_skipped">%1$d 条已跳过消息</string>
     <string name="ttl_s">%ds</string>
@@ -1118,7 +1118,7 @@
     <string name="if_you_cant_meet_in_person">如果你不能亲自见面，可以在视频通话中展示二维码，或分享链接。</string>
     <string name="learn_more">了解更多</string>
     <string name="you_wont_lose_your_contacts_if_delete_address">如果你以后删除你的地址，你不会丢失你的联系人。</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[在<font color="#0088ff">用户指南</font>中阅读更多。]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[在<font color="#4f79a6">用户指南</font>中阅读更多。]]></string>
     <string name="theme_colors_section_title">界面颜色</string>
     <string name="your_contacts_will_remain_connected">与你的联系人保持连接。</string>
     <string name="share_with_contacts">与联系人分享</string>
@@ -2893,7 +2893,7 @@
     <string name="badges_banner_dismiss_message">你可以之后在设置中支持 Šapat。</string>
     <string name="badges_your_badge">你的徽章</string>
     <string name="badges_redeem_code_button">兑换徽章代码</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[在<font color="#0088ff">我们的博客</font>中了解更多。]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[在<font color="#4f79a6">我们的博客</font>中了解更多。]]></string>
     <string name="badges_larger_files_longer">支持 Šapat 即可发送更大的文件，且保留更久</string>
     <string name="badges_check_your_order_title">检查你的订单</string>
     <string name="badges_order_duration">时长</string>

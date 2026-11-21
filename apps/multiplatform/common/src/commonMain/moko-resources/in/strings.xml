@@ -1351,7 +1351,7 @@
     <string name="confirm_delete_contact_question">Konfirmasi hapus kontak?</string>
     <string name="send_disappearing_message_custom_time">Waktu kustom</string>
     <string name="choose_file_title">Pilih berkas</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Anda dapat <font color="#0088ff">terhubung ke pengembang Šapat untuk mengajukan pertanyaan dan menerima pembaruan</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Anda dapat <font color="#4f79a6">terhubung ke pengembang Šapat untuk mengajukan pertanyaan dan menerima pembaruan</font>.]]></string>
     <string name="clear_chat_question">Hapus obrolan?</string>
     <string name="network_proxy_auth_mode_no_auth">Jangan gunakan kredensial dengan proxy.</string>
     <string name="disable_onion_hosts_when_not_supported"><![CDATA[Atur <i>Gunakan host .onion</i> ke Tidak jika proxy SOCKS tidak mendukung.]]></string>
@@ -1498,7 +1498,7 @@
     <string name="icon_descr_cancel_link_preview">batal pratinjau tautan</string>
     <string name="icon_descr_close_button">Tombol tutup</string>
     <string name="icon_descr_email">Email</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Lebih lanjut di <font color="#0088ff">Panduan Pengguna</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Lebih lanjut di <font color="#4f79a6">Panduan Pengguna</font>.]]></string>
     <string name="enable_receipts_all">Aktifkan</string>
     <string name="onboarding_network_operators_cant_see_who_talks_to_whom">Ketika lebih dari satu operator diaktifkan, tidak satupun dari mereka memiliki metadata untuk mengetahui siapa yang berkomunikasi.</string>
     <string name="chat_is_running">Obrolan sedang berjalan</string>
@@ -2712,7 +2712,7 @@
     <string name="badges_how_it_works_p1">Lencana adalah kredensial anonim yang disimpan di profil Anda pada perangkat Anda. Kredensial ini tidak pernah dikirim ke siapa pun.</string>
     <string name="badges_how_it_works_p2">Untuk membuktikan kepada kontak atau server bahwa Anda memiliki lencana, aplikasi membuat bukti baru yang hanya mengungkapkan jenis lencana dan tanggal kedaluwarsa, dibulatkan ke minggu.</string>
     <string name="badges_how_it_works_p3">Tidak ada yang dapat menautkan dua bukti berbeda satu sama lain atau dengan pembelian.</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Baca selengkapnya di <font color="#0088ff">blog kami</font>.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Baca selengkapnya di <font color="#4f79a6">blog kami</font>.]]></string>
     <string name="badges_preview_my_nickname">Nama panggilan saya</string>
     <string name="badges_banner_title">Dukung Šapat</string>
     <string name="badges_banner_subtitle">Dapatkan lencana + berkas lebih baik</string>

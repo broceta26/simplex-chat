@@ -487,7 +487,7 @@
     <string name="exit_without_saving">退出並且不儲存記錄</string>
     <string name="create_profile">建立個人檔案</string>
     <string name="callstate_received_confirmation">已確認回應…</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[你可以透過 <font color="#0088ff">連接到 Šapat 開發人員提出任何問題並同意更新</font>。]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[你可以透過 <font color="#4f79a6">連接到 Šapat 開發人員提出任何問題並同意更新</font>。]]></string>
     <string name="to_start_a_new_chat_help_header">開啟新的對話</string>
     <string name="set_contact_name">設定聯絡人名稱</string>
     <string name="you_invited_a_contact">你已邀請了你的聯絡人</string>
@@ -1081,7 +1081,7 @@
     <string name="dark_theme">黑暗主題</string>
     <string name="error_setting_address">設定聯絡地址時出錯</string>
     <string name="auth_open_chat_profiles">變更聊天個人檔案</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[可在 <font color="#0088ff"> 內查看更多關於用戶指南的資料</font>。]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[可在 <font color="#4f79a6"> 內查看更多關於用戶指南的資料</font>。]]></string>
     <string name="self_destruct">自毁</string>
     <string name="enabled_self_destruct_passcode">啟用自毀密碼</string>
     <string name="change_self_destruct_passcode">修改自毀密碼</string>
@@ -2827,7 +2827,7 @@
     <string name="badges_how_it_works_p1">徽章是儲存在你裝置上個人檔案中的匿名憑證。此憑證永遠不會傳送給任何人。</string>
     <string name="badges_how_it_works_p2">為了向聯絡人或伺服器證明你擁有徽章，應用程式會產生新的證明，只透露徽章類型和以週為單位約略計算的到期日。</string>
     <string name="badges_how_it_works_p3">沒有人能將兩個不同的證明互相關聯，或與購買關聯。</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[在<font color="#0088ff">我們的部落格</font>中了解更多。]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[在<font color="#4f79a6">我們的部落格</font>中了解更多。]]></string>
     <string name="badges_preview_my_nickname">我的暱稱</string>
     <string name="badges_banner_title">支持 Šapat</string>
     <string name="badges_banner_subtitle">取得徽章 + 更好的檔案功能</string>

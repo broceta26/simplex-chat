@@ -853,7 +853,7 @@
 
   <!-- help - ChatHelpView.kt -->
   <string name="thank_you_for_installing_simplex">Thank you for installing Šapat!</string>
-  <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[You can <font color="#0088ff">connect to Šapat developers to ask any questions and to receive updates</font>.]]></string>
+  <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[You can <font color="#4f79a6">connect to Šapat developers to ask any questions and to receive updates</font>.]]></string>
   <string name="to_start_a_new_chat_help_header">To start a new chat</string>
   <string name="chat_help_tap_button">Tap button</string>
   <string name="above_then_preposition_continuation">above, then:</string>
@@ -972,7 +972,7 @@
   <string name="connection_security">Connection security</string>
   <string name="simplex_address_and_1_time_links_are_safe_to_share">Šapat address and 1-time links are safe to share via any messenger.</string>
   <string name="to_protect_against_your_link_replaced_compare_codes">To protect against your link being replaced, you can compare contact security codes.</string>
-  <string name="read_more_in_user_guide_with_link"><![CDATA[Read more in <font color="#0088ff">User Guide</font>.]]></string>
+  <string name="read_more_in_user_guide_with_link"><![CDATA[Read more in <font color="#4f79a6">User Guide</font>.]]></string>
   <string name="address_or_1_time_link">Address or 1-time link?</string>
 
   <!-- PasteToConnect.kt -->
@@ -3236,7 +3236,7 @@
   <string name="badges_how_it_works_p1">A badge is an anonymous credential stored in your profile on your device. This credential is never sent to anyone.</string>
   <string name="badges_how_it_works_p2">To prove to a contact or a server that you have a badge, the app generates a new proof that reveals only the badge type and the expiry date, rounded to a week.</string>
   <string name="badges_how_it_works_p3">Nobody can link two different proofs to each other or to the purchase.</string>
-  <string name="badges_how_it_works_read_more_with_link"><![CDATA[Read more in <font color="#0088ff">our blog</font>.]]></string>
+  <string name="badges_how_it_works_read_more_with_link"><![CDATA[Read more in <font color="#4f79a6">our blog</font>.]]></string>
   <string name="badges_preview_my_nickname">My nickname</string>
   <string name="badges_banner_title">Support Šapat</string>
   <string name="badges_banner_subtitle">Get badge + better files</string>

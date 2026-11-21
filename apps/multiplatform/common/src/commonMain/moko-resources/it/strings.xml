@@ -514,7 +514,7 @@
     <string name="to_connect_via_link_title">Per connettersi via link</string>
     <string name="to_start_a_new_chat_help_header">Per iniziare una nuova chat</string>
     <string name="use_camera_button">Fotocamera</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Puoi <font color="#0088ff">connetterti con gli sviluppatori di Šapat per porre domande e ricevere aggiornamenti</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Puoi <font color="#4f79a6">connetterti con gli sviluppatori di Šapat per porre domande e ricevere aggiornamenti</font>.]]></string>
     <string name="invalid_contact_link">Link non valido!</string>
     <string name="image_descr_link_preview">immagine di anteprima link</string>
     <string name="mark_read">Segna come già letto</string>
@@ -1085,7 +1085,7 @@
     <string name="if_you_cant_meet_in_person">Se non potete incontrarvi di persona, mostra il codice QR in una videochiamata o condividi il link.</string>
     <string name="email_invite_subject">Parliamo in Šapat</string>
     <string name="profile_update_will_be_sent_to_contacts">L\'aggiornamento del profilo verrà inviato ai tuoi contatti di Šapat.</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Maggiori informazioni nella <font color="#0088ff">Guida per l\'utente</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Maggiori informazioni nella <font color="#4f79a6">Guida per l\'utente</font>.]]></string>
     <string name="color_surface">Menu e avvisi</string>
     <string name="stop_sharing_address">Smettere di condividere l\'indirizzo?</string>
     <string name="save_settings_question">Salvare le impostazioni?</string>
@@ -2941,7 +2941,7 @@
     <string name="emoji_category_people">Persone e corpo</string>
     <string name="badges_link_held_title">Il profilo ha già un distintivo</string>
     <string name="badges_credential_purchase_id">ID acquisto</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Maggiori informazioni nel <font color="#0088ff">nostro blog</font>.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Maggiori informazioni nel <font color="#4f79a6">nostro blog</font>.]]></string>
     <string name="callstate_reconnecting">riconnessione…</string>
     <string name="call_not_encrypted_desc">%s ha accettato la chiamata senza crittografia end-to-end.</string>
     <string name="keystore_key_storage_strongbox">Elemento sicuro</string>

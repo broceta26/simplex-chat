@@ -777,7 +777,7 @@
     <string name="mark_unread">Merkitse lukemattomaksi</string>
     <string name="set_contact_name">Aseta kontaktin nimi</string>
     <string name="connection_you_accepted_will_be_cancelled">Hyväksymäsi yhteys peruuntuu!</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Lue lisää <font color="#0088ff">Käyttöoppaasta</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Lue lisää <font color="#4f79a6">Käyttöoppaasta</font>.]]></string>
     <string name="mark_code_verified">Merkitse vahvistetuksi</string>
     <string name="simplex_address">Šapat-osoite</string>
     <string name="chat_with_the_founder">Lähetä kysymyksiä ja ideoita</string>
@@ -1116,7 +1116,7 @@
     <string name="waiting_for_video">Odottaa videota</string>
     <string name="switch_receiving_address_desc">Vastaanotto-osoite vaihdetaan toiseen palvelimeen. Osoitteenmuutos tehdään sen jälkeen, kun lähettäjä tulee verkkoon.</string>
     <string name="you_need_to_allow_to_send_voice">Sinun on sallittava kontaktiesi lähettää ääniviestejä, jotta voit lähettää niitä.</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Voit <font color="#0088ff">olla yhteydessä Šapatin -kehittäjiin kysyäksesi kysymyksiä ja saadaksesi päivityksiä</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Voit <font color="#4f79a6">olla yhteydessä Šapatin -kehittäjiin kysyäksesi kysymyksiä ja saadaksesi päivityksiä</font>.]]></string>
     <string name="you_will_be_connected_when_group_host_device_is_online">Sinut yhdistetään ryhmään, kun ryhmän isännän laite on online-tilassa, odota tai tarkista myöhemmin!</string>
     <string name="you_will_be_connected_when_your_connection_request_is_accepted">Sinut yhdistetään, kun yhteyspyyntösi on hyväksytty, odota tai tarkista myöhemmin!</string>
     <string name="you_will_be_connected_when_your_contacts_device_is_online">Sinut yhdistetään, kun kontaktisi laite on online-tilassa, odota tai tarkista myöhemmin!</string>

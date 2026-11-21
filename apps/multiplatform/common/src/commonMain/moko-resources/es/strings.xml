@@ -811,7 +811,7 @@
     <string name="webrtc_ice_servers">Servidores WebRTC ICE</string>
     <string name="contact_wants_to_connect_via_call">%1$s quiere conectarse contigo mediante</string>
     <string name="failed_to_create_user_duplicate_desc">Ya tienes un perfil con este nombre mostrado. Por favor, selecciona otro nombre.</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Puedes <font color="#0088ff">ponerte en contacto con los desarrolladores de Šapat para consultas y para recibir actualizaciones</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Puedes <font color="#4f79a6">ponerte en contacto con los desarrolladores de Šapat para consultas y para recibir actualizaciones</font>.]]></string>
     <string name="observer_cant_send_message_title">eres observador</string>
     <string name="you_can_use_markdown_to_format_messages__prompt">Puedes usar la sintaxis markdown para dar formato a tus mensajes:</string>
     <string name="you_must_use_the_most_recent_version_of_database">Debes usar la versión más reciente de tu base de datos ÚNICAMENTE en un dispositivo, de lo contrario podrías dejar de recibir mensajes de algunos contactos.</string>
@@ -1044,7 +1044,7 @@
     <string name="group_welcome_preview">Vista previa</string>
     <string name="opening_database">Abriendo base de datos…</string>
     <string name="error_setting_address">Error al introducir dirección</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Conoce más en la <font color="#0088ff">Guía de Usuario</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Conoce más en la <font color="#4f79a6">Guía de Usuario</font>.]]></string>
     <string name="one_time_link_short">Enlace de un solo uso</string>
     <string name="simplex_address">Dirección Šapat</string>
     <string name="share_address">Compartir dirección…</string>
@@ -2895,7 +2895,7 @@
     <string name="badges_choose_your_badge_lede">Archivos más grandes que permanecen disponibles más tiempo.</string>
     <string name="badges_how_long_title">¿Por cuánto tiempo?</string>
     <string name="badges_how_it_works_p2">Para demostrar a un contacto o a un servidor que tienes una insignia, la aplicación genera una prueba nueva que solo revela el tipo de insignia y la fecha de caducidad, redondeada a la semana.</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Más información en <font color="#0088ff">nuestro blog</font>.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Más información en <font color="#4f79a6">nuestro blog</font>.]]></string>
     <string name="badges_larger_files_longer">Patrocina Šapat para enviar archivos más grandes que permanecen disponibles más tiempo</string>
     <string name="badges_check_your_order_title">Revisa tu pedido</string>
     <string name="badges_order_duration">Duración</string>

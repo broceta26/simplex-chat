@@ -841,7 +841,7 @@
     <string name="to_preserve_privacy_simplex_has_background_service_instead_of_push_notifications_it_uses_a_few_pc_battery"><![CDATA[Om de privacy te verbeteren, <b>draait Šapat op de achtergrond</b> in plaats van pushmeldingen te gebruiken.]]></string>
     <string name="chat_preferences_you_allow">Jij staat toe</string>
     <string name="you_are_invited_to_group">Je bent uitgenodigd voor de groep</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[U kunt <font color="#0088ff">verbinding maken met Šapat ontwikkelaars om vragen te stellen en updates te ontvangen</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[U kunt <font color="#4f79a6">verbinding maken met Šapat ontwikkelaars om vragen te stellen en updates te ontvangen</font>.]]></string>
     <string name="connection_error_auth_desc">Tenzij uw contact de verbinding heeft verwijderd of deze link al is gebruikt, kan het een bug zijn. Meld het alstublieft. \nOm verbinding te maken, vraagt u uw contact om een andere verbinding link te maken en te controleren of u een stabiele netwerkverbinding heeft.</string>
     <string name="use_simplex_chat_servers__question">Šapat servers gebruiken?</string>
     <string name="voice_messages_are_prohibited">Spraak berichten zijn niet toegestaan.</string>
@@ -1087,7 +1087,7 @@
     <string name="import_theme_error">Fout bij importeren thema</string>
     <string name="import_theme_error_desc">Zorg ervoor dat het bestand de juiste YAML-syntaxis heeft. Exporteer het thema om een voorbeeld te hebben van de themabestandsstructuur.</string>
     <string name="opening_database">Database openen…</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Lees meer in de <font color="#0088ff">Gebruikershandleiding</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Lees meer in de <font color="#4f79a6">Gebruikershandleiding</font>.]]></string>
     <string name="theme_colors_section_title">Interface kleuren</string>
     <string name="all_app_data_will_be_cleared">Alle app-gegevens worden verwijderd.</string>
     <string name="empty_chat_profile_is_created">Er wordt een leeg chatprofiel met de opgegeven naam gemaakt en de app wordt zoals gewoonlijk geopend.</string>
@@ -2414,7 +2414,7 @@
     <string name="badges_how_it_works_p1">Een badge is een anonieme credential die in uw profiel op uw apparaat wordt opgeslagen. Deze credential wordt nooit naar iemand verzonden.</string>
     <string name="badges_how_it_works_p2">Om aan een contact of server te bewijzen dat u een badge heeft, genereert de app een nieuw bewijs dat alleen het type badge en de vervaldatum, afgerond op een week, onthult.</string>
     <string name="badges_how_it_works_p3">Niemand kan twee verschillende bewijzen aan elkaar of aan de aankoop koppelen.</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Lees meer op <font color="#0088ff">onze blog</font>.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Lees meer op <font color="#4f79a6">onze blog</font>.]]></string>
     <string name="badges_preview_my_nickname">Mijn bijnaam</string>
     <string name="badges_banner_title">Steun Šapat</string>
     <string name="badges_banner_subtitle">Krijg een badge + betere bestanden</string>

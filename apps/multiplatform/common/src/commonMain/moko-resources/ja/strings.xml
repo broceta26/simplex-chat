@@ -799,7 +799,7 @@
     <string name="contact_sent_large_file">相手が上限を超える容量のファイルを送ろうとしました (%1$s)。</string>
     <string name="voice_messages_prohibited">音声メッセージは使用禁止です！</string>
     <string name="add_contact_or_create_group">新しいチャットを始める</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[<font color="#0088ff">Šapatの開発者と繋がれば、質問したり、速報を受けたりすることができます</font>。]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[<font color="#4f79a6">Šapatの開発者と繋がれば、質問したり、速報を受けたりすることができます</font>。]]></string>
     <string name="to_start_a_new_chat_help_header">新しいチャットを始めるには</string>
     <string name="chat_help_tap_button">ボタンをタップ</string>
     <string name="unmute_chat">ミュート解除</string>
@@ -888,7 +888,7 @@
     <string name="dark_theme">ダークテーマ</string>
     <string name="gallery_image_button">画像</string>
     <string name="learn_more_about_address">Šapatアドレスについて</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[<font color="#0088ff">ユーザーガイド</font>で詳細を見る]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[<font color="#4f79a6">ユーザーガイド</font>で詳細を見る]]></string>
     <string name="simplex_address">Šapatアドレス</string>
     <string name="network_proxy_port">ポート %d</string>
     <string name="enter_welcome_message_optional">ウェルカムメッセージを入力…（任意）</string>

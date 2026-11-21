@@ -1347,7 +1347,7 @@
     <string name="you_can_start_chat_via_setting_or_by_restarting_the_app">A csevegés elindítható az alkalmazás „Beállítások / Adatbázis” menüjében vagy az alkalmazás újraindításával.</string>
     <string name="verify_code_on_mobile">Kód ellenőrzése a hordozható eszközön</string>
     <string name="youve_accepted_group_invitation_connecting_to_inviting_group_member">Ön csatlakozott ehhez a csoporthoz. Kapcsolódás a meghívó csoporttaghoz.</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Kapcsolatba léphet <font color="#0088ff">a Šapat fejlesztőivel, akiktől bármit kérdezhet és értesülhet a friss hírekről</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Kapcsolatba léphet <font color="#4f79a6">a Šapat fejlesztőivel, akiktől bármit kérdezhet és értesülhet a friss hírekről</font>.]]></string>
     <string name="v4_2_auto_accept_contact_requests_desc">Nem kötelező üdvözlőüzenettel.</string>
     <string name="unknown_database_error_with_info">Ismeretlen adatbázishiba: %s</string>
     <string name="you_can_hide_or_mute_user_profile">Elrejtheti vagy lenémíthatja a felhasználóprofiljait – koppintson (vagy számítógép-alkalmazásban kattintson) hosszan a profilra a felugró menühöz.</string>
@@ -1424,7 +1424,7 @@
     <string name="sync_connection_force_desc">A titkosítás működik, és új titkosítási egyezményre nincs szükség. Ez kapcsolati hibákat eredményezhet!</string>
     <string name="delete_chat_profile_action_cannot_be_undone_warning">Ez a művelet nem vonható vissza – profiljai, partnerei, üzenetei és fájljai véglegesen törölve lesznek.</string>
     <string name="info_row_updated_at">Bejegyzés frissítve</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[További tudnivalókat a <font color="#0088ff">használati útmutatóban</font> talál.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[További tudnivalókat a <font color="#4f79a6">használati útmutatóban</font> talál.]]></string>
     <string name="settings_is_storing_in_clear_text">A jelmondat a beállításokban egyszerű szövegként van tárolva.</string>
     <string name="terminal_always_visible">Konzol megjelenítése új ablakban</string>
     <string name="alert_text_msg_bad_hash">Az előző üzenet kivonata különbözik.</string>
@@ -2926,7 +2926,7 @@
     <string name="badges_choose_your_badge_title">Válassza ki a kitűzőjét</string>
     <string name="badges_choose_your_badge_lede">Nagyméretű fájlok küldése, amelyek tovább maradnak elérhetők az átjátszókon.</string>
     <string name="badges_how_long_title">Mennyi ideig?</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[További tudnivalókat a <font color="#0088ff">blogunkban</font> talál.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[További tudnivalókat a <font color="#4f79a6">blogunkban</font> talál.]]></string>
     <string name="badges_larger_files_longer">Támogassa a Šapatet és küldjön nagyméretű fájlokat, amelyek tovább maradnak elérhetők az átjátszókon</string>
     <string name="badges_check_your_order_title">Ellenőrizze a megrendelését</string>
     <string name="badges_order_duration">Időtartam</string>

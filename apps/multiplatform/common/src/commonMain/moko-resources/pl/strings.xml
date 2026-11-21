@@ -953,7 +953,7 @@
     <string name="simplex_service_notification_title">serwis Šapat</string>
     <string name="contact_wants_to_connect_via_call">%1$s chce się z Tobą połączyć przez</string>
     <string name="you_are_already_connected_to_vName_via_this_link">Jesteś już połączony z %1$s.</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Możesz <font color="#0088ff">połączyć się z deweloperami Šapat aby zadać wszelkie pytania i otrzymywać aktualizacje</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Możesz <font color="#4f79a6">połączyć się z deweloperami Šapat aby zadać wszelkie pytania i otrzymywać aktualizacje</font>.]]></string>
     <string name="you_can_share_group_link_anybody_will_be_able_to_connect">Możesz udostępnić link lub kod QR - każdy będzie mógł dołączyć do grupy. Nie stracisz członków grupy, jeśli później ją usuniesz.</string>
     <string name="you_must_use_the_most_recent_version_of_database">Musisz używać najnowszej wersji bazy danych czatu TYLKO na jednym urządzeniu, w przeciwnym razie możesz przestać otrzymywać wiadomości od niektórych kontaktów.</string>
     <string name="you_can_start_chat_via_setting_or_by_restarting_the_app">Możesz rozpocząć czat poprzez Ustawienia aplikacji / Bazę danych lub poprzez ponowne uruchomienie aplikacji.</string>
@@ -1073,7 +1073,7 @@
     <string name="auth_open_chat_profiles">Zmień profile czatu</string>
     <string name="learn_more_about_address">O adresie Šapat</string>
     <string name="one_time_link_short">link jednorazowy</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Przeczytaj więcej w <font color="#0088ff">Podręczniku Użytkownika</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Przeczytaj więcej w <font color="#4f79a6">Podręczniku Użytkownika</font>.]]></string>
     <string name="simplex_address">Adres Šapat</string>
     <string name="you_wont_lose_your_contacts_if_delete_address">Nie stracisz kontaktów, jeśli później usuniesz swój adres.</string>
     <string name="customize_theme_title">Dostosuj motyw</string>
@@ -2535,7 +2535,7 @@
     <string name="badges_how_it_works_p1">Odznaka to anonimowe poświadczenie przechowywane w Twoim profilu na Twoim urządzeniu. To poświadczenie nigdy nie jest nikomu wysyłane.</string>
     <string name="badges_how_it_works_p2">Aby udowodnić kontaktowi lub serwerowi, że masz odznakę, aplikacja generuje nowy dowód, który ujawnia tylko typ odznaki i datę wygaśnięcia zaokrągloną do tygodnia.</string>
     <string name="badges_how_it_works_p3">Nikt nie może powiązać dwóch różnych dowodów ze sobą ani z zakupem.</string>
-    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Przeczytaj więcej na <font color="#0088ff">naszym blogu</font>.]]></string>
+    <string name="badges_how_it_works_read_more_with_link"><![CDATA[Przeczytaj więcej na <font color="#4f79a6">naszym blogu</font>.]]></string>
     <string name="badges_preview_my_nickname">Mój pseudonim</string>
     <string name="badges_banner_title">Wspieraj Šapat</string>
     <string name="badges_banner_subtitle">Zdobądź odznakę + lepsze pliki</string>

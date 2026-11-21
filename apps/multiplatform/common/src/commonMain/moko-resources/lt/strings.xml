@@ -940,7 +940,7 @@
     <string name="service_notifications">Momentiniai pranešimai!</string>
     <string name="service_notifications_disabled">Momentiniai pranešimai yra išjungti!</string>
     <string name="icon_descr_profile_image_placeholder">profilio nuotraukos vietos ženklas</string>
-    <string name="read_more_in_user_guide_with_link"><![CDATA[Skaitykite daugiau <font color="#0088ff">naudotojo vadove</font>.]]></string>
+    <string name="read_more_in_user_guide_with_link"><![CDATA[Skaitykite daugiau <font color="#4f79a6">naudotojo vadove</font>.]]></string>
     <string name="if_you_cant_meet_in_person">Jei negalite susitikti asmeniškai, parodykite QR kodą vaizdo skambutyje, arba pasidalinkite nuoroda.</string>
     <string name="callstate_received_answer">gautas atsakas…</string>
     <string name="icon_descr_call_connecting">Jungiamas skambutis</string>
@@ -1412,7 +1412,7 @@
     <string name="v4_2_auto_accept_contact_requests_desc">Su nebūtina sveikinimo žinute.</string>
     <string name="v5_5_message_delivery_descr">Su sumažintu akumuliatoriaus naudojimu.</string>
     <string name="you_are_invited_to_group">Esate kviečiami į grupę</string>
-    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Galite <font color="#0088ff">prisijungti prie Šapat kūrėjų, kad klausti klausimus ir gauti atnaujinimus</font>.]]></string>
+    <string name="you_can_connect_to_simplex_chat_founder"><![CDATA[Galite <font color="#4f79a6">prisijungti prie Šapat kūrėjų, kad klausti klausimus ir gauti atnaujinimus</font>.]]></string>
     <string name="linked_desktop_options">Susieto darbastalio parinktys</string>
     <string name="connect_plan_you_are_already_in_group_vName"><![CDATA[Jau esate grupėje <b>%1$s</b>.]]></string>
     <string name="user_unmute">Pašalinti nutildymą</string>
