@@ -465,7 +465,7 @@ agentServerCfgs p opDomains = mapMaybe agentServer
 matchingHost :: Text -> TransportHost -> Bool
 matchingHost d = \case
   THDomainName h -> d `T.isSuffixOf` T.pack h
-  _ -> False
+  h -> d == safeDecodeUtf8 (strEncode h)
 
 operatorDomains :: [ServerOperator' s] -> [(Text, ServerOperator' s)]
 operatorDomains = foldr (\op ds -> foldr (\d -> ((d, op) :)) ds (serverDomains op)) []
