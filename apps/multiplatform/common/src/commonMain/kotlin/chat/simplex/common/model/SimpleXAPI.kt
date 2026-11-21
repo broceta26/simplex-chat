@@ -281,7 +281,7 @@ class AppPreferences {
   val oneHandUI = mkBoolPreference(SHARED_PREFS_ONE_HAND_UI, false)
   val chatBottomBar = mkBoolPreference(SHARED_PREFS_CHAT_BOTTOM_BAR, true)
   val chatLayout = SharedPreference(
-    get = fun() = ChatLayoutMode.fromText(settings.getString(SHARED_PREFS_CHAT_LAYOUT, ChatLayoutMode.Classic.text)),
+    get = fun() = ChatLayoutMode.fromText(settings.getString(SHARED_PREFS_CHAT_LAYOUT, ChatLayoutMode.Terminal.text)),
     set = fun(value: ChatLayoutMode) = settings.putString(SHARED_PREFS_CHAT_LAYOUT, value.text)
   )
 
@@ -8978,7 +8978,7 @@ data class AppSettings(
         uiThemes = null,
         oneHandUI = false,
         chatBottomBar = true,
-        uiChatLayout = ChatLayoutMode.Classic,
+        uiChatLayout = ChatLayoutMode.Terminal,
       )
 
     val current: AppSettings

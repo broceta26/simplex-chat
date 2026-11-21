@@ -2295,7 +2295,7 @@ object ChatLayoutModeSerializer : KSerializer<ChatLayoutMode> {
 private val ChatLayoutMode?.known: ChatLayoutMode? get() = if (this is ChatLayoutMode.Unknown) null else this
 
 fun profileChatLayout(user: User?): ChatLayoutMode =
-  user?.uiThemes?.chatLayout.known ?: ChatController.appPrefs.chatLayout.state.value.known ?: ChatLayoutMode.Classic
+  user?.uiThemes?.chatLayout.known ?: ChatController.appPrefs.chatLayout.state.value.known ?: ChatLayoutMode.Terminal
 
 fun peerTypeIcon(peerType: ChatPeerType?): ImageResource =
   when (peerType) {

@@ -845,10 +845,10 @@ fun SimpleXTheme(darkTheme: Boolean? = null, content: @Composable () -> Unit) {
 }
 
 @Composable
-fun SimpleXThemeOverride(theme: ThemeManager.ActiveTheme, content: @Composable () -> Unit) {
+fun SimpleXThemeOverride(theme: ThemeManager.ActiveTheme, typography: androidx.compose.material.Typography = Typography, content: @Composable () -> Unit) {
   MaterialTheme(
     colors = theme.colors,
-    typography = Typography,
+    typography = typography,
     shapes = Shapes,
     content = {
       val rememberedAppColors = remember {

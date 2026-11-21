@@ -279,7 +279,8 @@ fun ChatView(
         val overrides = if (perChatTheme != null) ThemeManager.currentColors(null, perChatTheme, chatModel.currentUser.value?.uiThemes, appPrefs.themeOverrides.get()) else null
         val fullDeleteAllowed = remember(chatInfo) { chatInfo.featureEnabled(ChatFeature.FullDelete) }
 
-        SimpleXThemeOverride(overrides ?: CurrentColors.collectAsState().value) {
+        val baseTheme = overrides ?: CurrentColors.collectAsState().value
+        SimpleXThemeOverride(if (terminal) retroTheme(baseTheme) else baseTheme, if (terminal) RetroTypography else Typography) {
           val onSearchValueChanged: (String) -> Unit = onSearchValueChanged@{ value ->
             val sameText = searchText.value == value
             // showSearch can be false with empty text when it was closed manually after clicking on message from search to load .around it
