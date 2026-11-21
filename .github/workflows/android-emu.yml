@@ -1,6 +1,8 @@
 name: android-emu
 
 on:
+  push:
+    branches: ['mesindzer/**']
   workflow_dispatch:
     inputs:
       claude:

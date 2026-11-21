@@ -848,7 +848,7 @@
     <string name="snd_conn_event_switch_queue_phase_completed">你已更改地址</string>
     <string name="you_can_share_group_link_anybody_will_be_able_to_connect">你可以共享链接或二维码——任何人都可以加入该群。如果你稍后将其删除，你不会失去该群的成员。</string>
     <string name="conn_level_desc_indirect">间接（%1$s）</string>
-    <string name="app_name" translatable="false">SimpleX</string>
+    <string name="app_name" translatable="false">Šapat</string>
     <string name="you_will_join_group">你将连接到所有群成员。</string>
     <string name="description_via_group_link">通过群链接</string>
     <string name="description_via_one_time_link">通过一次性链接</string>

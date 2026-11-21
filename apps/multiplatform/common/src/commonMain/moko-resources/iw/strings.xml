@@ -1036,7 +1036,7 @@
     <string name="user_unmute">בטל השתקה</string>
     <string name="callstate_waiting_for_confirmation">ממתין לאישור…</string>
     <string name="callstate_waiting_for_answer">ממתין למענה…</string>
-    <string name="app_name" translatable="false">SimpleX</string>
+    <string name="app_name" translatable="false">Šapat</string>
     <string name="sender_you_pronoun">אתם</string>
     <string name="description_via_contact_address_link">באמצעות קישור לכתובת איש קשר</string>
     <string name="description_via_group_link">באמצעות קישור לקבוצה</string>
