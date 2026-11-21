@@ -1353,27 +1353,27 @@
   <string name="make_private_connection">Make a private connection</string>
   <string name="migrate_from_another_device">Migrate from another device</string>
   <string name="how_it_works">How it works</string>
-  <string name="onboarding_be_free">Be free\nin your network</string>
+  <string name="onboarding_be_free">Your conversations,\nonly yours</string>
   <string name="onboarding_private_and_secure">Private and secure messaging.</string>
-  <string name="onboarding_first_network">The first network where you own\nyour contacts and groups.</string>
+  <string name="onboarding_first_network">No phone number, no account.\nYour contacts and groups belong to you.</string>
   <string name="get_started">Get started</string>
   <string name="why_simplex_is_built">Why Šapat is built.</string>
   <string name="onboarding_your_profile">Your profile</string>
   <string name="onboarding_on_your_phone">On your phone, not on servers.</string>
-  <string name="onboarding_no_account">No account. No phone. No email. No ID.\nThe most secure encryption.</string>
+  <string name="onboarding_no_account">No account, phone number, email or personal data.\nThe strongest encryption.</string>
   <string name="enter_profile_name">Enter profile name…</string>
   <string name="migrate">Migrate</string>
 
   <!-- Why SimpleX is built -->
-  <string name="why_built_heading">You were born without an account.</string>
-  <string name="why_built_p1">Nobody tracked your conversations. No one drew a map of where you\'d been. Privacy was never a feature — it was the way of life.</string>
-  <string name="why_built_p2">Then we moved online, and every platform asked for a piece of you — your name, your number, your friends. We accepted that the price of talking to others is letting someone know who we talk to. Every generation, people and tech, had it this way — telephone, email, messengers, social media. It seemed the only way possible.</string>
-  <string name="why_built_p3">There is another way. A network with no phone numbers. No usernames. No accounts. No user identities of any kind. A network that connects people and carries encrypted messages without knowing who is connected.</string>
-  <string name="why_built_p4">Not a better lock on someone else\'s door. Not a nicer landlord that respects your privacy, but still keeps the record of all visitors. You are not a guest. You are home. No king can enter it — you are sovereign.</string>
-  <string name="why_built_p5">Your conversations belong to you, as it had always been before the Internet. The network is not a place you visit. It is a place you create and own. And nobody can take it from you, whether you make it private or public.</string>
-  <string name="why_built_p6">The oldest human freedom — to speak to another person without being watched — built on infrastructure that cannot betray it.</string>
-  <string name="why_built_p7">Because we destroyed the power to know who you are. So that your power can never be taken.</string>
-  <string name="why_built_tagline">Be free in your network.</string>
+  <string name="why_built_heading">A conversation is between two people.</string>
+  <string name="why_built_p1">When you talk to someone in person, nobody keeps a record. Nobody knows who talked to whom, when, or for how long.</string>
+  <string name="why_built_p2">Most messaging apps ask for a phone number, an email or an account. Even when they encrypt the content, they know who talks to whom.</string>
+  <string name="why_built_p3">Šapat has no user accounts, numbers or usernames. Servers only pass encrypted messages and do not know whose they are.</string>
+  <string name="why_built_p4">Your profile, contacts and messages live on your phone. Encryption keys never leave your device.</string>
+  <string name="why_built_p5">Even we, as the server owners, cannot read your messages or learn who you talk to.</string>
+  <string name="why_built_p6">So a conversation stays what it always was: just between you and the person you talk to.</string>
+  <string name="why_built_p7">No compromises.</string>
+  <string name="why_built_tagline">Your conversations, only yours.</string>
 
   <!-- SetNotificationsMode.kt -->
   <string name="onboarding_notifications_mode_title">Private notifications</string>

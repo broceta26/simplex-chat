@@ -1210,6 +1210,7 @@ object AppearanceScope {
       "pt-BR" to "Português, Brasil",
       "ro" to "Română",
       "ru" to "Русский",
+      "sr" to "Srpski",
       "th" to "ภาษาไทย",
       "tr" to "Türkçe",
       "uk" to "Українська",

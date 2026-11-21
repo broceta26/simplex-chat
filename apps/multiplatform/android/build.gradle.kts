@@ -129,6 +129,7 @@ android {
         "pt-rBR",
         "ro",
         "ru",
+        "sr",
         "th",
         "tr",
         "uk",
