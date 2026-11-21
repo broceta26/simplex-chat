@@ -197,7 +197,7 @@ class AppPreferences {
   val liveMessageAlertShown = mkBoolPreference(SHARED_PREFS_LIVE_MESSAGE_ALERT_SHOWN, false)
   val signMessageAlertShown = mkBoolPreference(SHARED_PREFS_SIGN_MESSAGE_ALERT_SHOWN, false)
   val showHiddenProfilesNotice = mkBoolPreference(SHARED_PREFS_SHOW_HIDDEN_PROFILES_NOTICE, true)
-  val oneHandUICardShown = mkBoolPreference(SHARED_PREFS_ONE_HAND_UI_CARD_SHOWN, false)
+  val oneHandUICardShown = mkBoolPreference(SHARED_PREFS_ONE_HAND_UI_CARD_SHOWN, true)
   val addressCreationCardShown = mkBoolPreference(SHARED_PREFS_ADDRESS_CREATION_CARD_SHOWN, false)
   val supporterBannerShown = mkBoolPreference(SHARED_PREFS_SUPPORTER_BANNER_SHOWN, false)
   val supporterBannerTapped = mkBoolPreference(SHARED_PREFS_SUPPORTER_BANNER_TAPPED, false)
@@ -250,7 +250,7 @@ class AppPreferences {
     jsonCoerceInputValues.decodeFromString(MapSerializer(String.serializer(), ThemeOverrides.serializer()), it)
   }, settingsThemes)
   val themeOverrides = mkThemeOverridesPreference()
-  val profileImageCornerRadius = mkFloatPreference(SHARED_PREFS_PROFILE_IMAGE_CORNER_RADIUS, 22.5f)
+  val profileImageCornerRadius = mkFloatPreference(SHARED_PREFS_PROFILE_IMAGE_CORNER_RADIUS, 50f)
   val chatItemRoundness = mkFloatPreference(SHARED_PREFS_CHAT_ITEM_ROUNDNESS, 0.75f)
   val chatItemTail = mkBoolPreference(SHARED_PREFS_CHAT_ITEM_TAIL, true)
   val fontScale = mkFloatPreference(SHARED_PREFS_FONT_SCALE, 1f)
@@ -278,7 +278,7 @@ class AppPreferences {
   val iosCallKitEnabled = mkBoolPreference(SHARED_PREFS_IOS_CALL_KIT_ENABLED, true)
   val iosCallKitCallsInRecents = mkBoolPreference(SHARED_PREFS_IOS_CALL_KIT_CALLS_IN_RECENTS, false)
 
-  val oneHandUI = mkBoolPreference(SHARED_PREFS_ONE_HAND_UI, true)
+  val oneHandUI = mkBoolPreference(SHARED_PREFS_ONE_HAND_UI, false)
   val chatBottomBar = mkBoolPreference(SHARED_PREFS_CHAT_BOTTOM_BAR, true)
   val chatLayout = SharedPreference(
     get = fun() = ChatLayoutMode.fromText(settings.getString(SHARED_PREFS_CHAT_LAYOUT, ChatLayoutMode.Classic.text)),
@@ -8969,14 +8969,14 @@ data class AppSettings(
         androidCallOnLockScreen = AppSettingsLockScreenCalls.SHOW,
         iosCallKitEnabled = true,
         iosCallKitCallsInRecents = false,
-        uiProfileImageCornerRadius = 22.5f,
+        uiProfileImageCornerRadius = 50f,
         uiChatItemRoundness = 0.75f,
         uiChatItemTail = true,
         uiColorScheme = DefaultTheme.SYSTEM_THEME_NAME,
         uiDarkColorScheme = DefaultTheme.SIMPLEX.themeName,
         uiCurrentThemeIds = null,
         uiThemes = null,
-        oneHandUI = true,
+        oneHandUI = false,
         chatBottomBar = true,
         uiChatLayout = ChatLayoutMode.Classic,
       )

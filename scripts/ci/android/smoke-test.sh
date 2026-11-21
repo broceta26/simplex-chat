@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Installs the APK in the booted emulator (emulator.sh) and runs the scripted UI cases with the ui helper: onboarding to
-# the chat list, a local group, then the chat list with the reachable toolbar (the default) and with the top bar, then
+# the chat list, a local group, then the chat list with the top bar (the default) and with the reachable toolbar, then
 # tests/fixtures/test.jpg and logo-large-rgba.png picked in the system's image picker and sent in the group.
 # Usage: scripts/ci/android/smoke-test.sh <apk> <output dir> [start|onboarding|layouts|backend]
 # With "start" it stops at the first screen, for an agent to go on from; with "onboarding", at the chat list. "backend"
@@ -349,9 +349,10 @@ if [ "$cases" != onboarding ]; then
     test_server
   fi
   create_local_chat
+  check_layout top
+  "$ui" layout reachable
   check_layout reachable
   "$ui" layout top
-  check_layout top
   send_images
 fi
 check "the app is running and logged no crash" app_running

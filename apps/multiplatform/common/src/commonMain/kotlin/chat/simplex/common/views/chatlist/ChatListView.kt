@@ -655,7 +655,7 @@ private fun ChatListToolbar(userPickerState: MutableStateFlow<AnimatedViewState>
       if (!shouldShowOnboarding()) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(DEFAULT_SPACE_AFTER_ICON)) {
           Text(
-            stringResource(MR.strings.your_chats),
+            stringResource(MR.strings.app_name),
             color = MaterialTheme.colors.onBackground,
             fontWeight = FontWeight.SemiBold,
           )
