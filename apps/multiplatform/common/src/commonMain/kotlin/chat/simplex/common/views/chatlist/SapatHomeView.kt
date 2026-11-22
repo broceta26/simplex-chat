@@ -113,7 +113,9 @@ private fun SapatTopBar(chatModel: ChatModel, userPickerState: MutableStateFlow<
       LaunchedEffect(Unit) { focus.requestFocus() }
     } else {
       Box(Modifier.padding(start = 6.dp).size(40.dp).clip(CircleShape).clickable { userPickerState.value = AnimatedViewState.VISIBLE }, contentAlignment = Alignment.Center) {
-        ProfileImage(40.dp, chatModel.currentUser.value?.profile?.image)
+        val u = chatModel.currentUser.value
+        if (u?.profile?.image != null) ProfileImage(40.dp, u.profile.image)
+        else SapatInitials(u?.profile?.displayName ?: "", 40.dp)
       }
       Text(
         stringResource(MR.strings.app_name),
@@ -232,7 +234,7 @@ fun SapatChatRow(chat: Chat, disabled: Boolean) {
   val unread = chat.chatStats.unreadCount
   val muted = !cInfo.ntfsEnabled(false) && (cInfo is ChatInfo.Direct || cInfo is ChatInfo.Group)
   Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-    ChatInfoImage(cInfo, size = 54.dp)
+    SapatAvatar(cInfo, 54.dp)
     Column(Modifier.weight(1f).padding(start = 14.dp)) {
       Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
@@ -269,5 +271,47 @@ fun SapatChatRow(chat: Chat, disabled: Boolean) {
         }
       }
     }
+  }
+}
+
+private val avatarLight = listOf(0xFFF5D9C8 to 0xFF8A4420, 0xFFD5EBDD to 0xFF2D6A45, 0xFFE6DDF3 to 0xFF5B3D8F, 0xFFEDE7D6 to 0xFF6B5A2E, 0xFFDCE3F5 to 0xFF2F4F9F, 0xFFF3D9E2 to 0xFF8F2D52)
+private val avatarDark = listOf(0xFF4A3A2E to 0xFFF5D9C8, 0xFF24423A to 0xFFD5EBDD, 0xFF3A2E5C to 0xFFE6DDF3, 0xFF45402C to 0xFFEDE7D6, 0xFF2C3A66 to 0xFFDCE3F5, 0xFF4F2A3A to 0xFFF3D9E2)
+
+private fun initials(name: String): String {
+  val parts = name.trim().split(Regex("[\\s._-]+")).filter { it.isNotEmpty() }
+  return when {
+    parts.isEmpty() -> "?"
+    parts.size == 1 -> parts[0].take(2)
+    else -> "${parts[0].first()}${parts[1].first()}"
+  }.uppercase()
+}
+
+@Composable
+private fun avatarColors(name: String): Pair<Color, Color> {
+  val list = if (isInDarkTheme()) avatarDark else avatarLight
+  val (bg, fg) = list[Math.floorMod(name.hashCode(), list.size)]
+  return Color(bg) to Color(fg)
+}
+
+@Composable
+fun SapatInitials(name: String, size: androidx.compose.ui.unit.Dp) {
+  val (bg, fg) = avatarColors(name)
+  Box(Modifier.size(size).clip(CircleShape).background(bg), contentAlignment = Alignment.Center) {
+    Text(initials(name), color = fg, fontSize = (size.value * 0.36f).sp, fontWeight = FontWeight.Medium)
+  }
+}
+
+@Composable
+fun SapatAvatar(cInfo: ChatInfo, size: androidx.compose.ui.unit.Dp) {
+  when {
+    cInfo.image != null -> ChatInfoImage(cInfo, size = size)
+    cInfo is ChatInfo.Group -> {
+      val (bg, fg) = avatarColors(cInfo.chatViewName)
+      Box(Modifier.size(size).clip(CircleShape).background(bg), contentAlignment = Alignment.Center) {
+        Icon(painterResource(MR.images.ic_group), null, Modifier.size(size * 0.46f), tint = fg)
+      }
+    }
+    cInfo is ChatInfo.Direct -> SapatInitials(cInfo.chatViewName, size)
+    else -> ChatInfoImage(cInfo, size = size)
   }
 }
