@@ -49,6 +49,40 @@ fun FramedItemView(
   scrollToQuotedItemFromItem: (Long) -> Unit = {},
   endButton: (@Composable () -> Unit)? = null,
 ) {
+  // Šapat style B: sent bubbles are amber, so their text and meta are dark
+  if (sapatStyleB() && ci.chatDir.sent && !LocalTerminalLayout.current) {
+    val c = MaterialTheme.colors
+    MaterialTheme(
+      colors = c.copy(onSurface = Color(0xFF16120A), onBackground = Color(0xFF16120A), secondary = Color(0xFF5C4310), primary = Color(0xFF3A2A06)),
+      typography = MaterialTheme.typography,
+      shapes = MaterialTheme.shapes
+    ) {
+      FramedItemViewInner(chatsCtx = chatsCtx, chat = chat, ci = ci, uriHandler = uriHandler, imageProvider = imageProvider, linkMode = linkMode, showViaProxy = showViaProxy, showMenu = showMenu, showTimestamp = showTimestamp, tailVisible = tailVisible, receiveFile = receiveFile, onLinkLongClick = onLinkLongClick, scrollToItem = scrollToItem, scrollToItemId = scrollToItemId, scrollToQuotedItemFromItem = scrollToQuotedItemFromItem, endButton = endButton)
+    }
+  } else {
+    FramedItemViewInner(chatsCtx = chatsCtx, chat = chat, ci = ci, uriHandler = uriHandler, imageProvider = imageProvider, linkMode = linkMode, showViaProxy = showViaProxy, showMenu = showMenu, showTimestamp = showTimestamp, tailVisible = tailVisible, receiveFile = receiveFile, onLinkLongClick = onLinkLongClick, scrollToItem = scrollToItem, scrollToItemId = scrollToItemId, scrollToQuotedItemFromItem = scrollToQuotedItemFromItem, endButton = endButton)
+  }
+}
+
+@Composable
+private fun FramedItemViewInner(
+  chatsCtx: ChatModel.ChatsContext,
+  chat: Chat,
+  ci: ChatItem,
+  uriHandler: UriHandler? = null,
+  imageProvider: (() -> ImageGalleryProvider)? = null,
+  linkMode: SimplexLinkMode,
+  showViaProxy: Boolean,
+  showMenu: MutableState<Boolean>,
+  showTimestamp: Boolean,
+  tailVisible: Boolean = false,
+  receiveFile: (Long) -> Unit,
+  onLinkLongClick: (link: String) -> Unit = {},
+  scrollToItem: (Long) -> Unit = {},
+  scrollToItemId: MutableState<Long?>,
+  scrollToQuotedItemFromItem: (Long) -> Unit = {},
+  endButton: (@Composable () -> Unit)? = null,
+) {
   val chatInfo = chat.chatInfo
   val sent = ci.chatDir.sent
   val chatTTL = chatInfo.timedMessagesTTL

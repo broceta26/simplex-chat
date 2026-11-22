@@ -53,8 +53,9 @@ fun SapatHomeView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animat
       .filter { q.isEmpty() || it.chatInfo.chatViewName.lowercase().contains(q) }
   }
   Box(Modifier.fillMaxSize().background(MaterialTheme.colors.background)) {
+    val styleB = remember { chatModel.controller.appPrefs.sapatStyle.state }.value == "B"
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
-      SapatTopBar(chatModel, userPickerState, searching, search)
+      if (styleB) SapatTopBarB(chatModel, userPickerState, search, stopped) else SapatTopBar(chatModel, userPickerState, searching, search)
       when {
         chatModel.chatRunning.value == null ->
           Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text(stringResource(MR.strings.loading_chats), color = MaterialTheme.colors.secondary) }
@@ -70,7 +71,7 @@ fun SapatHomeView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animat
           }
       }
     }
-    if (!searching.value && chatModel.chatRunning.value == true) {
+    if (!styleB && !searching.value && chatModel.chatRunning.value == true) {
       FloatingActionButton(
         onClick = { if (!stopped) showSapatNewSheet() },
         Modifier.navigationBarsPadding().padding(end = 20.dp, bottom = 20.dp).align(Alignment.BottomEnd).size(60.dp),
@@ -266,7 +267,7 @@ fun SapatChatRow(chat: Chat, disabled: Boolean) {
               .background(if (muted) MaterialTheme.colors.secondary else MaterialTheme.colors.primary).padding(horizontal = 6.dp),
             contentAlignment = Alignment.Center
           ) {
-            Text(if (unread > 0) unreadCountStr(unread) else "", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+            Text(if (unread > 0) unreadCountStr(unread) else "", color = if (sapatStyleB()) MaterialTheme.colors.onPrimary else Color.White, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
           }
         }
       }
@@ -295,8 +296,9 @@ private fun avatarColors(name: String): Pair<Color, Color> {
 
 @Composable
 fun SapatInitials(name: String, size: androidx.compose.ui.unit.Dp) {
-  val (bg, fg) = avatarColors(name)
-  Box(Modifier.size(size).clip(CircleShape).background(bg), contentAlignment = Alignment.Center) {
+  val b = sapatStyleB()
+  val (bg, fg) = if (b) Color(0xFF1F2124) to Color(0xFFE8E8E8) else avatarColors(name)
+  Box(Modifier.size(size).clip(if (b) RoundedCornerShape(size * 0.3f) else CircleShape).background(bg), contentAlignment = Alignment.Center) {
     Text(initials(name), color = fg, fontSize = (size.value * 0.36f).sp, fontWeight = FontWeight.Medium)
   }
 }
@@ -305,6 +307,7 @@ fun SapatInitials(name: String, size: androidx.compose.ui.unit.Dp) {
 fun SapatAvatar(cInfo: ChatInfo, size: androidx.compose.ui.unit.Dp) {
   when {
     cInfo.image != null -> ChatInfoImage(cInfo, size = size)
+    cInfo is ChatInfo.Group && sapatStyleB() -> SapatInitials(cInfo.chatViewName, size)
     cInfo is ChatInfo.Group -> {
       val (bg, fg) = avatarColors(cInfo.chatViewName)
       Box(Modifier.size(size).clip(CircleShape).background(bg), contentAlignment = Alignment.Center) {
@@ -313,5 +316,58 @@ fun SapatAvatar(cInfo: ChatInfo, size: androidx.compose.ui.unit.Dp) {
     }
     cInfo is ChatInfo.Direct -> SapatInitials(cInfo.chatViewName, size)
     else -> ChatInfoImage(cInfo, size = size)
+  }
+}
+
+@Composable
+private fun SapatTopBarB(chatModel: ChatModel, userPickerState: MutableStateFlow<AnimatedViewState>, search: MutableState<String>, stopped: Boolean) {
+  Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp)) {
+    Row(Modifier.fillMaxWidth().padding(top = 18.dp, bottom = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+      Text(
+        stringResource(MR.strings.sapat_messages), Modifier.weight(1f),
+        fontSize = 28.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onBackground
+      )
+      val menu = remember { mutableStateOf(false) }
+      Box {
+        IconButton({ menu.value = true }) {
+          Icon(painterResource(MR.images.ic_more_vert), null, tint = MaterialTheme.colors.onBackground)
+        }
+        DefaultDropdownMenu(menu) {
+          ItemAction(stringResource(MR.strings.sapat_profiles), painterResource(MR.images.ic_person_add), onClick = { menu.value = false; userPickerState.value = AnimatedViewState.VISIBLE })
+          ItemAction(stringResource(MR.strings.sapat_name_and_code), painterResource(MR.images.ic_person_add), onClick = {
+            menu.value = false
+            ModalManager.start.showModalCloseable { _ -> SapatIdentityView() }
+          })
+          ItemAction(stringResource(MR.strings.settings_section_title_settings), painterResource(MR.images.ic_settings), onClick = {
+            menu.value = false
+            ModalManager.start.showModalCloseable(cardScreen = true) { close -> SettingsView(chatModel, AppLock::setPerformLA, close) }
+          })
+        }
+      }
+      Box(
+        Modifier.padding(start = 4.dp).size(44.dp).clip(RoundedCornerShape(12.dp)).background(MaterialTheme.colors.primary)
+          .clickable { if (!stopped) showSapatNewSheet() },
+        contentAlignment = Alignment.Center
+      ) {
+        Icon(painterResource(MR.images.ic_add), stringResource(MR.strings.sapat_new), Modifier.size(26.dp), tint = MaterialTheme.colors.onPrimary)
+      }
+    }
+    Row(
+      Modifier.fillMaxWidth().height(46.dp).clip(RoundedCornerShape(12.dp))
+        .border(1.dp, MaterialTheme.colors.secondaryVariant, RoundedCornerShape(12.dp))
+        .background(MaterialTheme.colors.surface).padding(horizontal = 14.dp),
+      verticalAlignment = Alignment.CenterVertically
+    ) {
+      Icon(painterResource(MR.images.ic_search), null, Modifier.size(20.dp), tint = MaterialTheme.colors.secondary)
+      Box(Modifier.weight(1f).padding(start = 10.dp)) {
+        if (search.value.isEmpty()) Text(stringResource(MR.strings.sapat_search_hint), color = MaterialTheme.colors.secondary, fontSize = 15.sp)
+        BasicTextField(
+          search.value, { search.value = it }, Modifier.fillMaxWidth(), singleLine = true,
+          textStyle = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.onBackground, fontSize = 15.sp),
+          cursorBrush = SolidColor(MaterialTheme.colors.primary)
+        )
+      }
+    }
+    Spacer(Modifier.height(8.dp))
   }
 }

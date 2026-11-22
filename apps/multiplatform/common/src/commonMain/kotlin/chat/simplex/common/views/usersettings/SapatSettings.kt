@@ -26,7 +26,22 @@ fun SapatThemeView() {
   val current = remember { ChatModel.controller.appPrefs.currentTheme.state }
   ColumnWithScrollBar {
     AppBarTitle(stringResource(MR.strings.sapat_theme))
-    SectionView {
+    val style = remember { ChatModel.controller.appPrefs.sapatStyle.state }
+    SectionView(stringResource(MR.strings.sapat_style)) {
+      listOf("A" to MR.strings.sapat_style_a, "B" to MR.strings.sapat_style_b).forEach { (st, label) ->
+        SectionItemViewSpaceBetween({
+          ChatModel.controller.appPrefs.sapatStyle.set(st)
+          ThemeManager.applyTheme(current.value ?: DefaultTheme.SYSTEM_THEME_NAME)
+        }) {
+          Text(stringResource(label))
+          if ((style.value ?: "A") == st) {
+            Icon(painterResource(MR.images.ic_check), null, tint = MaterialTheme.colors.primary)
+          }
+        }
+      }
+    }
+    SectionTextFooter(stringResource(MR.strings.sapat_style_footer))
+    if (style.value != "B") SectionView {
       listOf(
         DefaultTheme.SYSTEM_THEME_NAME to MR.strings.theme_system,
         DefaultTheme.LIGHT.themeName to MR.strings.theme_light,

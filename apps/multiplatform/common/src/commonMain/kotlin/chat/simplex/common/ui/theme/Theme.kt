@@ -747,6 +747,31 @@ val BlackColorPaletteApp = AppColors(
   receivedQuote = Color(0xFF2C2852),
 )
 
+// Šapat style B, "Grafit": graphite and amber, always dark
+val GraphiteAmber = Color(0xFFF4A623)
+val GraphiteColorPalette = darkColors(
+  primary = GraphiteAmber,
+  primaryVariant = GraphiteAmber,
+  secondary = Color(0xFF9A9DA3),
+  secondaryVariant = Color(0xFF26292D),
+  background = Color(0xFF0C0D0F),
+  surface = Color(0xFF17191C),
+  error = Color(0xFFF26B5B),
+  onPrimary = Color(0xFF16120A),
+  onBackground = Color(0xFFF2F2F2),
+  onSurface = Color(0xFFF2F2F2),
+)
+val GraphiteColorPaletteApp = AppColors(
+  title = Color(0xFFF2F2F2),
+  primaryVariant2 = Color(0xFF26292D),
+  sentMessage = GraphiteAmber,
+  sentQuote = Color(0xFFD98F12),
+  receivedMessage = Color(0xFF1F2124),
+  receivedQuote = Color(0xFF2A2D31),
+)
+
+fun sapatStyleB(): Boolean = appPreferences.sapatStyle.get() == "B"
+
 var systemInDarkThemeCurrently: Boolean = isInNightMode()
 
 // Spec: spec/services/theme.md#CurrentColors

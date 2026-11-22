@@ -56,6 +56,9 @@ object ThemeManager {
   // Spec: spec/services/theme.md#currentColors
   fun currentColors(themeOverridesForType: WallpaperType?, perChatTheme: ThemeModeOverride?, perUserTheme: ThemeModeOverrides?, appSettingsTheme: List<ThemeOverrides>): ActiveTheme {
     val themeName = appPrefs.currentTheme.get()!!
+    if (appPrefs.sapatStyle.get() == "B") {
+      return ActiveTheme(DefaultTheme.DARK.themeName, DefaultTheme.DARK, GraphiteColorPalette, GraphiteColorPaletteApp, AppWallpaper(background = GraphiteColorPalette.background))
+    }
     val nonSystemThemeName = nonSystemThemeName()
     val defaultTheme = defaultActiveTheme(appSettingsTheme)
 
