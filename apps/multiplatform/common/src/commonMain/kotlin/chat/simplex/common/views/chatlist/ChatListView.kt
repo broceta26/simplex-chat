@@ -260,6 +260,12 @@ fun ChatListView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animate
       VideoPlayerHolder.stopAll()
     }
   }
+  val directoryUserId = chatModel.currentUser.value?.userId
+  LaunchedEffect(directoryUserId, chatModel.chatRunning.value) {
+    if (directoryUserId != null && chatModel.chatRunning.value == true && !stopped) {
+      withBGApi { SapatDirectory.ensureRegistered(chatModel.remoteHostId()) }
+    }
+  }
   val searchText = rememberSaveable(stateSaver = TextFieldValue.Saver) { mutableStateOf(TextFieldValue("")) }
   val listState = rememberLazyListState(lazyListState.first, lazyListState.second)
   Box(Modifier.fillMaxSize()) {

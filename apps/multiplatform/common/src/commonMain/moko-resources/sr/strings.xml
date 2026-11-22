@@ -2680,4 +2680,26 @@
     <string name="tray_tooltip_unread">Šapat — nepročitano: %d</string>
     <string name="appearance_minimize_to_tray">Zatvaraj u traku</string>
     <string name="appearance_minimize_to_tray_desc">Radi u pozadini da prima poruke</string>
+    <string name="sapat_add_contact">Dodaj kontakt</string>
+    <string name="sapat_add_contact_desc">Upiši ime ili kod osobe koju želiš da dodaš. Njoj stiže tvoj zahtev, a ona odlučuje da li ga prihvata.</string>
+    <string name="sapat_name_or_code">Ime ili kod</string>
+    <string name="sapat_send_request">Pošalji zahtev</string>
+    <string name="sapat_error">Greška</string>
+    <string name="sapat_name_and_code">Moje ime i kod</string>
+    <string name="sapat_registering">Dobijanje koda…</string>
+    <string name="sapat_not_registered">Tvoj kod još nije spreman. Proveri vezu i pokušaj ponovo.</string>
+    <string name="sapat_your_code">Tvoj kod</string>
+    <string name="sapat_new_code_question">Dobiti novi kod?</string>
+    <string name="sapat_new_code_desc">Stari kod prestaje da važi. Kontakti koje već imaš ostaju povezani.</string>
+    <string name="sapat_new_code">Novi kod</string>
+    <string name="sapat_your_name">Tvoje ime</string>
+    <string name="sapat_save_name">Sačuvaj ime</string>
+    <string name="sapat_name_reserved">Ovo ime je rezervisano za tebe i niko drugi ne može da ga uzme.</string>
+    <string name="sapat_name_can_reserve">Sada možeš da rezervišeš ovo ime, da ga niko drugi nikad ne uzme.</string>
+    <string name="sapat_name_reserve_from">Ime možeš da rezervišeš od %s. Do tada, ako ne koristiš aplikaciju 14 dana, neko drugi može da ga uzme.</string>
+    <string name="sapat_reserve_name">Rezerviši ime</string>
+    <string name="sapat_identity_footer">Ljudi te mogu dodati po imenu ili kodu. Ti odlučuješ da li prihvataš svaki zahtev. Kod je tvoj trajni broj, a ime služi da te lakše pronađu.</string>
+    <string name="sapat_err_name_taken">Ovo ime je zauzeto. Probaj drugo.</string>
+    <string name="sapat_err_bad_name">Ime ima od 3 do 32 znaka: mala slova a–z, cifre i crtice, i počinje slovom.</string>
+    <string name="sapat_err_cannot_reserve">Ime možeš da rezervišeš 30 dana pošto počneš da koristiš aplikaciju.</string>
 </resources>

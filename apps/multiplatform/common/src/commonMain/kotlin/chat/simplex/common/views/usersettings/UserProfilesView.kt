@@ -179,7 +179,8 @@ private fun UserProfilesLayout(
         UserView(user, visibleUsersCount, activateUser, removeUser, unhideUser, muteUser, unmuteUser, showHiddenProfile)
         Divider(Modifier.padding(horizontal = 8.dp))
       }
-      if (searchTextOrPassword.value.trim().isEmpty()) {
+      // Šapat: at most 10 profiles per app
+      if (searchTextOrPassword.value.trim().isEmpty() && chatModel.users.size < 10) {
         SectionItemView(addUser, minHeight = 68.dp) {
           Icon(painterResource(MR.images.ic_add), stringResource(MR.strings.users_add), tint = MaterialTheme.colors.primary)
           Spacer(Modifier.padding(horizontal = 4.dp))

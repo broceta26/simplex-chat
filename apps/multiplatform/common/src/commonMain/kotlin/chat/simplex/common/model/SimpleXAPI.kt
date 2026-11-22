@@ -206,6 +206,7 @@ class AppPreferences {
   val showMuteProfileAlert = mkBoolPreference(SHARED_PREFS_SHOW_MUTE_PROFILE_ALERT, true)
   val showReportsInSupportChatAlert = mkBoolPreference(SHARED_PREFS_SHOW_REPORTS_IN_SUPPORT_CHAT_ALERT, true)
   val appLanguage = mkStrPreference(SHARED_PREFS_APP_LANGUAGE, null)
+  val sapatDirectory = mkStrPreference(SHARED_PREFS_SAPAT_DIRECTORY, null)
   val appUpdateChannel = mkEnumPreference(SHARED_PREFS_APP_UPDATE_CHANNEL, AppUpdatesChannel.DISABLED) { AppUpdatesChannel.entries.firstOrNull { it.name == this } }
   val appSkippedUpdate = mkStrPreference(SHARED_PREFS_APP_SKIPPED_UPDATE, "")
   val appUpdateNoticeShown = mkBoolPreference(SHARED_PREFS_APP_UPDATE_NOTICE_SHOWN, false)
@@ -443,6 +444,7 @@ class AppPreferences {
     private const val SHARED_PREFS_CHAT_ARCHIVE_NAME = "ChatArchiveName"
     private const val SHARED_PREFS_CHAT_ARCHIVE_TIME = "ChatArchiveTime"
     private const val SHARED_PREFS_APP_LANGUAGE = "AppLanguage"
+    private const val SHARED_PREFS_SAPAT_DIRECTORY = "SapatDirectory"
     private const val SHARED_PREFS_APP_UPDATE_CHANNEL = "AppUpdateChannel"
     private const val SHARED_PREFS_APP_SKIPPED_UPDATE = "AppSkippedUpdate"
     private const val SHARED_PREFS_APP_UPDATE_NOTICE_SHOWN = "AppUpdateNoticeShown"
@@ -2112,6 +2114,8 @@ object ChatController {
     Log.e(TAG, "apiDeleteUserAddress bad response: ${r.responseType} ${r.details}")
     return null
   }
+
+  suspend fun apiGetUserAddressRec(rh: Long?): UserContactLinkRec? = apiGetUserAddress(rh)
 
   private suspend fun apiGetUserAddress(rh: Long?): UserContactLinkRec? {
     val userId = kotlin.runCatching { currentUserId("apiGetUserAddress") }.getOrElse { return null }

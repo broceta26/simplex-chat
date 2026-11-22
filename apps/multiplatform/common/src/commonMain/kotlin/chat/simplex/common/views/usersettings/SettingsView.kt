@@ -101,6 +101,7 @@ fun SettingsLayout(
     AppBarTitle(stringResource(MR.strings.your_settings))
 
     SectionView {
+      SettingsActionItem(painterResource(MR.images.ic_at), stringResource(MR.strings.sapat_name_and_code), showSettingsModal { SapatIdentityView() }, disabled = stopped)
       SettingsActionItem(painterResource(MR.images.ic_light_mode), stringResource(MR.strings.appearance_settings), showSettingsModal { AppearanceView(it) })
       SettingsActionItem(painterResource(MR.images.ic_lock), stringResource(MR.strings.your_privacy), showSettingsModal { PrivacySettingsView(it, showSettingsModal, setPerformLA) }, disabled = stopped)
       SettingsActionItem(painterResource(MR.images.ic_help), stringResource(MR.strings.help_and_support), showSettingsModal { HelpAndSupportView(it, showModal, showCustomModal) })

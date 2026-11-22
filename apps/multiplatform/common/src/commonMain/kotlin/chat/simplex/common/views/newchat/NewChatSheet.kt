@@ -54,6 +54,9 @@ fun ModalData.NewChatSheet(rh: RemoteHostInfo?, close: () -> Unit) {
 
     Column(modifier = Modifier.fillMaxSize()) {
       NewChatSheetLayout(
+        addByName = {
+          ModalManager.start.showModalCloseable { _ -> AddByNameView(chatModel.currentRemoteHost.value?.remoteHostId, close = closeAll) }
+        },
         addContact = {
           ModalManager.start.showModalCloseable(endButtons = { AddContactLearnMoreButton() }) { _ -> NewChatView(chatModel.currentRemoteHost.value, NewChatOption.INVITE, close = closeAll) }
         },
@@ -110,6 +113,7 @@ private fun filterContactTypes(c: List<Chat>, contactTypes: List<ContactType>): 
 @Composable
 private fun ModalData.NewChatSheetLayout(
   rh: RemoteHostInfo?,
+  addByName: () -> Unit,
   addContact: () -> Unit,
   scanPaste: () -> Unit,
   createGroup: () -> Unit,
@@ -185,6 +189,11 @@ private fun ModalData.NewChatSheetLayout(
 
   val actionButtonsOriginal = listOf(
     Triple(
+      painterResource(MR.images.ic_person_add),
+      stringResource(MR.strings.sapat_add_contact),
+      addByName,
+    ),
+    Triple(
       painterResource(MR.images.ic_add_link),
       stringResource(MR.strings.create_1_time_link),
       addContact,
@@ -198,11 +207,6 @@ private fun ModalData.NewChatSheetLayout(
       painterResource(MR.images.ic_group),
       stringResource(MR.strings.create_group_button),
       createGroup,
-    ),
-    Triple(
-      painterResource(MR.images.ic_bigtop_updates),
-      stringResource(MR.strings.create_channel_button),
-      createChannel,
     )
   )
 

@@ -3392,4 +3392,26 @@
   <string name="v7_1_flat_layout_descr">Enable in Appearance settings.</string>
   <string name="v7_1_4_security_audit">New security audit by Trail of Bits</string>
   <string name="v7_1_4_security_audit_descr">Please ask your contacts to upgrade.\nReport will be public soon.</string>
+  <string name="sapat_add_contact">Add contact</string>
+  <string name="sapat_add_contact_desc">Enter the name or code of the person you want to add. They will get your request and decide whether to accept it.</string>
+  <string name="sapat_name_or_code">Name or code</string>
+  <string name="sapat_send_request">Send request</string>
+  <string name="sapat_error">Error</string>
+  <string name="sapat_name_and_code">My name and code</string>
+  <string name="sapat_registering">Getting your code…</string>
+  <string name="sapat_not_registered">Your code is not ready yet. Check your connection and try again.</string>
+  <string name="sapat_your_code">Your code</string>
+  <string name="sapat_new_code_question">Get a new code?</string>
+  <string name="sapat_new_code_desc">Your old code will stop working. Contacts you already have stay connected.</string>
+  <string name="sapat_new_code">New code</string>
+  <string name="sapat_your_name">Your name</string>
+  <string name="sapat_save_name">Save name</string>
+  <string name="sapat_name_reserved">This name is reserved for you and nobody else can take it.</string>
+  <string name="sapat_name_can_reserve">You can now reserve this name, so that nobody else can ever take it.</string>
+  <string name="sapat_name_reserve_from">You can reserve your name from %s. Until then, if you don\'t use the app for 14 days, someone else can take it.</string>
+  <string name="sapat_reserve_name">Reserve name</string>
+  <string name="sapat_identity_footer">People can add you by your name or code. You decide whether to accept each request. The code is your permanent number; the name is how people find you more easily.</string>
+  <string name="sapat_err_name_taken">This name is taken. Try another one.</string>
+  <string name="sapat_err_bad_name">A name has 3 to 32 characters: small letters a–z, digits and hyphens, and starts with a letter.</string>
+  <string name="sapat_err_cannot_reserve">You can reserve your name 30 days after you start using the app.</string>
 </resources>
