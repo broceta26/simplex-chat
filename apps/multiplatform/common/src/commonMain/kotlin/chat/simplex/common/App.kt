@@ -376,7 +376,8 @@ fun StartPartOfScreen(userPickerState: MutableStateFlow<AnimatedViewState>) {
     val stopped = chatModel.chatRunning.value == false
     if (chatModel.sharedContent.value == null) {
       CompositionLocalProvider(LocalAppBarHandler provides rememberAppBarHandler()) {
-        ChatListView(chatModel, userPickerState, AppLock::setPerformLA, stopped)
+        if (appPlatform.isAndroid) SapatHomeView(chatModel, userPickerState, stopped)
+        else ChatListView(chatModel, userPickerState, AppLock::setPerformLA, stopped)
       }
     } else {
       // LALAL initial load of view doesn't show blur. Focusing text field shows it

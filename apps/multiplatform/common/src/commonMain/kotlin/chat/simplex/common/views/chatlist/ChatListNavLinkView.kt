@@ -67,7 +67,7 @@ fun ChatListNavLinkView(chat: Chat, nextChatSelected: State<Boolean>) {
       ChatListNavLinkLayout(
         chatLinkPreview = {
           tryOrShowError("${chat.id}ChatListNavLink", error = { ErrorChatListItem() }) {
-            ChatPreviewView(chat, showChatPreviews, chatModel.draft.value, chatModel.draftChatId.value, chatModel.currentUser.value?.profile?.displayName, disabled, linkMode, inProgress = false, progressByTimeout = false, defaultClickAction)
+            SapatChatRow(chat, disabled)
           }
         },
         click = defaultClickAction,
@@ -87,7 +87,7 @@ fun ChatListNavLinkView(chat: Chat, nextChatSelected: State<Boolean>) {
       ChatListNavLinkLayout(
         chatLinkPreview = {
           tryOrShowError("${chat.id}ChatListNavLink", error = { ErrorChatListItem() }) {
-            ChatPreviewView(chat, showChatPreviews, chatModel.draft.value, chatModel.draftChatId.value, chatModel.currentUser.value?.profile?.displayName, disabled, linkMode, inProgress.value, progressByTimeout, defaultClickAction)
+            SapatChatRow(chat, disabled)
           }
         },
         click = defaultClickAction,
@@ -107,7 +107,7 @@ fun ChatListNavLinkView(chat: Chat, nextChatSelected: State<Boolean>) {
       ChatListNavLinkLayout(
         chatLinkPreview = {
           tryOrShowError("${chat.id}ChatListNavLink", error = { ErrorChatListItem() }) {
-            ChatPreviewView(chat, showChatPreviews, chatModel.draft.value, chatModel.draftChatId.value, chatModel.currentUser.value?.profile?.displayName, disabled, linkMode, inProgress = false, progressByTimeout = false, defaultClickAction)
+            SapatChatRow(chat, disabled)
           }
         },
         click = defaultClickAction,

@@ -3430,4 +3430,17 @@
   <string name="sapat_wipe_pin_add">Add wipe PIN</string>
   <string name="sapat_wipe_pins_clear">Remove all wipe PINs</string>
   <string name="sapat_wipe_pins_clear_question">Remove all wipe PINs?</string>
+  <string name="sapat_new">New</string>
+  <string name="sapat_search_hint">Search chats</string>
+  <string name="sapat_new_group">New group</string>
+  <string name="sapat_empty_title">No chats yet</string>
+  <string name="sapat_empty_text">Add someone by their name, or send them your invite link in any app.</string>
+  <string name="sapat_send_invite_link">Send invite link</string>
+  <string name="sapat_search_none">No chats found</string>
+  <string name="sapat_search_add_by_name">Add &quot;%s&quot; as a contact</string>
+  <string name="sapat_add_contact_descr">By name or code</string>
+  <string name="sapat_send_invite_link_descr">Share it in any app</string>
+  <string name="sapat_new_group_descr">Chat with several people</string>
+  <string name="sapat_deleted_message">Message deleted</string>
+  <string name="sapat_you_prefix">You:</string>
 </resources>

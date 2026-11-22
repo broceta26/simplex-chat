@@ -29,8 +29,8 @@ actual fun ChatListNavLinkLayout(
     Row(
       modifier = Modifier
         .fillMaxWidth()
-        .padding(start = 8.dp, top = 8.dp, end = 12.dp, bottom = 8.dp),
-      verticalAlignment = Alignment.Top
+        .padding(horizontal = 16.dp, vertical = 10.dp),
+      verticalAlignment = Alignment.CenterVertically
     ) {
       chatLinkPreview()
     }
@@ -38,5 +38,4 @@ actual fun ChatListNavLinkLayout(
       DefaultDropdownMenu(showMenu, dropdownMenuItems = dropdownMenuItems)
     }
   }
-  Divider(Modifier.padding(horizontal = 8.dp))
 }

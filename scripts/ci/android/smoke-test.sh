@@ -136,7 +136,7 @@ first_screen() {
 # system's battery dialog, each with "Allow". The conditions show for a moment between the two.
 allow_notifications_and_accept() {
   local deadline=$((SECONDS + 120))
-  until "$ui" find "Talk to someone" > /dev/null 2>&1; do
+  until "$ui" find "No chats yet" > /dev/null 2>&1; do
     if "$ui" find "Allow" > /dev/null 2>&1; then
       "$ui" shot notifications
       "$ui" click-text "Allow"
@@ -229,8 +229,7 @@ test_server() {
 # A group of the user's own: without chats the chat list shows the onboarding pages, not the search field. The new
 # group's name field has the focus.
 create_local_chat() {
-  "$ui" click-text "Start new chat" 10
-  "$ui" click-text "Create group" 10
+  "$ui" click-text "New group" 10
   "$ui" wait "Enter group name" 10
   "$ui" type "$local_chat"
   "$ui" wait "$local_chat" 10
@@ -240,23 +239,19 @@ create_local_chat() {
   "$ui" wait "Invite members" 30
   "$ui" shot group-created
   "$ui" relaunch
-  "$ui" wait "$search_field" 30
+  "$ui" wait "$local_chat" 30
   "$ui" shot local-chat
 }
 
-# The search field: in the bottom half of the chat list in the reachable layout, in the top half otherwise (Šapat has no chat lists).
-check_layout() {
-  local layout=$1 field half
-  half=$(($(screen_height) / 2))
-  field=$(y_of "$search_field") || field=""
-  "$ui" shot "$layout-layout"
-  check "$layout: \"$local_chat\" listed" "$ui" find "$local_chat"
-  if [ "$layout" = reachable ]; then
-    check "reachable: the search field is in the bottom half" [ "${field:-0}" -gt "$half" ]
-  else
-    check "top: the search field is in the top half" [ "${field:-$((half * 2))}" -lt "$half" ]
-  fi
+# The Šapat home: the group listed, none of the SimpleX connect cards.
+check_home() {
+  "$ui" shot home
+  check "home: \"$local_chat\" listed" "$ui" find "$local_chat"
+  check "home: no one-time link card" not_found "New 1-time link"
+  check "home: no paste or scan card" not_found "Paste link / Scan"
 }
+
+not_found() { ! "$ui" find "$1"; }
 
 add_images() {
   adb push "$fixtures/logo-large-rgba.png" /sdcard/Pictures/simplex-logo/simplex-logo.png
@@ -347,10 +342,7 @@ if [ "$cases" != onboarding ]; then
     test_server
   fi
   create_local_chat
-  check_layout top
-  "$ui" layout reachable
-  check_layout reachable
-  "$ui" layout top
+  check_home
   send_images
 fi
 check "the app is running and logged no crash" app_running

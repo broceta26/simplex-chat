@@ -2718,4 +2718,17 @@
     <string name="sapat_wipe_pin_add">Dodaj PIN za uništavanje</string>
     <string name="sapat_wipe_pins_clear">Ukloni sve PIN-ove za uništavanje</string>
     <string name="sapat_wipe_pins_clear_question">Ukloniti sve PIN-ove za uništavanje?</string>
+    <string name="sapat_new">Novo</string>
+    <string name="sapat_search_hint">Pretraži razgovore</string>
+    <string name="sapat_new_group">Nova grupa</string>
+    <string name="sapat_empty_title">Još nema razgovora</string>
+    <string name="sapat_empty_text">Dodaj nekoga po imenu ili mu pošalji svoj pozivni link u bilo kojoj aplikaciji.</string>
+    <string name="sapat_send_invite_link">Pošalji pozivni link</string>
+    <string name="sapat_search_none">Nema takvih razgovora</string>
+    <string name="sapat_search_add_by_name">Dodaj „%s“ u kontakte</string>
+    <string name="sapat_add_contact_descr">Po imenu ili kodu</string>
+    <string name="sapat_send_invite_link_descr">Podeli ga u bilo kojoj aplikaciji</string>
+    <string name="sapat_new_group_descr">Razgovor sa više ljudi</string>
+    <string name="sapat_deleted_message">Poruka je obrisana</string>
+    <string name="sapat_you_prefix">Ti:</string>
 </resources>
