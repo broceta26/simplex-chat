@@ -299,8 +299,8 @@
     <string name="notification_preview_mode_message_desc">Prikaži kontakt i poruku</string>
     <string name="notification_preview_mode_contact_desc">Prikaži samo kontakt</string>
     <string name="notification_display_mode_hidden_desc">Sakrij kontakt i poruku</string>
-    <string name="notification_preview_somebody">Skriven kontakt:</string>
-    <string name="notification_preview_new_message">nova poruka</string>
+    <string name="notification_preview_somebody">Šapat</string>
+    <string name="notification_preview_new_message">Nova poruka</string>
     <string name="notification_new_contact_request">Novi zahtev za kontakt</string>
     <string name="notification_contact_connected">Povezano</string>
     <string name="error_showing_desktop_notification">Greška pri prikazu obaveštenja, javi se programerima.</string>
@@ -2702,4 +2702,20 @@
     <string name="sapat_err_name_taken">Ovo ime je zauzeto. Probaj drugo.</string>
     <string name="sapat_err_bad_name">Ime ima od 3 do 32 znaka: mala slova a–z, cifre i crtice, i počinje slovom.</string>
     <string name="sapat_err_cannot_reserve">Ime možeš da rezervišeš 30 dana pošto počneš da koristiš aplikaciju.</string>
+    <string name="sapat_theme">Tema</string>
+    <string name="sapat_theme_footer">Svetla je papirni terminal, tamna je ekran Commodore 64. „Sistem“ prati podešavanje telefona.</string>
+    <string name="sapat_advanced">Napredno</string>
+    <string name="sapat_incognito_footer">Kad je uključeno, svaki novi kontakt dobija novi nasumični profil umesto tvog, pa različiti kontakti ne mogu da povežu da si to ti.</string>
+    <string name="sapat_use_tor">Koristi Tor</string>
+    <string name="sapat_use_tor_footer">Povezivanje preko Tor mreže (aplikacija Orbot mora da radi), tako da ni naši serveri ne vide tvoju IP adresu. Poruke mogu stizati sporije.</string>
+    <string name="sapat_wipe_last_attempt">Pogrešan PIN. Još jedan pogrešan PIN briše sve podatke u aplikaciji.</string>
+    <string name="sapat_wipe_pins">PIN-ovi za uništavanje</string>
+    <string name="sapat_wipe_footer">Unos bilo kog PIN-a za uništavanje na ekranu za otključavanje odmah briše sve razgovore, kontakte i fajlove. Posle 3 pogrešna PIN-a zaredom aplikacija se takođe briše, uz upozorenje pre trećeg. Ovo ne može da se poništi.</string>
+    <string name="sapat_wipe_pins_count">Postavljeno PIN-ova za uništavanje: %d</string>
+    <string name="sapat_wipe_pin_new">Novi PIN za uništavanje (najmanje 4 cifre)</string>
+    <string name="sapat_wipe_pin_repeat">Ponovi PIN</string>
+    <string name="sapat_wipe_pin_same_as_app">PIN za uništavanje ne sme biti isti kao PIN aplikacije.</string>
+    <string name="sapat_wipe_pin_add">Dodaj PIN za uništavanje</string>
+    <string name="sapat_wipe_pins_clear">Ukloni sve PIN-ove za uništavanje</string>
+    <string name="sapat_wipe_pins_clear_question">Ukloniti sve PIN-ove za uništavanje?</string>
 </resources>

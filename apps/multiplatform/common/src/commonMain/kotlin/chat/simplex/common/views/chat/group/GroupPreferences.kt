@@ -194,12 +194,6 @@ private fun GroupPreferencesLayout(
       else MR.strings.chat_preferences
     AppBarTitle(stringResource(titleId))
     if (!groupInfo.useRelays) {
-      if (groupInfo.businessChat == null) {
-        SectionView {
-          MemberAdmissionButton(openMemberAdmission)
-        }
-        SectionDividerSpaced()
-      }
       TimedMessagesPreference()
       SectionDividerSpaced()
       DirectMessagesPreference()
@@ -213,12 +207,7 @@ private fun GroupPreferencesLayout(
       FilesPreference()
       SectionDividerSpaced()
       SimplexLinksPreference()
-      SectionDividerSpaced()
-      ReportsPreference()
-      SectionDividerSpaced()
-      HistoryPreference()
-      SectionDividerSpaced()
-      SupportPreference(disabled = true)
+      // Šapat: no reports, chats with admins or member admission; history stays on
     } else {
       SignMessagesPreference(onEnable = { revert ->
         AlertManager.shared.showAlertDialog(

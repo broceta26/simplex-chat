@@ -170,7 +170,7 @@ fun MorePrivacyView(chatModel: ChatModel) {
     )
     SectionDividerSpaced()
 
-    SectionView(stringResource(MR.strings.notifications)) {
+    if (false) SectionView(stringResource(MR.strings.notifications)) { // Šapat: notification content is always hidden
       val previewModes = remember { notificationPreviewModes() }
       val notificationPreviewMode = remember { chatModel.notificationPreviewMode }
       SettingsActionItemWithContent(
@@ -671,7 +671,7 @@ fun SimplexLockView(
           setPerformLA(false)
         }
       }
-      if (appPlatform == AppPlatform.ANDROID) {
+      if (false && appPlatform == AppPlatform.ANDROID) { // Šapat: PIN only
         LockModeSelector(laMode) { newLAMode ->
           if (laMode.value == newLAMode) return@LockModeSelector
           if (chatModel.controller.appPrefs.performLA.get()) {
@@ -694,7 +694,14 @@ fun SimplexLockView(
         }
       }
     }
-    if (performLA.value && laMode.value == LAMode.PASSCODE) {
+    if (performLA.value) {
+      SectionDividerSpaced()
+      SectionView(stringResource(MR.strings.sapat_wipe_pins)) {
+        SettingsActionItem(painterResource(MR.images.ic_delete_forever), stringResource(MR.strings.sapat_wipe_pins), { ModalManager.start.showModal { SapatWipePinsView() } })
+      }
+      SectionTextFooter(stringResource(MR.strings.sapat_wipe_footer))
+    }
+    if (false && performLA.value && laMode.value == LAMode.PASSCODE) { // Šapat: replaced by wipe PINs
       SectionDividerSpaced()
       SectionView(stringResource(MR.strings.self_destruct_passcode)) {
         val openInfo = {

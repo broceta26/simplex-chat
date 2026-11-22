@@ -556,6 +556,7 @@ fun askCurrentOrIncognitoProfileAlert(
         }) {
           Text(generalGetString(MR.strings.connect_use_current_profile), Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = connectColor)
         }
+        if (chatModel.controller.appPrefs.incognito.get()) {
         SectionItemView({
           AlertManager.privacySensitive.hideAlert()
           withBGApi {
@@ -563,6 +564,7 @@ fun askCurrentOrIncognitoProfileAlert(
           }
         }) {
           Text(generalGetString(MR.strings.connect_use_new_incognito_profile), Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = connectColor)
+        }
         }
         if (connectOtherButton != null && connectOtherLink != null) {
           SectionItemView({
@@ -701,6 +703,7 @@ fun ownGroupLinkConfirmConnect(
             Text(generalGetString(MR.strings.connect_use_current_profile), Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colors.error)
           }
           // Use new incognito profile
+          if (chatModel.controller.appPrefs.incognito.get()) {
           SectionItemView({
             AlertManager.privacySensitive.hideAlert()
             withBGApi {
@@ -708,6 +711,7 @@ fun ownGroupLinkConfirmConnect(
             }
           }) {
             Text(generalGetString(MR.strings.connect_use_new_incognito_profile), Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colors.error)
+          }
           }
           // Cancel
           SectionItemView({

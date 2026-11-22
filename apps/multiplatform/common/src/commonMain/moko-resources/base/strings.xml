@@ -329,8 +329,8 @@
   <string name="notification_preview_mode_message_desc">Show contact and message</string>
   <string name="notification_preview_mode_contact_desc">Show only contact</string>
   <string name="notification_display_mode_hidden_desc">Hide contact and message</string>
-  <string name="notification_preview_somebody">Contact hidden:</string>
-  <string name="notification_preview_new_message">new message</string>
+  <string name="notification_preview_somebody">Šapat</string>
+  <string name="notification_preview_new_message">New message</string>
   <string name="notification_new_contact_request">New contact request</string>
   <string name="notification_contact_connected">Connected</string>
   <string name="error_showing_desktop_notification">Error showing notification, contact developers.</string>
@@ -3414,4 +3414,20 @@
   <string name="sapat_err_name_taken">This name is taken. Try another one.</string>
   <string name="sapat_err_bad_name">A name has 3 to 32 characters: small letters a–z, digits and hyphens, and starts with a letter.</string>
   <string name="sapat_err_cannot_reserve">You can reserve your name 30 days after you start using the app.</string>
+  <string name="sapat_theme">Theme</string>
+  <string name="sapat_theme_footer">Light is a paper terminal, dark is a Commodore 64 screen. "System" follows your phone.</string>
+  <string name="sapat_advanced">Advanced</string>
+  <string name="sapat_incognito_footer">When on, each new contact gets a new random profile instead of yours, so different contacts can\'t link you together.</string>
+  <string name="sapat_use_tor">Use Tor</string>
+  <string name="sapat_use_tor_footer">Connect through Tor (the Orbot app must be running), so that not even our servers see your IP address. Messages may arrive more slowly.</string>
+  <string name="sapat_wipe_last_attempt">Wrong PIN. One more wrong PIN deletes all data in the app.</string>
+  <string name="sapat_wipe_pins">Wipe PINs</string>
+  <string name="sapat_wipe_footer">Entering any wipe PIN on the lock screen deletes all chats, contacts and files at once. After 3 wrong PINs in a row the app is wiped too; it warns you before the third. This cannot be undone.</string>
+  <string name="sapat_wipe_pins_count">Wipe PINs set: %d</string>
+  <string name="sapat_wipe_pin_new">New wipe PIN (at least 4 digits)</string>
+  <string name="sapat_wipe_pin_repeat">Repeat the PIN</string>
+  <string name="sapat_wipe_pin_same_as_app">A wipe PIN cannot be the same as the app PIN.</string>
+  <string name="sapat_wipe_pin_add">Add wipe PIN</string>
+  <string name="sapat_wipe_pins_clear">Remove all wipe PINs</string>
+  <string name="sapat_wipe_pins_clear_question">Remove all wipe PINs?</string>
 </resources>

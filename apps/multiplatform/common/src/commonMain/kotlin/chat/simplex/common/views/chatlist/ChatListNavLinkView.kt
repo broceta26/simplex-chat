@@ -291,9 +291,7 @@ fun ContactMenuItems(chat: Chat, contact: Contact, chatModel: ChatModel, showMen
       } else {
         MarkUnreadChatAction(chat, chatModel, showMenu)
       }
-      ToggleFavoritesChatAction(chat, chatModel, chat.chatInfo.chatSettings?.favorite == true, showMenu)
       ToggleNotificationsChatAction(chat, chatModel, contact.chatSettings.enableNtfs.nextMode(false), showMenu)
-      TagListAction(chat, showMenu)
       ClearChatAction(chat, showMenu)
     }
     DeleteContactAction(chat, chatModel, showMenu)
@@ -332,9 +330,7 @@ fun GroupMenuItems(
       } else {
         MarkUnreadChatAction(chat, chatModel, showMenu)
       }
-      ToggleFavoritesChatAction(chat, chatModel, chat.chatInfo.chatSettings?.favorite == true, showMenu)
       ToggleNotificationsChatAction(chat, chatModel, groupInfo.chatSettings.enableNtfs.nextMode(true), showMenu)
-      TagListAction(chat, showMenu)
       if (chat.chatStats.reportsCount > 0 && groupInfo.membership.memberRole >= GroupMemberRole.Moderator) {
         ArchiveAllReportsItemAction(showMenu) {
           archiveAllReportsForMe(chat.remoteHostId, chat.chatInfo.apiId)
@@ -534,7 +530,7 @@ fun ContactRequestMenuItems(rhId: Long?, contactRequestId: Long, chatModel: Chat
       showMenu.value = false
     }
   )
-  if (!chatModel.addressShortLinkDataSet()) {
+  if (!chatModel.addressShortLinkDataSet() && chatModel.controller.appPrefs.incognito.get()) {
     ItemAction(
       stringResource(MR.strings.accept_contact_incognito_button),
       painterResource(MR.images.ic_theater_comedy),
@@ -707,7 +703,7 @@ fun contactRequestAlertDialog(rhId: Long?, contactRequest: ChatInfo.ContactReque
         }) {
           Text(generalGetString(MR.strings.accept_contact_button), Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colors.primary)
         }
-        if (!chatModel.addressShortLinkDataSet()) {
+        if (!chatModel.addressShortLinkDataSet() && chatModel.controller.appPrefs.incognito.get()) {
           SectionItemView({
             AlertManager.shared.hideAlert()
             acceptContactRequest(rhId, incognito = true, contactRequest.apiId, true, chatModel, onSucess)
@@ -866,7 +862,7 @@ fun askCurrentOrIncognitoProfileConnectContactViaAddress(
       Column {
         if (!contact.profileChangeProhibited) {
           UseCurrentProfileButton()
-          UseIncognitoProfileButton(generalGetString(MR.strings.connect_use_new_incognito_profile))
+          if (chatModel.controller.appPrefs.incognito.get()) UseIncognitoProfileButton(generalGetString(MR.strings.connect_use_new_incognito_profile))
         } else if (!contact.contactConnIncognito) {
           UseCurrentProfileButton()
         } else {

@@ -877,9 +877,7 @@ private fun ChatListSearchBar(listState: LazyListState, searchText: MutableState
         }
       } else {
         val padding = if (appPlatform.isDesktop) 0.dp else 7.dp
-        if (chatModel.chats.value.isNotEmpty()) {
-          ToggleFilterEnabledButton()
-        }
+
         Spacer(Modifier.width(padding))
       }
       val focusManager = LocalFocusManager.current
@@ -1321,6 +1319,9 @@ private val TAG_MIN_HEIGHT = 35.dp
 
 @Composable
 private fun TagsView(searchText: MutableState<TextFieldValue>) {
+  // Šapat: one list, no filters or user lists
+  LaunchedEffect(Unit) { chatModel.activeChatTagFilter.value = null }
+  if (true) return
   val userTags = remember { chatModel.userTags }
   val presetTags = remember { chatModel.presetTags }
   val collapsiblePresetTags = presetTags.filter { presetCanBeCollapsed(it.key) && it.value > 0 }

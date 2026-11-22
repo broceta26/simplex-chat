@@ -94,63 +94,7 @@ fun ModalData.NetworkAndServersView(closeNetworkAndServers: () -> Unit) {
       userServers = userServers,
       serverErrors = serverErrors,
       serverWarnings = serverWarnings,
-      toggleSocksProxy = { enable ->
-        val def = NetCfg.defaults
-        val proxyDef = NetCfg.proxyDefaults
-        if (enable) {
-          AlertManager.shared.showAlertDialog(
-            title = generalGetString(MR.strings.network_enable_socks),
-            text = generalGetString(MR.strings.network_enable_socks_info).format(proxyPort.value),
-            confirmText = generalGetString(MR.strings.confirm_verb),
-            onConfirm = {
-              withBGApi {
-                var conf = controller.getNetCfg().withProxy(controller.appPrefs.networkProxy.get())
-                if (conf.tcpConnectTimeout == def.tcpConnectTimeout) {
-                  conf = conf.copy(tcpConnectTimeout = proxyDef.tcpConnectTimeout)
-                }
-                if (conf.tcpTimeout == def.tcpTimeout) {
-                  conf = conf.copy(tcpTimeout = proxyDef.tcpTimeout)
-                }
-                if (conf.tcpTimeoutPerKb == def.tcpTimeoutPerKb) {
-                  conf = conf.copy(tcpTimeoutPerKb = proxyDef.tcpTimeoutPerKb)
-                }
-                if (conf.rcvConcurrency == def.rcvConcurrency) {
-                  conf = conf.copy(rcvConcurrency = proxyDef.rcvConcurrency)
-                }
-                chatModel.controller.apiSetNetworkConfig(conf)
-                chatModel.controller.setNetCfg(conf)
-                networkUseSocksProxy.value = true
-              }
-            }
-          )
-        } else {
-          AlertManager.shared.showAlertDialog(
-            title = generalGetString(MR.strings.network_disable_socks),
-            text = generalGetString(MR.strings.network_disable_socks_info),
-            confirmText = generalGetString(MR.strings.confirm_verb),
-            onConfirm = {
-              withBGApi {
-                var conf = controller.getNetCfg().copy(socksProxy = null)
-                if (conf.tcpConnectTimeout == proxyDef.tcpConnectTimeout) {
-                  conf = conf.copy(tcpConnectTimeout = def.tcpConnectTimeout)
-                }
-                if (conf.tcpTimeout == proxyDef.tcpTimeout) {
-                  conf = conf.copy(tcpTimeout = def.tcpTimeout)
-                }
-                if (conf.tcpTimeoutPerKb == proxyDef.tcpTimeoutPerKb) {
-                  conf = conf.copy(tcpTimeoutPerKb = def.tcpTimeoutPerKb)
-                }
-                if (conf.rcvConcurrency == proxyDef.rcvConcurrency) {
-                  conf = conf.copy(rcvConcurrency = def.rcvConcurrency)
-                }
-                chatModel.controller.apiSetNetworkConfig(conf)
-                chatModel.controller.setNetCfg(conf)
-                networkUseSocksProxy.value = false
-              }
-            }
-          )
-        }
-      }
+      toggleSocksProxy = { enable -> toggleSocksProxyAlert(enable, proxyPort.value) { networkUseSocksProxy.value = it } }
     )
   }
 }
@@ -1039,6 +983,65 @@ fun PreviewNetworkAndServersLayout() {
       userServers = remember { mutableStateOf(emptyList()) },
       serverErrors = remember { mutableStateOf(emptyList()) },
       serverWarnings = remember { mutableStateOf(emptyList()) }
+    )
+  }
+}
+
+// Shared by Network & servers and Šapat's Advanced screen.
+fun toggleSocksProxyAlert(enable: Boolean, proxyPort: Int, onChanged: (Boolean) -> Unit) {
+  val def = NetCfg.defaults
+  val proxyDef = NetCfg.proxyDefaults
+  if (enable) {
+    AlertManager.shared.showAlertDialog(
+      title = generalGetString(MR.strings.network_enable_socks),
+      text = generalGetString(MR.strings.network_enable_socks_info).format(proxyPort),
+      confirmText = generalGetString(MR.strings.confirm_verb),
+      onConfirm = {
+        withBGApi {
+          var conf = controller.getNetCfg().withProxy(controller.appPrefs.networkProxy.get())
+          if (conf.tcpConnectTimeout == def.tcpConnectTimeout) {
+            conf = conf.copy(tcpConnectTimeout = proxyDef.tcpConnectTimeout)
+          }
+          if (conf.tcpTimeout == def.tcpTimeout) {
+            conf = conf.copy(tcpTimeout = proxyDef.tcpTimeout)
+          }
+          if (conf.tcpTimeoutPerKb == def.tcpTimeoutPerKb) {
+            conf = conf.copy(tcpTimeoutPerKb = proxyDef.tcpTimeoutPerKb)
+          }
+          if (conf.rcvConcurrency == def.rcvConcurrency) {
+            conf = conf.copy(rcvConcurrency = proxyDef.rcvConcurrency)
+          }
+          chatModel.controller.apiSetNetworkConfig(conf)
+          chatModel.controller.setNetCfg(conf)
+          onChanged(true)
+        }
+      }
+    )
+  } else {
+    AlertManager.shared.showAlertDialog(
+      title = generalGetString(MR.strings.network_disable_socks),
+      text = generalGetString(MR.strings.network_disable_socks_info),
+      confirmText = generalGetString(MR.strings.confirm_verb),
+      onConfirm = {
+        withBGApi {
+          var conf = controller.getNetCfg().copy(socksProxy = null)
+          if (conf.tcpConnectTimeout == proxyDef.tcpConnectTimeout) {
+            conf = conf.copy(tcpConnectTimeout = def.tcpConnectTimeout)
+          }
+          if (conf.tcpTimeout == proxyDef.tcpTimeout) {
+            conf = conf.copy(tcpTimeout = def.tcpTimeout)
+          }
+          if (conf.tcpTimeoutPerKb == proxyDef.tcpTimeoutPerKb) {
+            conf = conf.copy(tcpTimeoutPerKb = def.tcpTimeoutPerKb)
+          }
+          if (conf.rcvConcurrency == proxyDef.rcvConcurrency) {
+            conf = conf.copy(rcvConcurrency = def.rcvConcurrency)
+          }
+          chatModel.controller.apiSetNetworkConfig(conf)
+          chatModel.controller.setNetCfg(conf)
+          onChanged(false)
+        }
+      }
     )
   }
 }

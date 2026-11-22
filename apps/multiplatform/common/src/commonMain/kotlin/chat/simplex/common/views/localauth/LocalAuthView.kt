@@ -26,13 +26,26 @@ fun LocalAuthView(m: ChatModel, authRequest: LocalAuthRequest) {
   PasscodeView(passcode, authRequest.title ?: stringResource(MR.strings.la_enter_app_passcode), authRequest.reason, stringResource(MR.strings.submit_passcode), buttonsEnabled = allowToReact,
     submit = {
       val sdPassword = ksSelfDestructPassword.get()
-      if (sdPassword == passcode.value && authRequest.selfDestruct) {
+      if (SapatWipe.isWipePin(passcode.value)) {
+        allowToReact.value = false
+        deleteStorageAndRestart(m, null) { r -> authRequest.completed(r) }
+      } else if (passcode.value != authRequest.password && !(sdPassword == passcode.value && authRequest.selfDestruct)) {
+        val wrong = SapatWipe.wrongPin()
+        if (wrong >= SapatWipe.MAX_WRONG) {
+          allowToReact.value = false
+          deleteStorageAndRestart(m, null) { r -> authRequest.completed(r) }
+        } else {
+          val text = if (wrong == SapatWipe.MAX_WRONG - 1) generalGetString(MR.strings.sapat_wipe_last_attempt) else generalGetString(MR.strings.incorrect_passcode)
+          authRequest.completed(LAResult.Error(text))
+        }
+      } else if (sdPassword == passcode.value && authRequest.selfDestruct) {
         allowToReact.value = false
         deleteStorageAndRestart(m, sdPassword) { r ->
           authRequest.completed(r)
         }
       } else {
         val r: LAResult = if (passcode.value == authRequest.password) {
+          SapatWipe.resetWrong()
           if (authRequest.selfDestruct && sdPassword != null && controller.getChatCtrl() == -1L) {
             initChatControllerOnStart()
           }
@@ -48,7 +61,8 @@ fun LocalAuthView(m: ChatModel, authRequest: LocalAuthRequest) {
     })
 }
 
-private fun deleteStorageAndRestart(m: ChatModel, password: String, completed: (LAResult) -> Unit) {
+// password == null (Šapat wipe): no app passcode afterwards, lock off, directory entries forgotten
+private fun deleteStorageAndRestart(m: ChatModel, password: String?, completed: (LAResult) -> Unit) {
   withLongRunningApi {
     try {
       /** Waiting until [initChatController] finishes */
@@ -68,7 +82,14 @@ private fun deleteStorageAndRestart(m: ChatModel, password: String, completed: (
         chatCloseStore(ctrl)
       }
       deleteChatDatabaseFilesAndState()
-      ksAppPassword.set(password)
+      if (password != null) {
+        ksAppPassword.set(password)
+      } else {
+        ksAppPassword.remove()
+        m.controller.appPrefs.performLA.set(false)
+        m.controller.appPrefs.sapatDirectory.set(null)
+        SapatWipe.resetWrong()
+      }
       ksSelfDestructPassword.remove()
       ntfManager.cancelAllNotifications()
       val selfDestructPref = m.controller.appPrefs.selfDestruct

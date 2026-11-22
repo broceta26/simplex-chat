@@ -199,11 +199,6 @@ private fun ModalData.NewChatSheetLayout(
       addContact,
     ),
     Triple(
-      painterResource(MR.images.ic_qr_code),
-      if (appPlatform.isAndroid) stringResource(MR.strings.scan_paste_link) else stringResource(MR.strings.paste_link),
-      scanPaste,
-    ),
-    Triple(
       painterResource(MR.images.ic_group),
       stringResource(MR.strings.create_group_button),
       createGroup,

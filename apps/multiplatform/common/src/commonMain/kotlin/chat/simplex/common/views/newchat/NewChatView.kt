@@ -490,25 +490,12 @@ private fun InviteView(rhId: Long?, connLinkInvitation: CreatedConnLink, contact
       style = MaterialTheme.typography.body1
     )
     LinkTextView(connLinkInvitation.simplexChatUri(short = showShortLink.value), true)
-    Text(
-      stringResource(MR.strings.onboarding_or_show_qr_code),
-      Modifier.fillMaxWidth().padding(horizontal = DEFAULT_PADDING, vertical = DEFAULT_PADDING_HALF),
-      style = MaterialTheme.typography.body1
-    )
-    SimpleXCreatedLinkQRCode(connLinkInvitation, short = showShortLink.value, onShare = { chatModel.markShowingInvitationUsed() })
+    // Šapat: link only, no QR code
   } else {
     SectionView(stringResource(MR.strings.share_this_1_time_link), headerBottomPadding = 5.dp) {
       LinkTextView(connLinkInvitation.simplexChatUri(short = showShortLink.value), true)
     }
 
-    Spacer(Modifier.height(DEFAULT_PADDING))
-
-    SectionViewWithButton(
-      stringResource(MR.strings.or_show_this_qr_code).uppercase(),
-      titleButton = if (connLinkInvitation.connShortLink != null) {{ ToggleShortLinkButton(showShortLink) }} else null
-    ) {
-      SimpleXCreatedLinkQRCode(connLinkInvitation, short = showShortLink.value, onShare = { chatModel.markShowingInvitationUsed() })
-    }
   }
 
   if (!onboarding) {

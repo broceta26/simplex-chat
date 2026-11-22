@@ -113,7 +113,8 @@ class AppPreferences {
     if (!runServiceInBackground.get()) NotificationsMode.OFF else NotificationsMode.default
   )  { NotificationsMode.values().firstOrNull { it.name == this } }
   val closeBehavior: SharedPreference<CloseBehavior> = mkSafeEnumPreference(SHARED_PREFS_DESKTOP_CLOSE_BEHAVIOR, CloseBehavior.default)
-  val notificationPreviewMode = mkStrPreference(SHARED_PREFS_NOTIFICATION_PREVIEW_MODE, NotificationPreviewMode.default.name)
+  // Šapat: notifications never show who wrote or what — always "New message"
+  val notificationPreviewMode = SharedPreference<String?>(get = { NotificationPreviewMode.HIDDEN.name }, set = { })
   val canAskToEnableNotifications = mkBoolPreference(SHARED_PREFS_CAN_ASK_TO_ENABLE_NOTIFICATIONS, true)
   val backgroundServiceNoticeShown = mkBoolPreference(SHARED_PREFS_SERVICE_NOTICE_SHOWN, false)
   val backgroundServiceBatteryNoticeShown = mkBoolPreference(SHARED_PREFS_SERVICE_BATTERY_NOTICE_SHOWN, false)
@@ -121,7 +122,8 @@ class AppPreferences {
   val webrtcPolicyRelay = mkBoolPreference(SHARED_PREFS_WEBRTC_POLICY_RELAY, true)
   val callOnLockScreen: SharedPreference<CallOnLockScreen> = mkSafeEnumPreference(SHARED_PREFS_WEBRTC_CALLS_ON_LOCK_SCREEN, CallOnLockScreen.default)
   val performLA = mkBoolPreference(SHARED_PREFS_PERFORM_LA, false)
-  val laMode = mkEnumPreference(SHARED_PREFS_LA_MODE, LAMode.default) { LAMode.values().firstOrNull { it.name == this } }
+  // Šapat: PIN only, no fingerprint or face
+  val laMode = SharedPreference<LAMode>(get = { LAMode.PASSCODE }, set = { })
   val laLockDelay = mkIntPreference(SHARED_PREFS_LA_LOCK_DELAY, 30)
   val laNoticeShown = mkBoolPreference(SHARED_PREFS_LA_NOTICE_SHOWN, false)
   val webrtcIceServers = mkStrPreference(SHARED_PREFS_WEBRTC_ICE_SERVERS, null)
@@ -207,6 +209,8 @@ class AppPreferences {
   val showReportsInSupportChatAlert = mkBoolPreference(SHARED_PREFS_SHOW_REPORTS_IN_SUPPORT_CHAT_ALERT, true)
   val appLanguage = mkStrPreference(SHARED_PREFS_APP_LANGUAGE, null)
   val sapatDirectory = mkStrPreference(SHARED_PREFS_SAPAT_DIRECTORY, null)
+  val sapatWipePins = mkStrPreference(SHARED_PREFS_SAPAT_WIPE_PINS, null)
+  val sapatWrongPins = mkIntPreference(SHARED_PREFS_SAPAT_WRONG_PINS, 0)
   val appUpdateChannel = mkEnumPreference(SHARED_PREFS_APP_UPDATE_CHANNEL, AppUpdatesChannel.DISABLED) { AppUpdatesChannel.entries.firstOrNull { it.name == this } }
   val appSkippedUpdate = mkStrPreference(SHARED_PREFS_APP_SKIPPED_UPDATE, "")
   val appUpdateNoticeShown = mkBoolPreference(SHARED_PREFS_APP_UPDATE_NOTICE_SHOWN, false)
@@ -445,6 +449,8 @@ class AppPreferences {
     private const val SHARED_PREFS_CHAT_ARCHIVE_TIME = "ChatArchiveTime"
     private const val SHARED_PREFS_APP_LANGUAGE = "AppLanguage"
     private const val SHARED_PREFS_SAPAT_DIRECTORY = "SapatDirectory"
+    private const val SHARED_PREFS_SAPAT_WIPE_PINS = "SapatWipePins"
+    private const val SHARED_PREFS_SAPAT_WRONG_PINS = "SapatWrongPins"
     private const val SHARED_PREFS_APP_UPDATE_CHANNEL = "AppUpdateChannel"
     private const val SHARED_PREFS_APP_SKIPPED_UPDATE = "AppSkippedUpdate"
     private const val SHARED_PREFS_APP_UPDATE_NOTICE_SHOWN = "AppUpdateNoticeShown"

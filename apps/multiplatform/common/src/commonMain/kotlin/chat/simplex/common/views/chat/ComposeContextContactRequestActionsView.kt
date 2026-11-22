@@ -146,11 +146,13 @@ fun showAcceptRequestAlert(rhId: Long?, contactRequestId: Long, inProgress: Muta
           Text(generalGetString(MR.strings.accept_contact_button), Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colors.primary)
         }
         // Accept incognito
+        if (chatModel.controller.appPrefs.incognito.get()) {
         SectionItemView({
           AlertManager.shared.hideAlert()
           acceptContactRequest(rhId, incognito = true, contactRequestId, isCurrentUser = true, chatModel = chatModel, close = null, inProgress = inProgress)
         }) {
           Text(generalGetString(MR.strings.accept_contact_incognito_button), Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = MaterialTheme.colors.primary)
+        }
         }
         // Cancel
         SectionItemView({

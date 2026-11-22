@@ -102,21 +102,22 @@ fun SettingsLayout(
 
     SectionView {
       SettingsActionItem(painterResource(MR.images.ic_at), stringResource(MR.strings.sapat_name_and_code), showSettingsModal { SapatIdentityView() }, disabled = stopped)
-      SettingsActionItem(painterResource(MR.images.ic_light_mode), stringResource(MR.strings.appearance_settings), showSettingsModal { AppearanceView(it) })
+      SettingsActionItem(painterResource(MR.images.ic_light_mode), stringResource(MR.strings.sapat_theme), showSettingsModal { SapatThemeView() })
       SettingsActionItem(painterResource(MR.images.ic_lock), stringResource(MR.strings.your_privacy), showSettingsModal { PrivacySettingsView(it, showSettingsModal, setPerformLA) }, disabled = stopped)
-      SettingsActionItem(painterResource(MR.images.ic_help), stringResource(MR.strings.help_and_support), showSettingsModal { HelpAndSupportView(it, showModal, showCustomModal) })
-      DatabaseItem(encrypted, passphraseSaved, showSettingsModal { DatabaseView() }, stopped)
-      SettingsActionItem(painterResource(MR.images.ic_ios_share), stringResource(MR.strings.migrate_from_device_to_another_device), { withAuth(generalGetString(MR.strings.auth_open_migration_to_another_device), generalGetString(MR.strings.auth_log_in_using_credential)) { ModalManager.fullscreen.showCustomModal { close -> MigrateFromDeviceView(close) } } }, disabled = stopped)
-    }
-    SectionDividerSpaced()
-
-
-    SectionView(stringResource(MR.strings.advanced_settings)) {
-      SettingsActionItem(painterResource(MR.images.ic_wifi_tethering), stringResource(MR.strings.network_and_servers), showCustomModal { _, close -> NetworkAndServersView(close) }, disabled = stopped)
       if (appPlatform == AppPlatform.ANDROID) {
         SettingsActionItem(painterResource(if (notificationsMode.value == NotificationsMode.OFF) MR.images.ic_bolt_off else MR.images.ic_bolt), stringResource(MR.strings.notifications), showSettingsModal { NotificationsSettingsView(it) }, disabled = stopped)
       }
       SettingsActionItem(painterResource(MR.images.ic_videocam), stringResource(MR.strings.settings_audio_video_calls), showSettingsModal { CallSettingsView(it, showModal) }, disabled = stopped)
+      SettingsActionItem(painterResource(MR.images.ic_ios_share), stringResource(MR.strings.migrate_from_device_to_another_device), { withAuth(generalGetString(MR.strings.auth_open_migration_to_another_device), generalGetString(MR.strings.auth_log_in_using_credential)) { ModalManager.fullscreen.showCustomModal { close -> MigrateFromDeviceView(close) } } }, disabled = stopped)
+    }
+    SectionDividerSpaced()
+
+    SectionView {
+      SettingsActionItem(painterResource(MR.images.ic_settings), stringResource(MR.strings.sapat_advanced), showSettingsModal { SapatAdvancedView(it, showSettingsModal, stopped) })
+      // Šapat: developer tools only in test builds
+      if (appPlatform.isAndroid && chatModel.controller.appPrefs.developerTools.get()) {
+        AdvancedSettingsAppSection(showSettingsModal, withAuth)
+      }
       AppShutdownItem()
       AppVersionItem(showVersion, versionInfo)
     }

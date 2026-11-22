@@ -663,7 +663,7 @@ fun ModalData.GroupChatInfoLayout(
             anyTopSectionRowShow = true
             MemberSupportButton(chat, openMemberSupport)
           }
-          if (showUserSupportChat) {
+          if (false && showUserSupportChat) {
             anyTopSectionRowShow = true
             UserSupportChatButton(chat, groupInfo, scrollToItemId)
           }
@@ -685,7 +685,7 @@ fun ModalData.GroupChatInfoLayout(
         }
       } else {
         SectionView {
-          if (groupInfo.canAddMembers && groupInfo.businessChat == null && groupLinkLoaded) {
+          if (false && groupInfo.canAddMembers && groupInfo.businessChat == null && groupLinkLoaded) { // Šapat: no group links
             anyTopSectionRowShow = true
             if (groupLink == null) {
               CreateGroupLinkButton(manageGroupLink)
@@ -693,11 +693,11 @@ fun ModalData.GroupChatInfoLayout(
               GroupLinkButton(manageGroupLink)
             }
           }
-          if (groupInfo.businessChat == null && groupInfo.membership.memberRole >= GroupMemberRole.Moderator) {
+          if (false && groupInfo.businessChat == null && groupInfo.membership.memberRole >= GroupMemberRole.Moderator) { // Šapat: no moderation tools
             anyTopSectionRowShow = true
             MemberSupportButton(chat, openMemberSupport)
           }
-          if (groupInfo.canModerate) {
+          if (false && groupInfo.canModerate) {
             anyTopSectionRowShow = true
             GroupReportsButton(chat) {
               scope.launch {
@@ -705,7 +705,7 @@ fun ModalData.GroupChatInfoLayout(
               }
             }
           }
-          if (showUserSupportChat) {
+          if (false && showUserSupportChat) {
             anyTopSectionRowShow = true
             UserSupportChatButton(chat, groupInfo, scrollToItemId)
           }
@@ -719,7 +719,7 @@ fun ModalData.GroupChatInfoLayout(
           val editProfileTitleId = if (groupInfo.useRelays) MR.strings.button_edit_channel_profile else MR.strings.button_edit_group_profile
           EditGroupProfileButton(editProfileTitleId, editGroupProfile)
         }
-        if (groupInfo.groupProfile.description != null || (groupInfo.isOwner && groupInfo.businessChat?.chatType == null)) {
+        if (false && (groupInfo.groupProfile.description != null || (groupInfo.isOwner && groupInfo.businessChat?.chatType == null))) { // Šapat: no welcome message
           AddOrEditWelcomeMessage(groupInfo.groupProfile.description, addOrEditWelcomeMessage)
         }
         val prefsTitleId = if (groupInfo.useRelays) MR.strings.channel_preferences
