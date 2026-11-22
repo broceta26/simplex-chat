@@ -14,7 +14,7 @@ fun oklch(L: Float, C: Float, H: Float, alpha: Float = 1f): Color {
 }
 
 val Indigo = Color(0xFF9966FF)
-val SimplexBlue = Color(0xFF2F4F9F)  // Šapat accent, readable on light and dark; also #4f79a6 in string resource files
+val SimplexBlue = Color(0xFF2F4F9F)  // Shapat accent, readable on light and dark; also #4f79a6 in string resource files
 val SimplexGreen = Color(77, 218, 103, 255)
 val SecretColor = Color(0x40808080)
 val LightGray = Color(241, 242, 246, 255)

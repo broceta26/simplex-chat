@@ -5566,7 +5566,7 @@ data class SimplexDomain(
     return (subDomain.reversed() + domain + tld).joinToString(".")
   }
 
-  // Šapat: names live under the directory's top-level part, which users don't see.
+  // Shapat: names live under the directory's top-level part, which users don't see.
   val displayName: String get() = if (nameTLD == SimplexTLD.simplex) (subDomain.reversed() + domain).joinToString(".") else fullDomainName
 
   val cmdString: String get() = "domain=$fullDomainName"

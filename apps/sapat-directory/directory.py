@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Šapat directory: codes and names that resolve to a profile's contact address.
+"""Shapat directory: codes and names that resolve to a profile's contact address.
 
 Two HTTP listeners:
   - resolver (internal, for smp-server's [NAMES] role):

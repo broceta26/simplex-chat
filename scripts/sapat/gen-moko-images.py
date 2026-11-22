@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Replaces upstream proprietary images under moko-resources/images with Šapat's own:
+"""Replaces upstream proprietary images under moko-resources/images with Shapat's own:
 chat wallpapers (tiled, tinted by the theme), privacy and shield pictures, supporter badges,
-the second operator's logos (not shown in Šapat) and the desktop notification icon.
+the second operator's logos (not shown in Shapat) and the desktop notification icon.
 Same names and pixel sizes. Run from the repository root."""
 import os, random, math
 from playwright.sync_api import sync_playwright

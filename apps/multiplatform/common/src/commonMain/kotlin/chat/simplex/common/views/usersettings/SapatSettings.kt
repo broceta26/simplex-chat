@@ -20,7 +20,7 @@ import chat.simplex.res.*
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
-// Šapat: two themes — light (paper terminal) and dark (Commodore 64) — or follow the phone.
+// Shapat: two themes — light (paper terminal) and dark (Commodore 64) — or follow the phone.
 @Composable
 fun SapatThemeView() {
   val current = remember { ChatModel.controller.appPrefs.currentTheme.state }
@@ -60,7 +60,7 @@ fun SapatThemeView() {
   }
 }
 
-// Šapat: what most people never need — incognito, Tor, the database.
+// Shapat: what most people never need — incognito, Tor, the database.
 @Composable
 fun SapatAdvancedView(chatModel: ChatModel, showSettingsModal: (@Composable (ChatModel) -> Unit) -> (() -> Unit), stopped: Boolean) {
   val incognito = remember { chatModel.controller.appPrefs.incognito.state }

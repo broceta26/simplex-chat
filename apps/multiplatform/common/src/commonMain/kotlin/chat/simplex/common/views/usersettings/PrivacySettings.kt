@@ -170,7 +170,7 @@ fun MorePrivacyView(chatModel: ChatModel) {
     )
     SectionDividerSpaced()
 
-    if (false) SectionView(stringResource(MR.strings.notifications)) { // Šapat: notification content is always hidden
+    if (false) SectionView(stringResource(MR.strings.notifications)) { // Shapat: notification content is always hidden
       val previewModes = remember { notificationPreviewModes() }
       val notificationPreviewMode = remember { chatModel.notificationPreviewMode }
       SettingsActionItemWithContent(
@@ -671,7 +671,7 @@ fun SimplexLockView(
           setPerformLA(false)
         }
       }
-      if (false && appPlatform == AppPlatform.ANDROID) { // Šapat: PIN only
+      if (false && appPlatform == AppPlatform.ANDROID) { // Shapat: PIN only
         LockModeSelector(laMode) { newLAMode ->
           if (laMode.value == newLAMode) return@LockModeSelector
           if (chatModel.controller.appPrefs.performLA.get()) {
@@ -701,7 +701,7 @@ fun SimplexLockView(
       }
       SectionTextFooter(stringResource(MR.strings.sapat_wipe_footer))
     }
-    if (false && performLA.value && laMode.value == LAMode.PASSCODE) { // Šapat: replaced by wipe PINs
+    if (false && performLA.value && laMode.value == LAMode.PASSCODE) { // Shapat: replaced by wipe PINs
       SectionDividerSpaced()
       SectionView(stringResource(MR.strings.self_destruct_passcode)) {
         val openInfo = {

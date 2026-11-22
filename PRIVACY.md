@@ -3,17 +3,17 @@ layout: layouts/privacy.html
 permalink: /privacy/index.html
 ---
 
-# Šapat Privacy Policy and Conditions of Use
+# Shapat Privacy Policy and Conditions of Use
 
 DRAFT for the test phase. To be reviewed by a lawyer before public release.
 
-Šapat relays are operated by Balkan Bug LLC ("we").
+Shapat relays are operated by Balkan Bug LLC ("we").
 
 ## What we cannot see
 
 All messages, files and calls are end-to-end encrypted on your device before they leave it, with keys that never leave the devices of the people in the conversation. Our relays receive only encrypted data. We cannot read your messages, see your files, or listen to your calls, and we cannot give them to anyone.
 
-Šapat has no accounts and no user identifiers: no phone number, no email, no user name, no user ID. Each conversation uses its own separate message queues, so the relays cannot link your conversations to each other or to you.
+Shapat has no accounts and no user identifiers: no phone number, no email, no user name, no user ID. Each conversation uses its own separate message queues, so the relays cannot link your conversations to each other or to you.
 
 ## What is stored on your device only
 
@@ -34,7 +34,7 @@ On iOS, a notification server receives an encrypted signal that a message is wai
 
 ## Conditions of use
 
-By using Šapat you agree:
+By using Shapat you agree:
 
 - not to use it for illegal content or activity in public groups;
 - not to send spam or abuse the relays with automated traffic.
@@ -43,7 +43,7 @@ We may block a public group link or a queue on our relays that is reported as ab
 
 ## Source code
 
-Šapat is based on open source software licensed under the GNU Affero General Public License v3. The source code of Šapat, including all changes, is available from Balkan Bug LLC.
+Shapat is based on open source software licensed under the GNU Affero General Public License v3. The source code of Shapat, including all changes, is available from Balkan Bug LLC.
 
 ## Updates
 

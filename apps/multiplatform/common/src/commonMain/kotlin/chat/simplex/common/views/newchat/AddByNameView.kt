@@ -16,7 +16,7 @@ import chat.simplex.common.ui.theme.DEFAULT_PADDING
 import chat.simplex.res.*
 import dev.icerock.moko.resources.compose.stringResource
 
-// Šapat: add a contact by name or code. The other side gets a contact request and approves it.
+// Shapat: add a contact by name or code. The other side gets a contact request and approves it.
 @Composable
 fun AddByNameView(rhId: Long?, close: () -> Unit) {
   var text by remember { mutableStateOf("") }

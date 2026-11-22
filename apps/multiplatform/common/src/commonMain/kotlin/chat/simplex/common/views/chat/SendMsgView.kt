@@ -69,7 +69,7 @@ fun SendMsgView(
   ) {
   val showCustomDisappearingMessageDialog = remember { mutableStateOf(false) }
   val padding = if (appPlatform.isAndroid) PaddingValues(vertical = 8.dp) else PaddingValues(top = 3.dp, bottom = 4.dp)
-  // Šapat style B: the message field is a graphite pill
+  // Shapat style B: the message field is a graphite pill
   val pill = if (sapatStyleB()) Modifier.padding(vertical = 6.dp).clip(RoundedCornerShape(22.dp)).background(MaterialTheme.colors.surface).border(1.dp, MaterialTheme.colors.secondaryVariant, RoundedCornerShape(22.dp)).padding(start = 6.dp, end = 4.dp) else Modifier
   Box(pill.padding(padding)) {
     val cs = composeState.value

@@ -207,7 +207,7 @@ private fun GroupPreferencesLayout(
       FilesPreference()
       SectionDividerSpaced()
       SimplexLinksPreference()
-      // Šapat: no reports, chats with admins or member admission; history stays on
+      // Shapat: no reports, chats with admins or member admission; history stays on
     } else {
       SignMessagesPreference(onEnable = { revert ->
         AlertManager.shared.showAlertDialog(

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draws Šapat's own illustrations, under the file names and sizes the app expects.
+"""Draws Shapat's own illustrations, under the file names and sizes the app expects.
 
 Writes PNG/JPG files into assets-sapat/multiplatform/resources/MR/images, the folder passed to
 Gradle as -Psimplex.assets.dir. None of the upstream (proprietary) artwork is used or traced.
@@ -39,7 +39,7 @@ HOLE = "M54,42a6,6 0,0 1,3 11.2V60a3,3 0,0 1,-6 0v-6.8A6,6 0,0 1,54 42z"
 
 
 def mark(c, x, y, s, fill=None, hole=None):
-    """The Šapat bubble-with-keyhole centered at (x, y), s = width."""
+    """The Shapat bubble-with-keyhole centered at (x, y), s = width."""
     k = s / 52
     return (f'<g transform="translate({x - 54 * k},{y - 57 * k}) scale({k})">'
             f'<path fill="{fill or c["acc"]}" d="{BUBBLE}"/><path fill="{hole or c["hole"]}" d="{HOLE}"/></g>')
@@ -141,7 +141,7 @@ def scene(name, W, H, c):
         return f'<rect x="{W*0.2}" y="{H*0.2}" width="{W*0.6}" height="{H*0.6}" rx="{H*0.06}" fill="{c["card"]}" stroke="{c["line"]}" stroke-width="{H*0.012}"/>' \
             + msg(c, W*0.26, H*0.3, W*0.48, H*0.12, True) + msg(c, W*0.26, H*0.47, W*0.48, H*0.12, True) + msg(c, W*0.26, H*0.64, W*0.34, H*0.12, True) \
             + mark(c, W*0.8, H*0.2, H*0.18)
-    # own_stake, phone_supporter: upstream fundraising screens, not shown in Šapat
+    # own_stake, phone_supporter: upstream fundraising screens, not shown in Shapat
     return mark(c, W*0.5, H*0.5, s*0.4)
 
 

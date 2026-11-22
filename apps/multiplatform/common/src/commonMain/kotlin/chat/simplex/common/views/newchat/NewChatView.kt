@@ -490,7 +490,7 @@ private fun InviteView(rhId: Long?, connLinkInvitation: CreatedConnLink, contact
       style = MaterialTheme.typography.body1
     )
     LinkTextView(connLinkInvitation.simplexChatUri(short = showShortLink.value), true)
-    // Šapat: link only, no QR code
+    // Shapat: link only, no QR code
   } else {
     SectionView(stringResource(MR.strings.share_this_1_time_link), headerBottomPadding = 5.dp) {
       LinkTextView(connLinkInvitation.simplexChatUri(short = showShortLink.value), true)

@@ -16,7 +16,7 @@ import chat.simplex.common.views.localauth.SapatWipe
 import chat.simplex.res.*
 import dev.icerock.moko.resources.compose.stringResource
 
-// Šapat: PINs that wipe the app at once when entered on the lock screen.
+// Shapat: PINs that wipe the app at once when entered on the lock screen.
 @Composable
 fun SapatWipePinsView() {
   var count by remember { mutableStateOf(SapatWipe.count()) }

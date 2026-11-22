@@ -1,4 +1,4 @@
-# Šapat directory
+# Shapat directory
 
 Codes and names that resolve to a profile's contact address (spec: replica/spec-v2.md, R3).
 

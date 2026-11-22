@@ -113,7 +113,7 @@ class AppPreferences {
     if (!runServiceInBackground.get()) NotificationsMode.OFF else NotificationsMode.default
   )  { NotificationsMode.values().firstOrNull { it.name == this } }
   val closeBehavior: SharedPreference<CloseBehavior> = mkSafeEnumPreference(SHARED_PREFS_DESKTOP_CLOSE_BEHAVIOR, CloseBehavior.default)
-  // Šapat: notifications never show who wrote or what — always "New message"
+  // Shapat: notifications never show who wrote or what — always "New message"
   val notificationPreviewMode = SharedPreference<String?>(get = { NotificationPreviewMode.HIDDEN.name }, set = { })
   val canAskToEnableNotifications = mkBoolPreference(SHARED_PREFS_CAN_ASK_TO_ENABLE_NOTIFICATIONS, true)
   val backgroundServiceNoticeShown = mkBoolPreference(SHARED_PREFS_SERVICE_NOTICE_SHOWN, false)
@@ -122,7 +122,7 @@ class AppPreferences {
   val webrtcPolicyRelay = mkBoolPreference(SHARED_PREFS_WEBRTC_POLICY_RELAY, true)
   val callOnLockScreen: SharedPreference<CallOnLockScreen> = mkSafeEnumPreference(SHARED_PREFS_WEBRTC_CALLS_ON_LOCK_SCREEN, CallOnLockScreen.default)
   val performLA = mkBoolPreference(SHARED_PREFS_PERFORM_LA, false)
-  // Šapat: PIN only, no fingerprint or face
+  // Shapat: PIN only, no fingerprint or face
   val laMode = SharedPreference<LAMode>(get = { LAMode.PASSCODE }, set = { })
   val laLockDelay = mkIntPreference(SHARED_PREFS_LA_LOCK_DELAY, 30)
   val laNoticeShown = mkBoolPreference(SHARED_PREFS_LA_NOTICE_SHOWN, false)
@@ -210,7 +210,7 @@ class AppPreferences {
   val appLanguage = mkStrPreference(SHARED_PREFS_APP_LANGUAGE, null)
   val sapatDirectory = mkStrPreference(SHARED_PREFS_SAPAT_DIRECTORY, null)
   val sapatWipePins = mkStrPreference(SHARED_PREFS_SAPAT_WIPE_PINS, null)
-  // Šapat style: "A" classic (blue, terminal chats), "B" graphite (dark, amber, bubbles)
+  // Shapat style: "A" classic (blue, terminal chats), "B" graphite (dark, amber, bubbles)
   val sapatStyle = mkStrPreference(SHARED_PREFS_SAPAT_STYLE, "B")
   val sapatWrongPins = mkIntPreference(SHARED_PREFS_SAPAT_WRONG_PINS, 0)
   val appUpdateChannel = mkEnumPreference(SHARED_PREFS_APP_UPDATE_CHANNEL, AppUpdatesChannel.DISABLED) { AppUpdatesChannel.entries.firstOrNull { it.name == this } }
@@ -4814,8 +4814,8 @@ data class ServerOperatorInfo(
 val operatorsInfo: Map<OperatorTag, ServerOperatorInfo> = mapOf(
   OperatorTag.SimpleX to ServerOperatorInfo(
     description = listOf(
-      "Šapat has no user profile IDs of any kind, not even random numbers or keys that identify the users.",
-      "Balkan Bug LLC runs the Šapat relays. They pass encrypted messages and cannot read them."
+      "Shapat has no user profile IDs of any kind, not even random numbers or keys that identify the users.",
+      "Balkan Bug LLC runs the Shapat relays. They pass encrypted messages and cannot read them."
     ),
     website = "https://balkanbug.com",
     logo = MR.images.decentralized,
@@ -4925,7 +4925,7 @@ data class ServerOperator(
     val sampleData1 = ServerOperator(
       operatorId = 1,
       operatorTag = OperatorTag.SimpleX,
-      tradeName = "Šapat",
+      tradeName = "Shapat",
       legalName = "Balkan Bug LLC",
       serverDomains = listOf(),
       conditionsAcceptance = ConditionsAcceptance.Accepted(acceptedAt = null, autoAccepted = false),
@@ -5518,7 +5518,7 @@ enum class SMPProxyMode {
   @SerialName("never") Never;
 
   companion object {
-    // Šapat: one relay for now; proxying through the same relay fails. Back to Always with the second relay.
+    // Shapat: one relay for now; proxying through the same relay fails. Back to Always with the second relay.
     val default = Never
   }
 }

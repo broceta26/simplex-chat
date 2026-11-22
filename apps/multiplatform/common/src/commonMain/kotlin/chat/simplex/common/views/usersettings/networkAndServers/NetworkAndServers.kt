@@ -987,7 +987,7 @@ fun PreviewNetworkAndServersLayout() {
   }
 }
 
-// Shared by Network & servers and Šapat's Advanced screen.
+// Shared by Network & servers and Shapat's Advanced screen.
 fun toggleSocksProxyAlert(enable: Boolean, proxyPort: Int, onChanged: (Boolean) -> Unit) {
   val def = NetCfg.defaults
   val proxyDef = NetCfg.proxyDefaults

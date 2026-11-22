@@ -1084,7 +1084,7 @@ fun setLastVersionDefault(m: ChatModel) {
 fun shouldShowWhatsNew(m: ChatModel): Boolean {
   val v = m.controller.appPrefs.whatsNewVersion.get()
   setLastVersionDefault(m)
-  // Šapat: upstream release notes and crowdfunding pages are never shown
+  // Shapat: upstream release notes and crowdfunding pages are never shown
   return false
 }
 
@@ -1126,7 +1126,7 @@ else
 // Google Play policy restricts promoting investments, so Play builds only show it in the US
 @Composable
 fun crowdfundingAvailable(): Boolean {
-  // Šapat: no upstream crowdfunding
+  // Shapat: no upstream crowdfunding
   if (true) return false
   if (!platform.androidIsPlayStoreBuild) return true
   if (androidPlayStoreCountry.value == null) {
@@ -1210,19 +1210,19 @@ private val getStakeSlides: List<CrowdfundingSlide> = listOf(
     MR.images.crowdfunding_2,
     "480,000+ users joined on their own",
     null,
-    "Šapat users have been more than doubling every year without any paid marketing, and donated over \$650,000."
+    "Shapat users have been more than doubling every year without any paid marketing, and donated over \$650,000."
   ),
   CrowdfundingSlide(
     MR.images.crowdfunding_3,
-    "Developers already bet on Šapat success",
+    "Developers already bet on Shapat success",
     "Independent developers created moderation and AI bots, Telegram bridges, and a public server registry.",
-    "Every service developers build on Šapat Network may increase its value, and bring new users to Šapat."
+    "Every service developers build on Shapat Network may increase its value, and bring new users to Shapat."
   ),
   CrowdfundingSlide(
     MR.images.crowdfunding_4,
     "Revenue plan: businesses & big channels pay",
-    "Šapat plans to earn from the infrastructure and services that creators, businesses and large communities need as they grow.",
-    "Read about how we plan to make Šapat and network profitable, and about all the investment terms on Wefunder."
+    "Shapat plans to earn from the infrastructure and services that creators, businesses and large communities need as they grow.",
+    "Read about how we plan to make Shapat and network profitable, and about all the investment terms on Wefunder."
   ),
 )
 
@@ -1254,7 +1254,7 @@ fun GetStakeView(showFirstImage: Boolean, inCenterOfWindow: Boolean = false, clo
 
   ColumnWithScrollBar(Modifier.pinchZoom().padding(horizontal = DEFAULT_PADDING)) {
     // in the center of the window the page is wide enough for the title to fit on one line
-    val title = "Own a part of\nŠapat"
+    val title = "Own a part of\nShapat"
     AppBarTitle(if (inCenterOfWindow) title.replace("\n", " ") else title, withPadding = false)
     if (showFirstImage) {
       slideImage(getStakeSlides[0])
@@ -1292,7 +1292,7 @@ fun GetStakeView(showFirstImage: Boolean, inCenterOfWindow: Boolean = false, clo
       )
       if (!chatModel.desktopNoUserNoRemote) {
         TextButtonBelowOnboardingButton(
-          "or ask Šapat team",
+          "or ask Shapat team",
           onClick = if (stopped) null else ({
             close()
             uriHandler.openVerifiedSimplexUri(CROWDFUNDING_CONTACT_URI)

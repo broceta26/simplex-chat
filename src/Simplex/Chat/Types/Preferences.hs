@@ -255,7 +255,7 @@ groupFeatureNameText = \case
   GFReactions -> "Message reactions"
   GFVoice -> "Voice messages"
   GFFiles -> "Files and media"
-  GFSimplexLinks -> "Šapat links"
+  GFSimplexLinks -> "Shapat links"
   GFReports -> "Member reports"
   GFHistory -> "Recent history"
   GFSupport -> "Chat with admins"

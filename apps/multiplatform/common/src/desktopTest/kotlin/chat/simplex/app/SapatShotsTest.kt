@@ -27,7 +27,7 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.test.Test
 
-// Renders the Šapat screens in style A (light and dark) and style B, for review. Runs only when SAPAT_SHOTS is set.
+// Renders the Shapat screens in style A (light and dark) and style B, for review. Runs only when SAPAT_SHOTS is set.
 class SapatShotsTest {
   private val w = 390
   private val h = 844

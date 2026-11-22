@@ -3,7 +3,7 @@ package chat.simplex.common.views.localauth
 import chat.simplex.common.model.ChatController.appPrefs
 import java.security.MessageDigest
 
-// Šapat: the app is wiped after 3 wrong PINs (with a warning before the third),
+// Shapat: the app is wiped after 3 wrong PINs (with a warning before the third),
 // or at once on any of the user's wipe PINs. Wipe PINs are kept only as SHA-256 hashes.
 object SapatWipe {
   const val MAX_WRONG = 3

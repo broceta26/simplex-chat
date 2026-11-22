@@ -49,7 +49,7 @@ fun FramedItemView(
   scrollToQuotedItemFromItem: (Long) -> Unit = {},
   endButton: (@Composable () -> Unit)? = null,
 ) {
-  // Šapat style B: sent bubbles are amber, so their text and meta are dark
+  // Shapat style B: sent bubbles are amber, so their text and meta are dark
   if (sapatStyleB() && ci.chatDir.sent && !LocalTerminalLayout.current) {
     val c = MaterialTheme.colors
     MaterialTheme(

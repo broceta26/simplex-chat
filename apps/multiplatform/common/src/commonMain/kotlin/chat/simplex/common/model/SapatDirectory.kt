@@ -14,7 +14,7 @@ import java.security.MessageDigest
 import java.security.cert.X509Certificate
 import javax.net.ssl.*
 
-// Šapat directory: each profile has a code (permanent, can be replaced) and a name (a mask over the code).
+// Shapat directory: each profile has a code (permanent, can be replaced) and a name (a mask over the code).
 // Both resolve to the profile's contact address; a contact request still needs the owner's approval.
 // The API certificate is pinned, so only our directory gets the token.
 object SapatDirectory {

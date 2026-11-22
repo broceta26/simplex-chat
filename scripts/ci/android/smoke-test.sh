@@ -26,7 +26,7 @@ case "$cases" in
 esac
 package=com.balkanbug.chat
 local_chat="seeded notes"
-search_field="Search or paste Šapat link"
+search_field="Search or paste Shapat link"
 ui=$(dirname "$0")/ui
 fixtures=$(dirname "$0")/../../../tests/fixtures
 checks=$UI_OUT/checks.txt
@@ -243,7 +243,7 @@ create_local_chat() {
   "$ui" shot local-chat
 }
 
-# The Šapat home: the group listed, none of the SimpleX connect cards.
+# The Shapat home: the group listed, none of the SimpleX connect cards.
 check_home() {
   "$ui" shot home
   check "home: \"$local_chat\" listed" "$ui" find "$local_chat"

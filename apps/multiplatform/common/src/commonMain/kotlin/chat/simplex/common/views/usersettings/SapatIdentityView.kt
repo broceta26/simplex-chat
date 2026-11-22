@@ -21,7 +21,7 @@ import dev.icerock.moko.resources.compose.stringResource
 import java.text.DateFormat
 import java.util.Date
 
-// Šapat: the profile's name (a mask) and code (its permanent number in the directory).
+// Shapat: the profile's name (a mask) and code (its permanent number in the directory).
 @Composable
 fun SapatIdentityView() {
   val userId = chatModel.currentUser.value?.userId ?: return

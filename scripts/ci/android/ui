@@ -38,7 +38,7 @@ PATH=${ANDROID_HOME:?ANDROID_HOME must be the SDK from install-sdk.sh}/platform-
 package=com.balkanbug.chat
 prefs_file=chat.simplex.app.SIMPLEX_APP_PREFS.xml
 # the button that opens New chat, in the toolbar or floating, whenever the chat list shows
-chat_list_button="New"  # Šapat home: the new-chat button (A: the pencil, B: the amber plus)
+chat_list_button="New"  # Shapat home: the new-chat button (A: the pencil, B: the amber plus)
 state=${UI_STATE:-${RUNNER_TEMP:-/tmp}/ui}
 here=$(cd "$(dirname "$0")" && pwd)
 mkdir -p "$UI_OUT" "$state"

@@ -685,7 +685,7 @@ fun ModalData.GroupChatInfoLayout(
         }
       } else {
         SectionView {
-          if (false && groupInfo.canAddMembers && groupInfo.businessChat == null && groupLinkLoaded) { // Šapat: no group links
+          if (false && groupInfo.canAddMembers && groupInfo.businessChat == null && groupLinkLoaded) { // Shapat: no group links
             anyTopSectionRowShow = true
             if (groupLink == null) {
               CreateGroupLinkButton(manageGroupLink)
@@ -693,7 +693,7 @@ fun ModalData.GroupChatInfoLayout(
               GroupLinkButton(manageGroupLink)
             }
           }
-          if (false && groupInfo.businessChat == null && groupInfo.membership.memberRole >= GroupMemberRole.Moderator) { // Šapat: no moderation tools
+          if (false && groupInfo.businessChat == null && groupInfo.membership.memberRole >= GroupMemberRole.Moderator) { // Shapat: no moderation tools
             anyTopSectionRowShow = true
             MemberSupportButton(chat, openMemberSupport)
           }
@@ -719,7 +719,7 @@ fun ModalData.GroupChatInfoLayout(
           val editProfileTitleId = if (groupInfo.useRelays) MR.strings.button_edit_channel_profile else MR.strings.button_edit_group_profile
           EditGroupProfileButton(editProfileTitleId, editGroupProfile)
         }
-        if (false && (groupInfo.groupProfile.description != null || (groupInfo.isOwner && groupInfo.businessChat?.chatType == null))) { // Šapat: no welcome message
+        if (false && (groupInfo.groupProfile.description != null || (groupInfo.isOwner && groupInfo.businessChat?.chatType == null))) { // Shapat: no welcome message
           AddOrEditWelcomeMessage(groupInfo.groupProfile.description, addOrEditWelcomeMessage)
         }
         val prefsTitleId = if (groupInfo.useRelays) MR.strings.channel_preferences

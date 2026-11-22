@@ -1219,7 +1219,7 @@ internal fun nameSearchCandidate(str: String): String? {
   if (core.isEmpty() || labels.any { !isNameLabel(it) }) return null
   return when {
     labels.size > 1 -> text                                            // already has a top-level part
-    core.length >= MIN_NAME_LENGTH -> "${prefix ?: "@"}${core.lowercase()}.$DEFAULT_NAME_TLD" // Šapat: a bare word is a person's name or code
+    core.length >= MIN_NAME_LENGTH -> "${prefix ?: "@"}${core.lowercase()}.$DEFAULT_NAME_TLD" // Shapat: a bare word is a person's name or code
     else -> null
   }
 }
@@ -1319,7 +1319,7 @@ private val TAG_MIN_HEIGHT = 35.dp
 
 @Composable
 private fun TagsView(searchText: MutableState<TextFieldValue>) {
-  // Šapat: one list, no filters or user lists
+  // Shapat: one list, no filters or user lists
   LaunchedEffect(Unit) { chatModel.activeChatTagFilter.value = null }
   if (true) return
   val userTags = remember { chatModel.userTags }

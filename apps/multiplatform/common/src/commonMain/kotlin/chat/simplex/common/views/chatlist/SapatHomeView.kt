@@ -35,7 +35,7 @@ import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 import kotlinx.coroutines.flow.MutableStateFlow
 
-// Šapat home: a top bar with the profile, the app name, search and a menu; the chats; one button for new things.
+// Shapat home: a top bar with the profile, the app name, search and a menu; the chats; one button for new things.
 @Composable
 fun SapatHomeView(chatModel: ChatModel, userPickerState: MutableStateFlow<AnimatedViewState>, stopped: Boolean) {
   val userId = chatModel.currentUser.value?.userId

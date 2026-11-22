@@ -396,7 +396,7 @@ private fun ActiveCallOverlayLayout(
             verticalArrangement = Arrangement.Center
           ) {
             if (chat.simplex.common.ui.theme.sapatStyleB()) {
-              // Šapat style B: amber rings around a square avatar
+              // Shapat style B: amber rings around a square avatar
               Box(Modifier.size(230.dp), contentAlignment = Alignment.Center) {
                 Box(Modifier.size(230.dp).border(1.dp, Color(0xFF26292D), CircleShape))
                 Box(Modifier.size(170.dp).border(1.dp, Color(0xFFF4A623), CircleShape))

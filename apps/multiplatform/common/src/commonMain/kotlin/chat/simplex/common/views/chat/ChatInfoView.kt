@@ -1076,7 +1076,7 @@ fun InfoViewActionButton(
   onClick: () -> Unit
 ) {
   if (sapatStyleB()) {
-    // Šapat style B: a graphite tile with the icon above its label
+    // Shapat style B: a graphite tile with the icon above its label
     Column(
       modifier.padding(4.dp).height(64.dp).clip(RoundedCornerShape(12.dp)).background(MaterialTheme.colors.surface)
         .border(1.dp, MaterialTheme.colors.secondaryVariant, RoundedCornerShape(12.dp))
@@ -1579,7 +1579,7 @@ fun PreviewChatInfoLayout() {
   }
 }
 
-// Šapat style B header of a contact or group: square avatar, the name, and a line of monospace capitals
+// Shapat style B header of a contact or group: square avatar, the name, and a line of monospace capitals
 @Composable
 fun SapatInfoHeaderB(cInfo: ChatInfo, subtitle: String) {
   Row(Modifier.fillMaxWidth().padding(horizontal = DEFAULT_PADDING, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {

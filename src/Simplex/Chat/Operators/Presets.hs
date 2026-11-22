@@ -18,7 +18,7 @@ operatorSimpleXChat =
   ServerOperator
     { operatorId = DBNewEntity,
       operatorTag = Just OTSimplex,
-      tradeName = "Šapat",
+      tradeName = "Shapat",
       legalName = Just "Balkan Bug LLC",
       serverDomains = ["148.251.84.251"],
       conditionsAcceptance = CAAccepted Nothing True,
@@ -41,7 +41,7 @@ operatorFlux =
       xftpRoles = allRoles
     }
 
--- Šapat runs only its own relays. If a relay is removed here, keep its address in
+-- Shapat runs only its own relays. If a relay is removed here, keep its address in
 -- allPresetServers, or short links created on it stop working.
 allPresetServers :: NonEmpty SMPServer
 allPresetServers = enabledSimplexChatSMPServers

@@ -114,7 +114,7 @@ fun SettingsLayout(
 
     SectionView {
       SettingsActionItem(painterResource(MR.images.ic_settings), stringResource(MR.strings.sapat_advanced), showSettingsModal { SapatAdvancedView(it, showSettingsModal, stopped) })
-      // Šapat: developer tools only in test builds
+      // Shapat: developer tools only in test builds
       if (appPlatform.isAndroid && chatModel.controller.appPrefs.developerTools.get()) {
         AdvancedSettingsAppSection(showSettingsModal, withAuth)
       }

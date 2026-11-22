@@ -61,7 +61,7 @@ fun LocalAuthView(m: ChatModel, authRequest: LocalAuthRequest) {
     })
 }
 
-// password == null (Šapat wipe): no app passcode afterwards, lock off, directory entries forgotten
+// password == null (Shapat wipe): no app passcode afterwards, lock off, directory entries forgotten
 private fun deleteStorageAndRestart(m: ChatModel, password: String?, completed: (LAResult) -> Unit) {
   withLongRunningApi {
     try {

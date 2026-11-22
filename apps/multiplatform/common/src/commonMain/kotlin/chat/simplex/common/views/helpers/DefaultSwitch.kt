@@ -18,7 +18,7 @@ fun DefaultSwitch(
   enabled: Boolean = true,
   interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
   colors: SwitchColors = if (chat.simplex.common.ui.theme.sapatStyleB()) SwitchDefaults.colors(
-    // Šapat style B: an amber track with a dark knob when on, a graphite track with a light knob when off
+    // Shapat style B: an amber track with a dark knob when on, a graphite track with a light knob when off
     checkedThumbColor = androidx.compose.ui.graphics.Color(0xFF16120A),
     uncheckedThumbColor = androidx.compose.ui.graphics.Color(0xFFE8E8E8),
     checkedTrackAlpha = 0.0f,

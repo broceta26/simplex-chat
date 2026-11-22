@@ -747,7 +747,7 @@ val BlackColorPaletteApp = AppColors(
   receivedQuote = Color(0xFF2C2852),
 )
 
-// Šapat style B, "Grafit": graphite and amber, always dark
+// Shapat style B, "Grafit": graphite and amber, always dark
 val GraphiteAmber = Color(0xFFF4A623)
 val GraphiteColorPalette = darkColors(
   primary = GraphiteAmber,

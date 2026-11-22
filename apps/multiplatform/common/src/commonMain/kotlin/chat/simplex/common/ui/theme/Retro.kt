@@ -6,7 +6,7 @@ import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 
-// Šapat: the chat screen looks like a terminal — Commodore 64 colours in the dark theme,
+// Shapat: the chat screen looks like a terminal — Commodore 64 colours in the dark theme,
 // a paper terminal in the light theme, monospace text in both.
 
 private val C64Blue = Color(0xFF352879)

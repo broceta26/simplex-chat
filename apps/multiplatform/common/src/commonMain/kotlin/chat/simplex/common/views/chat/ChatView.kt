@@ -4213,7 +4213,7 @@ enum class ContentFilter(
   }
 }
 
-// Šapat style B chat title: square avatar, the name, and below it in amber capitals whether the contact is verified and how long messages last
+// Shapat style B chat title: square avatar, the name, and below it in amber capitals whether the contact is verified and how long messages last
 @Composable
 private fun SapatChatTitleB(cInfo: ChatInfo) {
   Row(verticalAlignment = Alignment.CenterVertically) {

@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import chat.simplex.common.ui.theme.sapatStyleB
 
-// Šapat building blocks that follow the chosen style: graphite cards and amber buttons in style B, rounded classic ones in style A.
+// Shapat building blocks that follow the chosen style: graphite cards and amber buttons in style B, rounded classic ones in style A.
 
 private val bRadius = RoundedCornerShape(12.dp)
 private val aRadius = RoundedCornerShape(24.dp)
