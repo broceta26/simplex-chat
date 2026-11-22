@@ -28,7 +28,7 @@ Your working directory is where your output goes. `ui shot <name>` saves `screen
 2. Run `ui relaunch`: it restarts the app and waits for the chat list. Take a shot.
 3. Check, noting the evidence (screenshot names, positions):
    - "seeded notes" is listed;
-   - the search field "Search or paste SimpleX link" is in the bottom half of the screen (y over 1200), and "Add list" is just above it;
+   - the search field "Search or paste SimpleX link" is in the bottom half of the screen (y over 1200);
    - nothing is cut off, overlapping or garbled.
 
 **Between the layouts:** run `ui layout top`: it restarts the app with the toolbar at the top.
@@ -36,7 +36,7 @@ Your working directory is where your output goes. `ui shot <name>` saves `screen
 **C. The chat list, toolbar at the top.** Check, noting the evidence:
 
 - "seeded notes" is still listed;
-- the search field is in the top half of the screen (y under 1200), and "Add list" is just below it;
+- the search field is in the top half of the screen (y under 1200);
 - nothing is cut off, overlapping or garbled. "Start new chat" is now a floating button at the bottom right, drawn over whatever the list shows there: note what it covers, but that alone is not a failure.
 
 **D. Sending images in "seeded notes".**

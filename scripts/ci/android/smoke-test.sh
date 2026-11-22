@@ -244,7 +244,7 @@ create_local_chat() {
   "$ui" shot local-chat
 }
 
-# The search field and "Add list" next to it: at the bottom of the chat list, "Add list" above the field; at the top, below it.
+# The search field: in the bottom half of the chat list in the reachable layout, in the top half otherwise (Šapat has no chat lists).
 check_layout() {
   local layout=$1 field half
   half=$(($(screen_height) / 2))
@@ -253,10 +253,8 @@ check_layout() {
   check "$layout: \"$local_chat\" listed" "$ui" find "$local_chat"
   if [ "$layout" = reachable ]; then
     check "reachable: the search field is in the bottom half" [ "${field:-0}" -gt "$half" ]
-    check "reachable: \"Add list\" above the search field" above "Add list" "$search_field"
   else
     check "top: the search field is in the top half" [ "${field:-$((half * 2))}" -lt "$half" ]
-    check "top: \"Add list\" below the search field" above "$search_field" "Add list"
   fi
 }
 
