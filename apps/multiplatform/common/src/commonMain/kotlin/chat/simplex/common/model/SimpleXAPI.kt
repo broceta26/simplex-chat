@@ -1736,7 +1736,7 @@ object ChatController {
       }
       r is API.Error && r.err is ChatError.ChatErrorChat
           && r.err.errorType is ChatErrorType.SimplexDomainNotReady -> {
-        val domain = r.err.errorType.simplexDomain.fullDomainName
+        val domain = r.err.errorType.simplexDomain.displayName
         if (r.err.errorType.simplexDomainError is SimplexDomainError.NoValidLink) {
           AlertManager.shared.showAlertMsg(
             generalGetString(MR.strings.simplex_name_no_valid_link),
@@ -1819,7 +1819,7 @@ object ChatController {
   // owner-specific wording for setting one's own/channel name; null for other errors (handled by apiConnectResponseAlert)
   fun simplexNameOwnerError(err: ChatError, isChannel: Boolean): String? =
     if (err is ChatError.ChatErrorChat && err.errorType is ChatErrorType.SimplexDomainNotReady && err.errorType.simplexDomainError is SimplexDomainError.NoValidLink) {
-      val domain = err.errorType.simplexDomain.fullDomainName
+      val domain = err.errorType.simplexDomain.displayName
       if (isChannel) generalGetString(MR.strings.simplex_name_owner_no_channel_link).format(domain)
       else generalGetString(MR.strings.simplex_name_owner_no_address).format(domain)
     } else null

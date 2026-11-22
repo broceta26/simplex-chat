@@ -5546,7 +5546,7 @@ data class SimplexNameInfo(
   // mirrors backend shortNameInfoStr: "#name" for a simplex public group, else prefix + full domain
   val shortStr: String get() = when {
     nameType == SimplexNameType.publicGroup && nameDomain.nameTLD == SimplexTLD.simplex && nameDomain.subDomain.isEmpty() -> "#" + nameDomain.domain
-    else -> (if (nameType == SimplexNameType.publicGroup) "#" else "@") + nameDomain.fullDomainName
+    else -> (if (nameType == SimplexNameType.publicGroup) "#" else "@") + nameDomain.displayName
   }
 }
 
@@ -5565,6 +5565,9 @@ data class SimplexDomain(
     }
     return (subDomain.reversed() + domain + tld).joinToString(".")
   }
+
+  // Šapat: names live under the directory's top-level part, which users don't see.
+  val displayName: String get() = if (nameTLD == SimplexTLD.simplex) (subDomain.reversed() + domain).joinToString(".") else fullDomainName
 
   val cmdString: String get() = "domain=$fullDomainName"
 }

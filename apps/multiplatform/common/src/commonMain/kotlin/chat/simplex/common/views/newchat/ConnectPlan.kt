@@ -74,7 +74,7 @@ fun showNameWarningAlert(
   openExistingChat: (() -> Unit)?,
   cleanup: (() -> Unit)?
 ) {
-  val nameStr = domain.fullDomainName
+  val nameStr = domain.displayName
   fun dismiss() {
     AlertManager.privacySensitive.hideAlert()
     cleanup?.invoke()

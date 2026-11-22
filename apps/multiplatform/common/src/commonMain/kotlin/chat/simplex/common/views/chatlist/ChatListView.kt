@@ -1200,9 +1200,9 @@ private fun BoxScope.ChatList(searchText: MutableState<TextFieldValue>, listStat
 
 // Default top-level part used to complete a bare name typed in the search field (search field only;
 // the message parser and the wire format are unchanged).
-private const val DEFAULT_NAME_TLD = "testing"
+private const val DEFAULT_NAME_TLD = "simplex"
 // Shortest name that offers the button, so it is discoverable but does not flash on short prefixes.
-private const val MIN_NAME_LENGTH = 5
+private const val MIN_NAME_LENGTH = 3
 // Wait this long after the last keystroke before the local name search runs.
 internal const val NAME_SEARCH_DEBOUNCE_MS = 300L
 
@@ -1221,7 +1221,7 @@ internal fun nameSearchCandidate(str: String): String? {
   if (core.isEmpty() || labels.any { !isNameLabel(it) }) return null
   return when {
     labels.size > 1 -> text                                            // already has a top-level part
-    core.length >= MIN_NAME_LENGTH -> "${prefix ?: ""}$core.$DEFAULT_NAME_TLD"
+    core.length >= MIN_NAME_LENGTH -> "${prefix ?: "@"}${core.lowercase()}.$DEFAULT_NAME_TLD" // Šapat: a bare word is a person's name or code
     else -> null
   }
 }
@@ -1271,7 +1271,7 @@ internal fun ConnectByNameRow(name: String, searchText: MutableState<TextFieldVa
     // icon and text aligned with the search bar's icon and text (same paddings and icon size)
     val icon = if (name.startsWith("@")) MR.images.ic_at else MR.images.ic_tag
     Icon(painterResource(icon), null, Modifier.padding(start = DEFAULT_PADDING, end = DEFAULT_PADDING_HALF).size(22.dp * fontSizeSqrtMultiplier), tint = MaterialTheme.colors.primary)
-    Text(String.format(generalGetString(MR.strings.connect_plan_connect_to_name), name), color = MaterialTheme.colors.primary)
+    Text(String.format(generalGetString(MR.strings.connect_plan_connect_to_name), name.removeSuffix(".simplex").removeSuffix(".$DEFAULT_NAME_TLD")), color = MaterialTheme.colors.primary)
   }
 }
 
