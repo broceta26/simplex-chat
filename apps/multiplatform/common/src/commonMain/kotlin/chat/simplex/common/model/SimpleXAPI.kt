@@ -211,7 +211,7 @@ class AppPreferences {
   val sapatDirectory = mkStrPreference(SHARED_PREFS_SAPAT_DIRECTORY, null)
   val sapatWipePins = mkStrPreference(SHARED_PREFS_SAPAT_WIPE_PINS, null)
   // Šapat style: "A" classic (blue, terminal chats), "B" graphite (dark, amber, bubbles)
-  val sapatStyle = mkStrPreference(SHARED_PREFS_SAPAT_STYLE, "A")
+  val sapatStyle = mkStrPreference(SHARED_PREFS_SAPAT_STYLE, "B")
   val sapatWrongPins = mkIntPreference(SHARED_PREFS_SAPAT_WRONG_PINS, 0)
   val appUpdateChannel = mkEnumPreference(SHARED_PREFS_APP_UPDATE_CHANNEL, AppUpdatesChannel.DISABLED) { AppUpdatesChannel.entries.firstOrNull { it.name == this } }
   val appSkippedUpdate = mkStrPreference(SHARED_PREFS_APP_SKIPPED_UPDATE, "")

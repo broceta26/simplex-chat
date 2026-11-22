@@ -770,7 +770,7 @@ val GraphiteColorPaletteApp = AppColors(
   receivedQuote = Color(0xFF2A2D31),
 )
 
-fun sapatStyleB(): Boolean = appPreferences.sapatStyle.get() == "B"
+fun sapatStyleB(): Boolean = appPreferences.sapatStyle.get() != "A"
 
 var systemInDarkThemeCurrently: Boolean = isInNightMode()
 

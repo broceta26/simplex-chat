@@ -53,7 +53,7 @@ fun SapatHomeView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animat
       .filter { q.isEmpty() || it.chatInfo.chatViewName.lowercase().contains(q) }
   }
   Box(Modifier.fillMaxSize().background(MaterialTheme.colors.background)) {
-    val styleB = remember { chatModel.controller.appPrefs.sapatStyle.state }.value == "B"
+    val styleB = remember { chatModel.controller.appPrefs.sapatStyle.state }.value != "A"
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
       if (styleB) SapatTopBarB(chatModel, userPickerState, search, stopped) else SapatTopBar(chatModel, userPickerState, searching, search)
       when {

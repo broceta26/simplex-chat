@@ -28,20 +28,20 @@ fun SapatThemeView() {
     AppBarTitle(stringResource(MR.strings.sapat_theme))
     val style = remember { ChatModel.controller.appPrefs.sapatStyle.state }
     SectionView(stringResource(MR.strings.sapat_style)) {
-      listOf("A" to MR.strings.sapat_style_a, "B" to MR.strings.sapat_style_b).forEach { (st, label) ->
+      listOf("B" to MR.strings.sapat_style_b, "A" to MR.strings.sapat_style_a).forEach { (st, label) ->
         SectionItemViewSpaceBetween({
           ChatModel.controller.appPrefs.sapatStyle.set(st)
           ThemeManager.applyTheme(current.value ?: DefaultTheme.SYSTEM_THEME_NAME)
         }) {
           Text(stringResource(label))
-          if ((style.value ?: "A") == st) {
+          if ((style.value ?: "B") == st) {
             Icon(painterResource(MR.images.ic_check), null, tint = MaterialTheme.colors.primary)
           }
         }
       }
     }
     SectionTextFooter(stringResource(MR.strings.sapat_style_footer))
-    if (style.value != "B") SectionView {
+    if (style.value == "A") SectionView {
       listOf(
         DefaultTheme.SYSTEM_THEME_NAME to MR.strings.theme_system,
         DefaultTheme.LIGHT.themeName to MR.strings.theme_light,
