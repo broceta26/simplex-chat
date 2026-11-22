@@ -395,7 +395,17 @@ private fun ActiveCallOverlayLayout(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
           ) {
-            ProfileImage(size = 160.dp, image = call.contact.profile.image, icon = call.contact.chatIconName, modifier = Modifier.centeredIn(192.dp))
+            if (chat.simplex.common.ui.theme.sapatStyleB()) {
+              // Šapat style B: amber rings around a square avatar
+              Box(Modifier.size(230.dp), contentAlignment = Alignment.Center) {
+                Box(Modifier.size(230.dp).border(1.dp, Color(0xFF26292D), CircleShape))
+                Box(Modifier.size(170.dp).border(1.dp, Color(0xFFF4A623), CircleShape))
+                if (call.contact.profile.image != null) ProfileImage(size = 120.dp, image = call.contact.profile.image, icon = call.contact.chatIconName)
+                else chat.simplex.common.views.chatlist.SapatInitials(call.contact.chatViewName, 120.dp)
+              }
+            } else {
+              ProfileImage(size = 160.dp, image = call.contact.profile.image, icon = call.contact.chatIconName, modifier = Modifier.centeredIn(192.dp))
+            }
             AudioCallInfoView(call)
           }
         }
@@ -471,7 +481,7 @@ private fun ToggleSoundButton(enabled: Boolean, speaker: Boolean, muted: Boolean
 }
 
 @Composable
-fun controlButtonsBackground(): Color = if (chatModel.activeCall.value?.peerMediaSources?.hasVideo == true) Color.Black.copy(0.2f) else Color.White.copy(0.2f)
+fun controlButtonsBackground(): Color = if (chatModel.activeCall.value?.peerMediaSources?.hasVideo == true) Color.Black.copy(0.2f) else if (chat.simplex.common.ui.theme.sapatStyleB()) Color(0xFF1F2124) else Color.White.copy(0.2f)
 
 @Composable
 fun AudioCallInfoView(call: Call) {

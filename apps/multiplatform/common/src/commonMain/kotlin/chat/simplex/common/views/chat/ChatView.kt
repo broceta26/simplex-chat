@@ -1594,6 +1594,7 @@ fun ownersContributorsCountStr(count: Int, withContributors: Boolean): String =
 
 @Composable
 fun ChatInfoToolbarTitle(cInfo: ChatInfo, imageSize: Dp = 33.dp, imageBox: Dp = 40.dp, iconColor: Color = MaterialTheme.colors.secondaryVariant.mixWith(MaterialTheme.colors.onBackground, 0.97f)) {
+  if (sapatStyleB()) return SapatChatTitleB(cInfo)
   Row(
     horizontalArrangement = Arrangement.Center,
     verticalAlignment = Alignment.CenterVertically
@@ -4209,5 +4210,28 @@ enum class ContentFilter(
     val alwaysShow: Set<MsgContentTag> = setOf(MsgContentTag.Image, MsgContentTag.Link)
 
     val initialList: List<ContentFilter> = listOf(ContentFilter.Images, ContentFilter.Files, ContentFilter.Links)
+  }
+}
+
+// Šapat style B chat title: square avatar, the name, and below it in amber capitals whether the contact is verified and how long messages last
+@Composable
+private fun SapatChatTitleB(cInfo: ChatInfo) {
+  Row(verticalAlignment = Alignment.CenterVertically) {
+    chat.simplex.common.views.chatlist.SapatAvatar(cInfo, 38.dp)
+    Column(Modifier.padding(start = 10.dp)) {
+      Text(cInfo.displayName, fontWeight = FontWeight.SemiBold, fontSize = 16.sp, maxLines = 1, overflow = TextOverflow.Ellipsis, color = MaterialTheme.colors.onBackground)
+      val parts = buildList {
+        if ((cInfo as? ChatInfo.Direct)?.contact?.verified == true) add(generalGetString(MR.strings.sapat_verified))
+        val ttl = cInfo.timedMessagesTTL
+        if (ttl != null) add(String.format(generalGetString(MR.strings.sapat_disappears_in), shortTimeText(ttl)))
+        if (cInfo is ChatInfo.Group) add(String.format(generalGetString(MR.strings.sapat_members_count), cInfo.groupInfo.groupSummary.currentMembers))
+      }
+      if (parts.isNotEmpty()) {
+        Text(
+          parts.joinToString(" · ").uppercase(), color = MaterialTheme.colors.primary, fontSize = 10.sp, letterSpacing = 1.2.sp,
+          fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace, maxLines = 1, overflow = TextOverflow.Ellipsis
+        )
+      }
+    }
   }
 }

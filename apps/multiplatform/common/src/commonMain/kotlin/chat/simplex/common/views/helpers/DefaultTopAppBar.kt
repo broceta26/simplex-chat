@@ -125,7 +125,7 @@ fun CallAppBar(
 }
 
 @Composable
-fun NavigationButtonBack(onButtonClicked: (() -> Unit)?, tintColor: Color = if (onButtonClicked != null) MaterialTheme.colors.primary else MaterialTheme.colors.secondary, height: Dp = 24.dp) {
+fun NavigationButtonBack(onButtonClicked: (() -> Unit)?, tintColor: Color = if (onButtonClicked == null) MaterialTheme.colors.secondary else if (chat.simplex.common.ui.theme.sapatStyleB()) MaterialTheme.colors.onBackground else MaterialTheme.colors.primary, height: Dp = 24.dp) {
   IconButton(onButtonClicked ?: {}, enabled = onButtonClicked != null) {
     Icon(
       painterResource(MR.images.ic_arrow_back_ios_new), stringResource(MR.strings.back), Modifier.height(height), tint = tintColor

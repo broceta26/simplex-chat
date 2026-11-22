@@ -96,12 +96,7 @@ fun SectionView(title: String? = null, contentPadding: PaddingValues = PaddingVa
   val card = LocalCardScreen.current
   Column {
     if (title != null) {
-      Text(
-        title, color = MaterialTheme.colors.secondary, style = MaterialTheme.typography.body2,
-        modifier = Modifier.padding(start = if (card) DEFAULT_PADDING + DEFAULT_PADDING_HALF else DEFAULT_PADDING, bottom = if (card) 8.dp else headerBottomPadding),
-        fontSize = if (card) 14.sp else 12.sp,
-        fontWeight = if (card) FontWeight.Medium else FontWeight.Normal
-      )
+      SectionTitleText(title, card, Modifier.padding(start = if (card) DEFAULT_PADDING + DEFAULT_PADDING_HALF else DEFAULT_PADDING, bottom = if (card) 8.dp else headerBottomPadding))
     }
     CardColumn(contentPadding, cardShape) { content() }
   }
@@ -124,7 +119,7 @@ fun SectionView(
     val iconClickable = if (onIconClick != null) Modifier.clickable(interactionSource = interactionSource, indication = ripple(bounded = false, radius = iconSize * 0.75f), onClick = onIconClick) else Modifier
     Row(Modifier.padding(start = if (card) DEFAULT_PADDING + DEFAULT_PADDING_HALF else DEFAULT_PADDING, bottom = 5.dp), verticalAlignment = Alignment.CenterVertically) {
       if (leadingIcon) Icon(icon, null, Modifier.padding(end = DEFAULT_PADDING_HALF).size(iconSize).then(iconClickable), tint = iconTint)
-      Text(title, color = MaterialTheme.colors.secondary, style = MaterialTheme.typography.body2, fontSize = if (card) 14.sp else 12.sp, fontWeight = if (card) FontWeight.Medium else FontWeight.Normal)
+      SectionTitleText(title, card)
       if (!leadingIcon) Icon(icon, null, Modifier.padding(start = DEFAULT_PADDING_HALF).size(iconSize).then(iconClickable), tint = iconTint)
     }
     CardColumn(padding) { content() }
@@ -139,7 +134,7 @@ fun SectionViewWithButton(title: String? = null, titleButton: (@Composable () ->
       val hPadding = if (card) DEFAULT_PADDING + DEFAULT_PADDING_HALF else DEFAULT_PADDING
       Row(modifier = Modifier.padding(start = hPadding, end = hPadding, bottom = if (card) 8.dp else headerBottomPadding).fillMaxWidth()) {
         if (title != null) {
-          Text(title, color = MaterialTheme.colors.secondary, style = MaterialTheme.typography.body2, fontSize = if (card) 14.sp else 12.sp, fontWeight = if (card) FontWeight.Medium else FontWeight.Normal)
+          SectionTitleText(title, card)
         }
         if (titleButton != null) {
           Spacer(modifier = Modifier.weight(1f))
@@ -447,5 +442,17 @@ fun InfoRowEllipsis(title: String, value: String, onClick: () -> Unit) {
       overflow = TextOverflow.Ellipsis,
       color = MaterialTheme.colors.secondary
     )
+  }
+}
+
+@Composable
+fun SectionTitleText(title: String, card: Boolean, modifier: Modifier = Modifier) {
+  if (chat.simplex.common.ui.theme.sapatStyleB()) {
+    Text(
+      title.uppercase(), modifier, color = MaterialTheme.colors.secondary,
+      fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace, fontSize = 11.sp, letterSpacing = 1.6.sp
+    )
+  } else {
+    Text(title, modifier, color = MaterialTheme.colors.secondary, style = MaterialTheme.typography.body2, fontSize = if (card) 14.sp else 12.sp, fontWeight = if (card) FontWeight.Medium else FontWeight.Normal)
   }
 }

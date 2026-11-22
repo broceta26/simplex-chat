@@ -965,6 +965,7 @@ fun ChatTTLOption(chatItemTTL: State<ChatItemTTL?>, setChatItemTTL: (ChatItemTTL
 
 @Composable
 private fun GroupChatInfoHeader(cInfo: ChatInfo, groupInfo: GroupInfo) {
+  if (sapatStyleB()) return SapatInfoHeaderB(cInfo, String.format(generalGetString(MR.strings.sapat_members_count), groupInfo.groupSummary.currentMembers))
   Column(
     Modifier.padding(horizontal = DEFAULT_PADDING),
     horizontalAlignment = Alignment.CenterHorizontally

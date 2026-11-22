@@ -3449,4 +3449,8 @@
   <string name="sapat_style_footer">Classic: blue, with chats like an old terminal. Graphite: dark with amber, with chat bubbles; always dark.</string>
   <string name="sapat_messages">Messages</string>
   <string name="sapat_profiles">Profiles</string>
+  <string name="sapat_verified">Verified</string>
+  <string name="sapat_disappears_in">Disappears in %s</string>
+  <string name="sapat_members_count">%d members</string>
+  <string name="sapat_not_verified">Not verified</string>
 </resources>

@@ -44,6 +44,8 @@ fun AddByNameView(rhId: Long?, close: () -> Unit) {
         value = text,
         onValueChange = { text = it.trim() },
         modifier = Modifier.fillMaxWidth(),
+        shape = sapatFieldShape(),
+        colors = sapatFieldColors(),
         singleLine = true,
         label = { Text(stringResource(MR.strings.sapat_name_or_code)) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Ascii, imeAction = ImeAction.Send),
@@ -51,9 +53,11 @@ fun AddByNameView(rhId: Long?, close: () -> Unit) {
         isError = text.isNotEmpty() && target == null,
       )
       Spacer(Modifier.height(DEFAULT_PADDING))
-      Button(onClick = { connect() }, enabled = target != null && !inProgress, modifier = Modifier.fillMaxWidth()) {
-        Text(stringResource(MR.strings.sapat_send_request))
-      }
+      SapatPrimaryButton(stringResource(MR.strings.sapat_send_request), { connect() }, enabled = target != null && !inProgress)
+      Spacer(Modifier.height(12.dp))
+      SapatSecondaryButton(stringResource(MR.strings.sapat_send_invite_link), {
+        ModalManager.start.showModalCloseable { _ -> NewChatView(chat.simplex.common.model.ChatModel.currentRemoteHost.value, NewChatOption.INVITE, close = close) }
+      }, Modifier.fillMaxWidth())
     }
   }
 }

@@ -1,5 +1,8 @@
 package chat.simplex.common.views.chat
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.animation.core.*
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.*
@@ -66,7 +69,9 @@ fun SendMsgView(
   ) {
   val showCustomDisappearingMessageDialog = remember { mutableStateOf(false) }
   val padding = if (appPlatform.isAndroid) PaddingValues(vertical = 8.dp) else PaddingValues(top = 3.dp, bottom = 4.dp)
-  Box(Modifier.padding(padding)) {
+  // Šapat style B: the message field is a graphite pill
+  val pill = if (sapatStyleB()) Modifier.padding(vertical = 6.dp).clip(RoundedCornerShape(22.dp)).background(MaterialTheme.colors.surface).border(1.dp, MaterialTheme.colors.secondaryVariant, RoundedCornerShape(22.dp)).padding(start = 6.dp, end = 4.dp) else Modifier
+  Box(pill.padding(padding)) {
     val cs = composeState.value
     val showVoiceButton = !nextConnect && cs.message.text.isEmpty() && showVoiceRecordIcon && !composeState.value.editing &&
         !composeState.value.forwarding && cs.liveMessage == null && (cs.preview is ComposePreview.NoPreview || recState.value is RecordingState.Started) && (cs.contextItem !is ComposeContextItem.ReportedItem)
@@ -415,12 +420,14 @@ private fun StopRecordButton(onClick: () -> Unit) {
 
 @Composable
 private fun RecordVoiceButton(interactionSource: MutableInteractionSource) {
+  val b = sapatStyleB()
   IconButton({}, Modifier.size(36.dp), interactionSource = interactionSource) {
     Icon(
       painterResource(MR.images.ic_keyboard_voice_filled),
       stringResource(MR.strings.icon_descr_record_voice_message),
-      tint = MaterialTheme.colors.primary,
-      modifier = Modifier
+      tint = if (b) MaterialTheme.colors.onPrimary else MaterialTheme.colors.primary,
+      modifier = if (b) Modifier.size(34.dp).clip(CircleShape).background(MaterialTheme.colors.primary).padding(6.dp)
+      else Modifier
         .size(34.dp)
         .padding(4.dp)
     )
@@ -483,7 +490,7 @@ private fun SendMsgButton(
     Icon(
       icon,
       stringResource(MR.strings.icon_descr_send_message),
-      tint = Color.White,
+      tint = if (sapatStyleB()) MaterialTheme.colors.onPrimary else Color.White,
       modifier = Modifier
         .size(sizeDp.value.dp)
         .padding(4.dp)

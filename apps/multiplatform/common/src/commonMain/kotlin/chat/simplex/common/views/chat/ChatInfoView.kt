@@ -1,5 +1,10 @@
 package chat.simplex.common.views.chat
 
+import androidx.compose.foundation.background
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.border
 import InfoRow
 import InfoRowEllipsis
 import SectionBottomSpacer
@@ -711,6 +716,7 @@ fun ChatInfoLayout(
 
 @Composable
 fun ChatInfoHeader(cInfo: ChatInfo, contact: Contact) {
+  if (sapatStyleB()) return SapatInfoHeaderB(cInfo, generalGetString(if (contact.verified) MR.strings.sapat_verified else MR.strings.sapat_not_verified))
   Column(
     Modifier.padding(horizontal = DEFAULT_PADDING),
     horizontalAlignment = Alignment.CenterHorizontally
@@ -1069,6 +1075,20 @@ fun InfoViewActionButton(
   disabledLook: Boolean,
   onClick: () -> Unit
 ) {
+  if (sapatStyleB()) {
+    // Šapat style B: a graphite tile with the icon above its label
+    Column(
+      modifier.padding(4.dp).height(64.dp).clip(RoundedCornerShape(12.dp)).background(MaterialTheme.colors.surface)
+        .border(1.dp, MaterialTheme.colors.secondaryVariant, RoundedCornerShape(12.dp))
+        .clickable(enabled = !disabled, onClick = onClick),
+      horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center
+    ) {
+      Icon(icon, null, Modifier.size(20.dp), tint = if (disabledLook) MaterialTheme.colors.secondary else MaterialTheme.colors.onBackground)
+      Spacer(Modifier.height(6.dp))
+      Text(title.capitalize(Locale.current), fontSize = 12.sp, color = if (disabledLook) MaterialTheme.colors.secondary else MaterialTheme.colors.onBackground, maxLines = 1, overflow = TextOverflow.Ellipsis)
+    }
+    return
+  }
   Box(modifier) {
     Column(
       Modifier
@@ -1556,5 +1576,18 @@ fun PreviewChatInfoLayout() {
       onSearchClicked = {},
       deletingItems = remember { mutableStateOf(false) }
     )
+  }
+}
+
+// Šapat style B header of a contact or group: square avatar, the name, and a line of monospace capitals
+@Composable
+fun SapatInfoHeaderB(cInfo: ChatInfo, subtitle: String) {
+  Row(Modifier.fillMaxWidth().padding(horizontal = DEFAULT_PADDING, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+    chat.simplex.common.views.chatlist.SapatAvatar(cInfo, 68.dp)
+    Column(Modifier.padding(start = 16.dp)) {
+      Text(cInfo.displayName, fontSize = 24.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onBackground, maxLines = 2, overflow = TextOverflow.Ellipsis)
+      Spacer(Modifier.height(4.dp))
+      Text(subtitle.uppercase(), fontSize = 11.sp, letterSpacing = 1.6.sp, fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace, color = MaterialTheme.colors.secondary)
+    }
   }
 }

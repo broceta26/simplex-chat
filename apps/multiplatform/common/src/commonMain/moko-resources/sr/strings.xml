@@ -2737,4 +2737,8 @@
     <string name="sapat_style_footer">Klasični: plavi, razgovori kao stari terminal. Grafit: tamni sa ćilibarom, razgovori u oblačićima; uvek taman.</string>
     <string name="sapat_messages">Poruke</string>
     <string name="sapat_profiles">Profili</string>
+    <string name="sapat_verified">Provereno</string>
+    <string name="sapat_disappears_in">Nestaje za %s</string>
+    <string name="sapat_members_count">%d članova</string>
+    <string name="sapat_not_verified">Nije provereno</string>
 </resources>

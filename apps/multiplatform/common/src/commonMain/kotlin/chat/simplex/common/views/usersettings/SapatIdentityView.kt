@@ -1,5 +1,7 @@
 package chat.simplex.common.views.usersettings
 
+import androidx.compose.ui.unit.dp
+import chat.simplex.common.ui.theme.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -64,33 +66,36 @@ fun SapatIdentityView() {
         }
         return@Column
       }
-      Text(stringResource(MR.strings.sapat_your_code), color = MaterialTheme.colors.secondary)
-      Text(e.code.chunked(3).joinToString(" "), fontFamily = FontFamily.Monospace, fontSize = 28.sp, fontWeight = FontWeight.Bold)
-      Row(horizontalArrangement = Arrangement.spacedBy(DEFAULT_PADDING)) {
-        OutlinedButton(onClick = { clipboard.setText(AnnotatedString(e.code)) }) { Text(stringResource(MR.strings.copy_verb)) }
-        OutlinedButton(onClick = {
-          AlertManager.shared.showAlertDialog(
-            title = generalGetString(MR.strings.sapat_new_code_question),
-            text = generalGetString(MR.strings.sapat_new_code_desc),
-            confirmText = generalGetString(MR.strings.sapat_new_code),
-            destructive = true,
-            onConfirm = { run { SapatDirectory.newCode(userId) } },
-          )
-        }, enabled = !busy) { Text(stringResource(MR.strings.sapat_new_code)) }
+      SapatCard {
+        SapatLabel(stringResource(MR.strings.sapat_your_code))
+        Spacer(Modifier.height(10.dp))
+        SapatCodeText(e.code.chunked(3).joinToString(if (sapatStyleB()) "-" else " "))
+        Spacer(Modifier.height(14.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+          SapatSecondaryButton(stringResource(MR.strings.sapat_new_code), {
+            AlertManager.shared.showAlertDialog(
+              title = generalGetString(MR.strings.sapat_new_code_question),
+              text = generalGetString(MR.strings.sapat_new_code_desc),
+              confirmText = generalGetString(MR.strings.sapat_new_code),
+              destructive = true,
+              onConfirm = { run { SapatDirectory.newCode(userId) } },
+            )
+          }, Modifier.weight(1f), enabled = !busy)
+          SapatSecondaryButton(stringResource(MR.strings.copy_verb), { clipboard.setText(AnnotatedString(e.code)) }, Modifier.weight(1f))
+        }
       }
-      Divider()
-      Text(stringResource(MR.strings.sapat_your_name), color = MaterialTheme.colors.secondary)
+      SapatLabel(stringResource(MR.strings.sapat_your_name))
       OutlinedTextField(
         value = nameText,
         onValueChange = { nameText = it.trim().lowercase() },
         singleLine = true,
         enabled = !e.reserved && !busy,
         modifier = Modifier.fillMaxWidth(),
+        shape = sapatFieldShape(),
+        colors = sapatFieldColors(),
       )
       if (!e.reserved) {
-        Button(onClick = { run { SapatDirectory.setName(userId, nameText) } }, enabled = !busy && nameText != (e.name ?: "") && SapatDirectory.connectTarget(nameText) != null) {
-          Text(stringResource(MR.strings.sapat_save_name))
-        }
+        SapatPrimaryButton(stringResource(MR.strings.sapat_save_name), { run { SapatDirectory.setName(userId, nameText) } }, enabled = !busy && nameText != (e.name ?: "") && SapatDirectory.connectTarget(nameText) != null)
       }
       Text(
         when {
@@ -98,14 +103,12 @@ fun SapatIdentityView() {
           e.canReserve -> generalGetString(MR.strings.sapat_name_can_reserve)
           else -> String.format(generalGetString(MR.strings.sapat_name_reserve_from), DateFormat.getDateInstance().format(Date(e.reservableAt * 1000)))
         },
-        color = MaterialTheme.colors.secondary,
+        color = MaterialTheme.colors.secondary, fontSize = 14.sp,
       )
       if (e.canReserve && !e.reserved) {
-        Button(onClick = { run { SapatDirectory.reserveName(userId) } }, enabled = !busy) {
-          Text(stringResource(MR.strings.sapat_reserve_name))
-        }
+        SapatSecondaryButton(stringResource(MR.strings.sapat_reserve_name), { run { SapatDirectory.reserveName(userId) } }, Modifier.fillMaxWidth(), enabled = !busy)
       }
-      Text(stringResource(MR.strings.sapat_identity_footer), color = MaterialTheme.colors.secondary)
+      Text(stringResource(MR.strings.sapat_identity_footer), color = MaterialTheme.colors.secondary, fontSize = 13.sp)
     }
   }
 }
