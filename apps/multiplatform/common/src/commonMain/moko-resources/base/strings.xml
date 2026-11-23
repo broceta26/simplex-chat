@@ -3422,7 +3422,7 @@
   <string name="sapat_use_tor_footer">Connect through Tor (the Orbot app must be running), so that not even our servers see your IP address. Messages may arrive more slowly.</string>
   <string name="sapat_wipe_last_attempt">Wrong PIN. One more wrong PIN deletes all data in the app.</string>
   <string name="sapat_wipe_pins">Wipe PINs</string>
-  <string name="sapat_wipe_footer">Entering any wipe PIN on the lock screen deletes all chats, contacts and files at once. After 3 wrong PINs in a row the app is wiped too; it warns you before the third. This cannot be undone.</string>
+  <string name="sapat_wipe_footer">Entering any wipe PIN on the lock screen deletes all chats, contacts and files at once. A wrong PIN is not a wipe PIN: after 3 wrong PINs in a row you wait before the next try, longer each time. If you turn on the option below, the third wrong PIN wipes the app instead, and it warns you before that. A wipe cannot be undone.</string>
   <string name="sapat_wipe_pins_count">Wipe PINs set: %d</string>
   <string name="sapat_wipe_pin_new">New wipe PIN (at least 4 digits)</string>
   <string name="sapat_wipe_pin_repeat">Repeat the PIN</string>
@@ -3453,4 +3453,15 @@
   <string name="sapat_disappears_in">Disappears in %s</string>
   <string name="sapat_members_count">%d members</string>
   <string name="sapat_not_verified">Not verified</string>
+  <string name="sapat_pin_setup_title">Set your PIN</string>
+  <string name="sapat_pin_setup_reason">The app opens only with this PIN.</string>
+  <string name="sapat_pin_pause">Too many wrong PINs. Wait %s.</string>
+  <string name="sapat_pin_wrong_wait">Wrong PIN. You can try again in %s.</string>
+  <string name="sapat_wipe_on_wrong_pin">Wipe after 3 wrong PINs</string>
+  <string name="sapat_name_hint">People add you by this name. 3 to 32 characters: small letters a–z, digits and hyphens, starting with a letter.</string>
+  <string name="sapat_choose_name_title">Choose your name</string>
+  <string name="sapat_choose_name_text">Everyone needs a name of their own. People add you by it, and it is the name they see.</string>
+  <string name="sapat_choose_name_unreachable">The name could not be checked. Check your connection and try again.</string>
+  <string name="sapat_choose_name_later">Continue without a name</string>
+  <string name="sapat_choose_name_later_text">You will be asked again the next time you open the app.</string>
 </resources>

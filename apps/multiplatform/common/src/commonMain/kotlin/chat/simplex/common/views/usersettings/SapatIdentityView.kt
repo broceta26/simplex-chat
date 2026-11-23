@@ -113,7 +113,7 @@ fun SapatIdentityView() {
   }
 }
 
-private fun directoryErrorText(error: String): String = when (error) {
+fun directoryErrorText(error: String): String = when (error) {
   "nameTaken" -> generalGetString(MR.strings.sapat_err_name_taken)
   "badName" -> generalGetString(MR.strings.sapat_err_bad_name)
   "nameReserved" -> generalGetString(MR.strings.sapat_name_reserved)

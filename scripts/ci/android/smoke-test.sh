@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Installs the APK in the booted emulator (emulator.sh) and runs the scripted UI cases with the ui helper: onboarding to
-# the chat list, a local group, then the chat list with the top bar (the default) and with the reachable toolbar, then
+# Installs the APK in the booted emulator (emulator.sh) and runs the scripted UI cases with the ui helper: the mandatory
+# PIN, onboarding to the chat list, a local group, then the chat list with the top bar (the default) and with the reachable toolbar, then
 # tests/fixtures/test.jpg and logo-large-rgba.png picked in the system's image picker and sent in the group.
 # Usage: scripts/ci/android/smoke-test.sh <apk> <output dir> [start|onboarding|layouts|backend]
 # With "start" it stops at the first screen, for an agent to go on from; with "onboarding", at the chat list. "backend"
@@ -26,6 +26,8 @@ case "$cases" in
 esac
 package=com.balkanbug.chat
 local_chat="seeded notes"
+# the profile name is claimed in the directory, where a name is taken once: each run has its own
+profile_name="ci-$(date +%s)"
 search_field="Search or paste Shapat link"
 ui=$(dirname "$0")/ui
 fixtures=$(dirname "$0")/../../../tests/fixtures
@@ -130,6 +132,19 @@ first_screen() {
     [ "$SECONDS" -lt "$deadline" ] || return 1
     sleep 1
   done
+}
+
+# The app opens only with a PIN: the first screen of a new install sets it, with no way to skip it. The PIN is UI_PIN of
+# the ui helper, which enters it after each restart.
+set_pin() {
+  "$ui" wait "Set your PIN" 180 || return 1
+  "$ui" shot set-pin
+  check "the PIN can't be skipped" not_found "Cancel"
+  "$ui" pin
+  "$ui" click-text "Save" 10
+  "$ui" wait "Confirm passcode" 10 || return 1
+  "$ui" pin
+  "$ui" click-text "Confirm" 10
 }
 
 # After Your network Android asks about instant notifications, in front of the conditions: the app's alert, then the
@@ -312,7 +327,10 @@ send_images() {
 # private routing to unknown servers only: the preset servers that would proxy to the test SMP server can't reach the
 # runner's 127.0.0.1; developer tools at the debug level put the app's debug log in logcat
 started=$SECONDS
-"$ui" start "$apk" NetworkSMPProxyMode=Unknown DeveloperTools=true LogLevel=DEBUG
+# the app locks after 10 minutes in the background, not 30 s: the system's image picker covers it for longer under ARM translation
+"$ui" start "$apk" NetworkSMPProxyMode=Unknown DeveloperTools=true LogLevel=DEBUG LocalAuthenticationLockDelay=600
+set_pin || fail "no PIN screen 180 s after the start, or the PIN was not set: the app's crashes in logcat are below"
+check "no chat list before the PIN is set: onboarding follows" not_found "No chats yet"
 first_screen || fail "no first onboarding screen 180 s after the start, or the app stopped: its crashes in logcat are below"
 echo "first screen after $((SECONDS - started)) s"
 "$ui" shot first-screen
@@ -323,8 +341,8 @@ fi
 
 "$ui" click-text "Get started"
 "$ui" click-text "Enter profile name" 30
-"$ui" type citester
-"$ui" wait citester 10
+"$ui" type "$profile_name"
+"$ui" wait "$profile_name" 10
 "$ui" shot profile-name
 "$ui" click-text "Create profile"
 

@@ -26,6 +26,17 @@ object AppLock {
   // Remember result and show it after orientation change
   val laFailed = mutableStateOf(false)
 
+  /** Shapat: on Android the app can't be used without the app PIN (the lock mode is always the PIN). */
+  fun pinRequired(performLA: Boolean, android: Boolean = appPlatform.isAndroid): Boolean = android && !performLA
+
+  fun mandatoryPinSet() {
+    appPrefs.laNoticeShown.set(true)
+    appPrefs.laMode.set(LAMode.PASSCODE)
+    appPrefs.performLA.set(true)
+    ChatModel.showAuthScreen.value = true
+    userAuthorized.value = true
+  }
+
   fun clearAuthState() {
     userAuthorized.value = null
     enteredBackground.value = null
@@ -165,7 +176,7 @@ object AppLock {
                 is LAResult.Error -> {
                   laFailed.value = true
                   if (m.controller.appPrefs.laMode.get() == LAMode.PASSCODE) {
-                    laFailedAlert()
+                    laFailedAlert(laResult.errString.toString())
                   }
                 }
                 is LAResult.Unavailable -> {

@@ -134,7 +134,8 @@ fun CreateProfile(chatModel: ChatModel, close: () -> Unit) {
               }
             }
           }
-          ProfileNameField(displayName, "", { it.trim() == mkValidName(it) }, focusRequester)
+          ProfileNameField(displayName, "", { it.trim() == mkValidName(it) && validSapatName(it) }, focusRequester, lowercase = appPlatform.isAndroid)
+          SapatNameHint()
 
           Spacer(Modifier.height(DEFAULT_PADDING))
 
@@ -283,7 +284,8 @@ private fun CreateFirstProfileMobile(chatModel: ChatModel, close: () -> Unit) {
           modifier = Modifier.padding(top = DEFAULT_PADDING_HALF)
         )
         Spacer(Modifier.height(DEFAULT_PADDING_HALF))
-        ProfileNameField(displayName, stringResource(MR.strings.enter_profile_name), { it.trim() == mkValidName(it) }, focusRequester)
+        ProfileNameField(displayName, stringResource(MR.strings.enter_profile_name), { it.trim() == mkValidName(it) && validSapatName(it) }, focusRequester, lowercase = appPlatform.isAndroid)
+        SapatNameHint()
 
         Spacer(Modifier.weight(1f))
 
@@ -356,6 +358,7 @@ private fun CreateFirstProfileDesktop(chatModel: ChatModel, close: () -> Unit) {
 fun createProfileInNoProfileSetup(displayName: String, shortDescr: String, image: String? = null, close: () -> Unit) {
   withBGApi {
     val user = controller.apiCreateActiveUser(null, Profile(displayName.trim(), "", shortDescr.trim().ifEmpty { null }, image = image)) ?: return@withBGApi
+    SapatDirectory.claimOnStart(user.userId)
     if (!chatModel.connectedToRemote()) {
       chatModel.localUserCreated.value = true
     }
@@ -372,6 +375,7 @@ fun createProfileInProfiles(chatModel: ChatModel, displayName: String, shortDesc
     val user = chatModel.controller.apiCreateActiveUser(
       rhId, Profile(displayName.trim(), "", shortDescr.trim().ifEmpty { null }, image = image)
     ) ?: return@withBGApi
+    SapatDirectory.claimOnStart(user.userId)
     chatModel.currentUser.value = user
     if (chatModel.users.isEmpty()) {
       chatModel.controller.startChat(user)
@@ -388,9 +392,11 @@ fun createProfileInProfiles(chatModel: ChatModel, displayName: String, shortDesc
 
 fun createProfileOnboarding(chatModel: ChatModel, displayName: String, close: () -> Unit) {
   withBGApi {
-    chatModel.currentUser.value = chatModel.controller.apiCreateActiveUser(
+    val user = chatModel.controller.apiCreateActiveUser(
       null, Profile(displayName.trim(), "", null, null)
     ) ?: return@withBGApi
+    SapatDirectory.claimOnStart(user.userId)
+    chatModel.currentUser.value = user
     chatModel.localUserCreated.value = true
     // new users don't need the local file encryption indicator (all files are encrypted); existing users keep it on
     chatModel.controller.appPrefs.privacyShowEncryption.set(false)
@@ -412,7 +418,7 @@ fun createProfileOnboarding(chatModel: ChatModel, displayName: String, close: ()
 }
 
 @Composable
-fun ProfileNameField(name: MutableState<String>, placeholder: String = "", isValid: (String) -> Boolean = { true }, focusRequester: FocusRequester? = null) {
+fun ProfileNameField(name: MutableState<String>, placeholder: String = "", isValid: (String) -> Boolean = { true }, focusRequester: FocusRequester? = null, lowercase: Boolean = false) {
   var valid by rememberSaveable { mutableStateOf(true) }
   var focused by rememberSaveable { mutableStateOf(false) }
   val strokeColor by remember {
@@ -437,7 +443,7 @@ fun ProfileNameField(name: MutableState<String>, placeholder: String = "", isVal
   ) {
     BasicTextField(
       value = name.value,
-      onValueChange = { name.value = it },
+      onValueChange = { name.value = if (lowercase) it.lowercase() else it },
       modifier = if (focusRequester == null) modifier else modifier.focusRequester(focusRequester),
       textStyle = TextStyle(fontSize = 18.sp, color = colors.onBackground),
       singleLine = true,
@@ -479,7 +485,23 @@ fun ProfileNameField(name: MutableState<String>, placeholder: String = "", isVal
 
 private fun canCreateProfile(displayName: String): Boolean {
   val name = displayName.trim()
-  return name.isNotEmpty() && mkValidName(name) == name
+  return name.isNotEmpty() && mkValidName(name) == name && validSapatName(name)
+}
+
+// Shapat: on Android the profile name is the name in the directory, by which other people add the user
+private fun validSapatName(name: String): Boolean = !appPlatform.isAndroid || SapatDirectory.validName(name.trim())
+
+@Composable
+private fun SapatNameHint() {
+  if (appPlatform.isAndroid) {
+    Text(
+      stringResource(MR.strings.sapat_name_hint),
+      style = MaterialTheme.typography.body2,
+      color = MaterialTheme.colors.secondary,
+      textAlign = TextAlign.Center,
+      modifier = Modifier.padding(top = DEFAULT_PADDING_HALF)
+    )
+  }
 }
 
 fun showInvalidNameAlert(name: String, displayName: MutableState<String>) {

@@ -5,6 +5,8 @@ import chat.simplex.common.platform.Log
 import chat.simplex.common.platform.TAG
 import chat.simplex.common.platform.chatModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
@@ -33,7 +35,25 @@ object SapatDirectory {
     val canReserve: Boolean = false,
     val address: String? = null,
     val checkedAt: Long = 0,
+    val chosen: Boolean = false,
   )
+
+  private val NAME_RE = Regex("^[a-z][a-z0-9-]{2,31}$")
+  private val TEMPORARY_NAME_RE = Regex("^[a-z]+-[0-9]{5}$")
+
+  fun validName(name: String): Boolean = NAME_RE.matches(name)
+
+  /** The directory gives each new profile a temporary name (a word and 5 digits); the user has to choose their own. */
+  fun nameChosen(e: Entry?): Boolean {
+    val name = e?.name ?: return false
+    return e.chosen || !TEMPORARY_NAME_RE.matches(name)
+  }
+
+  // Profiles created with a directory name as their display name: the name is claimed for them once the chat runs.
+  private fun claims(): Set<String> = (appPrefs.sapatClaimName.get() ?: "").split(",").filter { it.isNotEmpty() }.toSet()
+  fun claimOnStart(userId: Long) = appPrefs.sapatClaimName.set((claims() + userId.toString()).joinToString(","))
+  fun wantsClaim(userId: Long): Boolean = userId.toString() in claims()
+  fun clearClaim(userId: Long) = appPrefs.sapatClaimName.set((claims() - userId.toString()).joinToString(",").ifEmpty { null })
 
   class DirectoryError(val error: String) : Exception(error)
 
@@ -57,12 +77,14 @@ object SapatDirectory {
     appPrefs.sapatDirectory.set(json.encodeToString(all))
   }
 
+  private val registering = Mutex()
+
   /** Registers the current profile once, keeps its address up to date and sends the daily heartbeat. */
-  suspend fun ensureRegistered(rh: Long?): Entry? {
-    val userId = chatModel.currentUser.value?.userId ?: return null
-    val address = currentAddress(rh) ?: return null
+  suspend fun ensureRegistered(rh: Long?): Entry? = registering.withLock {
+    val userId = chatModel.currentUser.value?.userId ?: return@withLock null
+    val address = currentAddress(rh) ?: return@withLock null
     val existing = entry(userId)
-    return try {
+    try {
       when {
         existing == null -> {
           val r = post("register", buildJsonObject { put("address", address) }, null)
@@ -70,11 +92,11 @@ object SapatDirectory {
         }
         existing.address != address -> {
           val r = post("address", buildJsonObject { put("address", address) }, existing.token)
-          fromStatus(r, existing.token, address).also { save(userId, it) }
+          fromStatus(r, existing.token, address, existing.chosen).also { save(userId, it) }
         }
         System.currentTimeMillis() - existing.checkedAt > HEARTBEAT_EVERY_MS -> {
           val r = post("heartbeat", buildJsonObject { }, existing.token)
-          fromStatus(r, existing.token, address).also { save(userId, it) }
+          fromStatus(r, existing.token, address, existing.chosen).also { save(userId, it) }
         }
         else -> existing
       }
@@ -84,14 +106,14 @@ object SapatDirectory {
     }
   }
 
-  suspend fun setName(userId: Long, name: String): Entry = update(userId, "name", buildJsonObject { put("name", name.trim().lowercase()) })
+  suspend fun setName(userId: Long, name: String): Entry = update(userId, "name", buildJsonObject { put("name", name.trim().lowercase()) }, chosen = true)
   suspend fun reserveName(userId: Long): Entry = update(userId, "reserve", buildJsonObject { })
   suspend fun newCode(userId: Long): Entry = update(userId, "rotate", buildJsonObject { })
 
-  private suspend fun update(userId: Long, op: String, body: JsonObject): Entry {
+  private suspend fun update(userId: Long, op: String, body: JsonObject, chosen: Boolean = false): Entry {
     val e = entry(userId) ?: throw DirectoryError("noProfile")
     val r = post(op, body, e.token)
-    return fromStatus(r, e.token, e.address).also { save(userId, it) }
+    return fromStatus(r, e.token, e.address, chosen || e.chosen).also { save(userId, it) }
   }
 
   /** What the core resolves: a name or a code, as a contact name in the directory's top-level part. */
@@ -101,7 +123,7 @@ object SapatDirectory {
     return if (ok) "@$s.$TLD" else null
   }
 
-  private fun fromStatus(r: JsonObject, token: String, address: String?): Entry =
+  private fun fromStatus(r: JsonObject, token: String, address: String?, chosen: Boolean = false): Entry =
     Entry(
       token = token,
       code = r["code"]!!.jsonPrimitive.content,
@@ -111,6 +133,7 @@ object SapatDirectory {
       canReserve = r["canReserve"]?.jsonPrimitive?.booleanOrNull ?: false,
       address = address,
       checkedAt = System.currentTimeMillis(),
+      chosen = chosen,
     )
 
   private suspend fun currentAddress(rh: Long?): String? {

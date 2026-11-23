@@ -639,7 +639,8 @@ fun SimplexLockView(
   ColumnWithScrollBar {
     AppBarTitle(stringResource(MR.strings.chat_lock))
     SectionView {
-      EnableLock(remember { appPrefs.performLA.state }) { performLAToggle ->
+      // Shapat: on Android the PIN is mandatory, so the lock can't be turned off
+      if (!appPlatform.isAndroid) EnableLock(remember { appPrefs.performLA.state }) { performLAToggle ->
         showAuthScreen.value = performLAToggle
         chatModel.controller.appPrefs.laNoticeShown.set(true)
         if (performLAToggle) {
@@ -698,6 +699,7 @@ fun SimplexLockView(
       SectionDividerSpaced()
       SectionView(stringResource(MR.strings.sapat_wipe_pins)) {
         SettingsActionItem(painterResource(MR.images.ic_delete_forever), stringResource(MR.strings.sapat_wipe_pins), { ModalManager.start.showModal { SapatWipePinsView() } })
+        SettingsPreferenceItem(null, stringResource(MR.strings.sapat_wipe_on_wrong_pin), chatModel.controller.appPrefs.sapatWipeOnWrongPin)
       }
       SectionTextFooter(stringResource(MR.strings.sapat_wipe_footer))
     }
@@ -869,10 +871,10 @@ fun laPasscodeNotSetAlert() = AlertManager.shared.showAlertMsg(
   generalGetString(MR.strings.you_can_turn_on_lock)
 )
 
-fun laFailedAlert() {
+fun laFailedAlert(text: String? = null) {
   AlertManager.shared.showAlertMsg(
     title = generalGetString(MR.strings.la_auth_failed),
-    text = generalGetString(MR.strings.la_could_not_be_verified)
+    text = text ?: generalGetString(MR.strings.la_could_not_be_verified)
   )
 }
 

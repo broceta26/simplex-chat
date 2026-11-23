@@ -23,20 +23,30 @@ fun LocalAuthView(m: ChatModel, authRequest: LocalAuthRequest) {
       // do nothing until submit action finishes to prevent concurrent removing of storage
     }
   }
-  PasscodeView(passcode, authRequest.title ?: stringResource(MR.strings.la_enter_app_passcode), authRequest.reason, stringResource(MR.strings.submit_passcode), buttonsEnabled = allowToReact,
+  val pauseLeft = remember { SapatWipe.pauseLeft }
+  LaunchedEffect(Unit) { SapatWipe.resumePause() }
+  val reason = if (pauseLeft.value > 0) String.format(generalGetString(MR.strings.sapat_pin_pause), SapatWipe.pauseText(pauseLeft.value)) else authRequest.reason
+  PasscodeView(passcode, authRequest.title ?: stringResource(MR.strings.la_enter_app_passcode), reason, stringResource(MR.strings.submit_passcode), buttonsEnabled = allowToReact,
     submit = {
       val sdPassword = ksSelfDestructPassword.get()
       if (SapatWipe.isWipePin(passcode.value)) {
         allowToReact.value = false
         deleteStorageAndRestart(m, null) { r -> authRequest.completed(r) }
+      } else if (pauseLeft.value > 0) {
+        // a wipe PIN works during the wait; any other PIN is neither checked nor counted
+        passcode.value = ""
       } else if (passcode.value != authRequest.password && !(sdPassword == passcode.value && authRequest.selfDestruct)) {
-        val wrong = SapatWipe.wrongPin()
-        if (wrong >= SapatWipe.MAX_WRONG) {
-          allowToReact.value = false
-          deleteStorageAndRestart(m, null) { r -> authRequest.completed(r) }
-        } else {
-          val text = if (wrong == SapatWipe.MAX_WRONG - 1) generalGetString(MR.strings.sapat_wipe_last_attempt) else generalGetString(MR.strings.incorrect_passcode)
-          authRequest.completed(LAResult.Error(text))
+        when (val wrong = SapatWipe.afterWrongPin(SapatWipe.wrongPin(), m.controller.appPrefs.sapatWipeOnWrongPin.get())) {
+          SapatWipe.WrongPin.Wipe -> {
+            allowToReact.value = false
+            deleteStorageAndRestart(m, null) { r -> authRequest.completed(r) }
+          }
+          SapatWipe.WrongPin.LastAttempt -> authRequest.completed(LAResult.Error(generalGetString(MR.strings.sapat_wipe_last_attempt)))
+          is SapatWipe.WrongPin.Pause -> {
+            SapatWipe.startPause(wrong.seconds)
+            val text = if (wrong.seconds > 0) String.format(generalGetString(MR.strings.sapat_pin_wrong_wait), SapatWipe.pauseText(wrong.seconds)) else generalGetString(MR.strings.incorrect_passcode)
+            authRequest.completed(LAResult.Error(text))
+          }
         }
       } else if (sdPassword == passcode.value && authRequest.selfDestruct) {
         allowToReact.value = false
@@ -88,6 +98,7 @@ private fun deleteStorageAndRestart(m: ChatModel, password: String?, completed: 
         ksAppPassword.remove()
         m.controller.appPrefs.performLA.set(false)
         m.controller.appPrefs.sapatDirectory.set(null)
+        m.controller.appPrefs.sapatClaimName.set(null)
         SapatWipe.resetWrong()
       }
       ksSelfDestructPassword.remove()

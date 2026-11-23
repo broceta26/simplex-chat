@@ -33,6 +33,7 @@ import chat.simplex.common.views.database.DatabaseErrorView
 import chat.simplex.common.views.helpers.*
 import chat.simplex.common.views.helpers.ModalManager.Companion.fromEndToStartTransition
 import chat.simplex.common.views.helpers.ModalManager.Companion.fromStartToEndTransition
+import chat.simplex.common.views.localauth.SetAppPasscodeView
 import chat.simplex.common.views.localauth.VerticalDivider
 import chat.simplex.common.views.newchat.*
 import chat.simplex.common.views.onboarding.*
@@ -138,6 +139,7 @@ fun MainScreen() {
   Box {
     val unauthorized = remember { derivedStateOf { AppLock.userAuthorized.value != true } }
     val onboarding by remember { chatModel.controller.appPrefs.onboardingStage.state }
+    val pinRequired = AppLock.pinRequired(remember { appPrefs.performLA.state }.value)
     val localUserCreated = chatModel.localUserCreated.value
     var showInitializationView by remember { mutableStateOf(false) }
     when {
@@ -155,6 +157,7 @@ fun MainScreen() {
         }
       }
       remember { chatModel.chatDbEncrypted }.value == null || localUserCreated == null -> SplashView()
+      !unauthorized.value && pinRequired -> MandatoryPinView()
       onboarding == OnboardingStage.OnboardingComplete -> {
         Box {
           showAdvertiseLAAlert = true
@@ -238,6 +241,9 @@ fun MainScreen() {
         }
       }
     }
+    if (!unauthorized.value && onboarding == OnboardingStage.OnboardingComplete && !pinRequired) {
+      SapatNameGate()
+    }
     if (!unauthorized.value) {
       ModalManager.fullscreen.showOneTimePasscodeInView()
       AlertManager.privacySensitive.showInView()
@@ -269,6 +275,20 @@ fun MainScreen() {
     if (chatModel.controller.appPrefs.laLockDelay.get() == 0) {
       AppLock.enteredBackground.value = AppLock.elapsedRealtime() + 3000
     }
+  }
+}
+
+@Composable
+private fun MandatoryPinView() {
+  Surface(Modifier.fillMaxSize(), color = MaterialTheme.colors.background.copy(1f), contentColor = LocalContentColor.current) {
+    SetAppPasscodeView(
+      title = generalGetString(MR.strings.sapat_pin_setup_title),
+      reason = generalGetString(MR.strings.sapat_pin_setup_reason),
+      mandatory = true,
+      submit = { AppLock.mandatoryPinSet() },
+      cancel = {},
+      close = {}
+    )
   }
 }
 

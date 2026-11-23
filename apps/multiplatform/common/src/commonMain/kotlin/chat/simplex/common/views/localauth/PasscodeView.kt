@@ -25,6 +25,7 @@ fun PasscodeView(
   submitLabel: String,
   submitEnabled: ((String) -> Boolean)? = null,
   buttonsEnabled: State<Boolean> = remember { mutableStateOf(true) },
+  showCancel: Boolean = true,
   submit: () -> Unit,
   cancel: () -> Unit,
 ) {
@@ -76,8 +77,10 @@ fun PasscodeView(
       }
       PasscodeEntry(passcode, true, Modifier.weight(1f, fill = false))
       Row(Modifier.heightIn(min = 70.dp), verticalAlignment = Alignment.CenterVertically) {
-        SimpleButton(generalGetString(MR.strings.cancel_verb), icon = painterResource(MR.images.ic_close), disabled = !buttonsEnabled.value, click = cancel)
-        Spacer(Modifier.size(20.dp))
+        if (showCancel) {
+          SimpleButton(generalGetString(MR.strings.cancel_verb), icon = painterResource(MR.images.ic_close), disabled = !buttonsEnabled.value, click = cancel)
+          Spacer(Modifier.size(20.dp))
+        }
         SimpleButton(submitLabel, icon = painterResource(MR.images.ic_done_filled), disabled = submitEnabled?.invoke(passcode.value) == false || passcode.value.length < 4 || !buttonsEnabled.value, click = submit)
       }
     }
@@ -119,7 +122,7 @@ fun PasscodeView(
             Modifier.padding(start = 30.dp).height(s * 3),
             verticalArrangement = Arrangement.SpaceEvenly
           ) {
-            SimpleButton(generalGetString(MR.strings.cancel_verb), icon = painterResource(MR.images.ic_close), disabled = !buttonsEnabled.value, click = cancel)
+            if (showCancel) SimpleButton(generalGetString(MR.strings.cancel_verb), icon = painterResource(MR.images.ic_close), disabled = !buttonsEnabled.value, click = cancel)
             SimpleButton(submitLabel, icon = painterResource(MR.images.ic_done_filled), disabled = submitEnabled?.invoke(passcode.value) == false || passcode.value.length < 4 || !buttonsEnabled.value, click = submit)
           }
         }

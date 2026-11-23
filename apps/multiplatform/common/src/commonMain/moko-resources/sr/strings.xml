@@ -2710,7 +2710,7 @@
     <string name="sapat_use_tor_footer">Povezivanje preko Tor mreže (aplikacija Orbot mora da radi), tako da ni naši serveri ne vide tvoju IP adresu. Poruke mogu stizati sporije.</string>
     <string name="sapat_wipe_last_attempt">Pogrešan PIN. Još jedan pogrešan PIN briše sve podatke u aplikaciji.</string>
     <string name="sapat_wipe_pins">PIN-ovi za uništavanje</string>
-    <string name="sapat_wipe_footer">Unos bilo kog PIN-a za uništavanje na ekranu za otključavanje odmah briše sve razgovore, kontakte i fajlove. Posle 3 pogrešna PIN-a zaredom aplikacija se takođe briše, uz upozorenje pre trećeg. Ovo ne može da se poništi.</string>
+    <string name="sapat_wipe_footer">Unos bilo kog PIN-a za uništavanje na ekranu za otključavanje odmah briše sve razgovore, kontakte i fajlove. Pogrešan PIN nije PIN za uništavanje: posle 3 pogrešna PIN-a zaredom čekaš pre sledećeg pokušaja, svaki put duže. Ako uključiš opciju ispod, treći pogrešan PIN briše aplikaciju, uz upozorenje pre toga. Brisanje ne može da se poništi.</string>
     <string name="sapat_wipe_pins_count">Postavljeno PIN-ova za uništavanje: %d</string>
     <string name="sapat_wipe_pin_new">Novi PIN za uništavanje (najmanje 4 cifre)</string>
     <string name="sapat_wipe_pin_repeat">Ponovi PIN</string>
@@ -2741,4 +2741,15 @@
     <string name="sapat_disappears_in">Nestaje za %s</string>
     <string name="sapat_members_count">%d članova</string>
     <string name="sapat_not_verified">Nije provereno</string>
+    <string name="sapat_pin_setup_title">Postavi PIN</string>
+    <string name="sapat_pin_setup_reason">Aplikacija se otvara samo ovim PIN-om.</string>
+    <string name="sapat_pin_pause">Previše pogrešnih PIN-ova. Sačekaj %s.</string>
+    <string name="sapat_pin_wrong_wait">Pogrešan PIN. Možeš ponovo da probaš za %s.</string>
+    <string name="sapat_wipe_on_wrong_pin">Obriši posle 3 pogrešna PIN-a</string>
+    <string name="sapat_name_hint">Po ovom imenu te drugi dodaju. 3 do 32 znaka: mala slova a–z, cifre i crtice, počinje slovom.</string>
+    <string name="sapat_choose_name_title">Izaberi svoje ime</string>
+    <string name="sapat_choose_name_text">Svako mora da ima svoje ime. Po njemu te drugi dodaju i to ime vide.</string>
+    <string name="sapat_choose_name_unreachable">Ime nije moglo da se proveri. Proveri vezu i probaj ponovo.</string>
+    <string name="sapat_choose_name_later">Nastavi bez imena</string>
+    <string name="sapat_choose_name_later_text">Pitaćemo te ponovo kad sledeći put otvoriš aplikaciju.</string>
 </resources>

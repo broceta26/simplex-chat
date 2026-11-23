@@ -7,6 +7,8 @@ Your working directory is where your output goes. `ui shot <name>` saves `screen
 ## What is set up
 
 - The app is already running, on its first screen, with a new, empty database: never run `ui start` or `ui stop`. Begin with `ui shot start` to see it.
+- The app opens only with a PIN: the scripted start has already set it (1379), so the first screen you see is the one after it. `ui relaunch` enters the PIN on the lock screen; if the lock screen ("Enter Passcode") shows at any other time, run `ui pin` and click "Submit".
+- The profile name is also the name in the directory, where each name can be taken once: use `ci-` followed by the seconds of `date +%s` wherever the plan says `citester`. A name has small letters, digits and hyphens only.
 - `ui type` types into the field that has the focus: tap a field before typing into it. `ui key BACK` is Android's back button.
 - Besides the chats, the chat list shows the app's own cards as list items until they are closed: "New 1-time link / Paste link / Scan" (once there is a conversation), "Bottom bar / Top bar", and "Invest in SimpleX Chat!". They are part of the list, not something drawn over it: leave them open.
 - The emulator's Pictures folder has two images for part D: `test-card.jpg`, a TV test card 1280×720 (colour bars, a large circle, "1080" at the top and "TVB" at the bottom), and `simplex-logo.png`, the dark blue and turquoise SimpleX logo on a transparent background.

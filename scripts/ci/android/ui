@@ -5,7 +5,7 @@
 # Screenshots, trees and a log of every command (steps.log) go to UI_OUT, and logcat to UI_OUT/app.log.
 #
 #   ui start <apk> [<setting>=<value>...]
-#                                 install the app, give a debug build the settings (OneHandUI, NetworkSMPProxyMode,
+#                                 install the app, give a debug build the settings (OneHandUI, NetworkSMPProxyMode, LocalAuthenticationLockDelay,
 #                                 DeveloperTools, LogLevel), and start it with logcat
 #   ui shot <name>                save UI_OUT/NN-<name>.png, NN-<name>.xml (the tree) and NN-<name>.txt, and print the text on screen
 #   ui text                       print the text on screen, one element per line after its centre x,y
@@ -20,7 +20,8 @@
 #                                 fail unless the field then shows the text
 #   ui key <key>...               press keys by their Android names without KEYCODE_ (BACK, ENTER, DEL)
 #   ui layout <reachable|top>     restart the app with the reachable toolbar (the one-hand UI) or the top bar (the default)
-#   ui relaunch                   restart the app and wait for the chat list
+#   ui relaunch                   restart the app, enter the PIN on the lock screen and wait for the chat list
+#   ui pin                        tap the digits of the app PIN (UI_PIN, 1379 unless set) on the PIN pad
 #   ui text-size <scale>          set the system font scale: 1 is the default, 1.3 and 2 are larger
 #   ui do <command> [args] -- <command> [args] ...
 #                                 run the commands in order, stopping at the first that fails
@@ -38,6 +39,8 @@ PATH=${ANDROID_HOME:?ANDROID_HOME must be the SDK from install-sdk.sh}/platform-
 package=com.balkanbug.chat
 prefs_file=chat.simplex.app.SIMPLEX_APP_PREFS.xml
 # the button that opens New chat, in the toolbar or floating, whenever the chat list shows
+# the app PIN that the smoke test sets on the first screen, entered on the lock screen after each restart
+pin=${UI_PIN:-1379}
 chat_list_button="New"  # Shapat home: the new-chat button (A: the pencil, B: the amber plus)
 state=${UI_STATE:-${RUNNER_TEMP:-/tmp}/ui}
 here=$(cd "$(dirname "$0")" && pwd)
@@ -159,9 +162,39 @@ start() {
   launch
 }
 
+# Taps the digits of the app PIN on the PIN pad.
+enter_pin() {
+  local i pos x y
+  for ((i = 0; i < ${#pin}; i++)); do
+    pos=$(wait_for "${pin:i:1}" 10) || return 1
+    read -r x y _ <<< "$pos"
+    adb shell input tap "$x" "$y"
+  done
+}
+
+# The app starts locked once it has a PIN: the PIN is entered when the lock screen shows.
+unlock() {
+  local deadline=$((SECONDS + 90))
+  until screen find "$chat_list_button" > /dev/null 2>&1; do
+    if screen find "Enter Passcode" > /dev/null 2>&1; then
+      enter_pin || return 1
+      wait_for "Submit" 10 > /dev/null || return 1
+      read -r x y _ < <(screen find "Submit")
+      adb shell input tap "$x" "$y"
+      return 0
+    fi
+    [ "$SECONDS" -lt "$deadline" ] || return 1
+    sleep 1
+  done
+}
+
 relaunch() {
   adb shell am force-stop "$package"
   launch
+  if ! unlock; then
+    echo "error: neither the lock screen nor the chat list 90 s after the restart"
+    return 1
+  fi
   if ! wait_for "$chat_list_button" 90 > /dev/null; then
     echo "error: no chat list 90 s after the restart"
     return 1
@@ -312,6 +345,10 @@ case "${1:-}" in
   relaunch)
     relaunch
     log "relaunch"
+    ;;
+  pin)
+    enter_pin
+    log "pin"
     ;;
   text-size)
     number "$2"

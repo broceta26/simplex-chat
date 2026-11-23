@@ -213,6 +213,9 @@ class AppPreferences {
   // Shapat style: "A" classic (blue, terminal chats), "B" graphite (dark, amber, bubbles)
   val sapatStyle = mkStrPreference(SHARED_PREFS_SAPAT_STYLE, "B")
   val sapatWrongPins = mkIntPreference(SHARED_PREFS_SAPAT_WRONG_PINS, 0)
+  val sapatWipeOnWrongPin = mkBoolPreference(SHARED_PREFS_SAPAT_WIPE_ON_WRONG_PIN, false)
+  val sapatPinPauseLeft = mkIntPreference(SHARED_PREFS_SAPAT_PIN_PAUSE_LEFT, 0)
+  val sapatClaimName = mkStrPreference(SHARED_PREFS_SAPAT_CLAIM_NAME, null)
   val appUpdateChannel = mkEnumPreference(SHARED_PREFS_APP_UPDATE_CHANNEL, AppUpdatesChannel.DISABLED) { AppUpdatesChannel.entries.firstOrNull { it.name == this } }
   val appSkippedUpdate = mkStrPreference(SHARED_PREFS_APP_SKIPPED_UPDATE, "")
   val appUpdateNoticeShown = mkBoolPreference(SHARED_PREFS_APP_UPDATE_NOTICE_SHOWN, false)
@@ -454,6 +457,9 @@ class AppPreferences {
     private const val SHARED_PREFS_SAPAT_WIPE_PINS = "SapatWipePins"
     private const val SHARED_PREFS_SAPAT_STYLE = "SapatStyle"
     private const val SHARED_PREFS_SAPAT_WRONG_PINS = "SapatWrongPins"
+    private const val SHARED_PREFS_SAPAT_WIPE_ON_WRONG_PIN = "SapatWipeOnWrongPin"
+    private const val SHARED_PREFS_SAPAT_PIN_PAUSE_LEFT = "SapatPinPauseLeft"
+    private const val SHARED_PREFS_SAPAT_CLAIM_NAME = "SapatClaimName"
     private const val SHARED_PREFS_APP_UPDATE_CHANNEL = "AppUpdateChannel"
     private const val SHARED_PREFS_APP_SKIPPED_UPDATE = "AppSkippedUpdate"
     private const val SHARED_PREFS_APP_UPDATE_NOTICE_SHOWN = "AppUpdateNoticeShown"

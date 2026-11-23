@@ -15,6 +15,7 @@ fun SetAppPasscodeView(
   prohibitedPasscodeKeychain: DatabaseUtils.KeyStoreItem = ksSelfDestructPassword,
   title: String = generalGetString(MR.strings.new_passcode),
   reason: String? = null,
+  mandatory: Boolean = false,
   submit: () -> Unit,
   cancel: () -> Unit,
   close: () -> Unit
@@ -25,14 +26,19 @@ fun SetAppPasscodeView(
 
   @Composable
   fun SetPasswordView(title: String, submitLabel: String, submitEnabled: (((String) -> Boolean))? = null, submit: () -> Unit) {
-    BackHandler {
-      close()
-      cancel()
+    // Shapat: a mandatory PIN can't be skipped; going back from the confirmation returns to the first entry
+    val back = {
+      if (mandatory) {
+        enteredPassword = ""
+        passcode.value = ""
+        confirming = false
+      } else {
+        close()
+        cancel()
+      }
     }
-    PasscodeView(passcode, title = title, reason = reason, submitLabel = submitLabel, submitEnabled = submitEnabled, submit = submit) {
-      close()
-      cancel()
-    }
+    BackHandler(onBack = back)
+    PasscodeView(passcode, title = title, reason = reason, submitLabel = submitLabel, submitEnabled = submitEnabled, showCancel = !mandatory || confirming, submit = submit, cancel = back)
   }
 
   if (confirming) {
@@ -52,7 +58,7 @@ fun SetAppPasscodeView(
   } else {
     SetPasswordView(title, generalGetString(MR.strings.save_verb),
       // Do not allow to set app passcode == selfDestruct passcode
-      submitEnabled = { pwd -> pwd != prohibitedPasscodeKeychain.get() }) {
+      submitEnabled = { pwd -> pwd != prohibitedPasscodeKeychain.get() && !(passcodeKeychain === ksAppPassword && SapatWipe.isWipePin(pwd)) }) {
       enteredPassword = passcode.value
       passcode.value = ""
       confirming = true
