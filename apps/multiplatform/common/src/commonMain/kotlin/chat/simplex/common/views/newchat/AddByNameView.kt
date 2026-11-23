@@ -100,10 +100,12 @@ private suspend fun sapatConnectPrepared(rhId: Long?, contactId: Long) {
 @Composable
 fun SapatMyName() {
   val userId = chatModel.currentUser.value?.userId ?: return
-  val entry by produceState(SapatDirectory.entry(userId), userId, chatModel.chatRunning.value) {
-    if (chatModel.chatRunning.value == true) value = SapatDirectory.ensureRegistered(chatModel.remoteHostId()) ?: value
+  val running = chatModel.chatRunning.value
+  LaunchedEffect(userId, running) {
+    if (running == true) withBGApi { SapatDirectory.ensureRegistered(chatModel.remoteHostId()) }
   }
-  val e = entry ?: return
+  // read again when the entry is saved: the name is claimed after the home screen shows
+  val e = remember(userId, SapatDirectory.saved.value) { SapatDirectory.entry(userId) } ?: return
   val name = e.name ?: e.code
   val clipboard = LocalClipboardManager.current
   val invite = String.format(generalGetString(MR.strings.sapat_share_my_name), name, e.code)

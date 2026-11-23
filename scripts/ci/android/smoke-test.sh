@@ -351,6 +351,14 @@ fi
 "$ui" click-text "Continue"
 
 allow_notifications_and_accept || fail "no chat list 120 s after Your network"
+# The profile's name is claimed in the directory, and the home screen then shows it as the user's name. The directory
+# is the real one: when the runner can't reach it the app still works, so that is noted, not failed.
+if "$ui" wait "$profile_name" 60 > /dev/null; then
+  echo "PASS directory: the home screen shows the name claimed for the profile" | tee -a "$checks"
+else
+  echo "NOTE directory: the profile's name is not on the home screen after 60 s" | tee -a "$checks"
+fi
+"$ui" shot home-name
 "$ui" shot chat-list
 echo "onboarding reached the chat list $((SECONDS - started)) s after the start"
 

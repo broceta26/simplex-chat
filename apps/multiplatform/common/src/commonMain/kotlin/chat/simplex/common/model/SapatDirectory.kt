@@ -1,5 +1,6 @@
 package chat.simplex.common.model
 
+import androidx.compose.runtime.mutableStateOf
 import chat.simplex.common.model.ChatController.appPrefs
 import chat.simplex.common.platform.Log
 import chat.simplex.common.platform.TAG
@@ -65,10 +66,14 @@ object SapatDirectory {
 
   fun entry(userId: Long): Entry? = entries()[userId.toString()]
 
+  /** Changes with each saved entry, for the screens that show the name and code. */
+  val saved = mutableStateOf(0)
+
   private fun save(userId: Long, e: Entry) {
     val all = entries()
     all[userId.toString()] = e
     appPrefs.sapatDirectory.set(json.encodeToString(all))
+    saved.value += 1
   }
 
   fun forget(userId: Long) {
