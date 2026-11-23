@@ -2681,9 +2681,9 @@
     <string name="appearance_minimize_to_tray">Zatvaraj u traku</string>
     <string name="appearance_minimize_to_tray_desc">Radi u pozadini da prima poruke</string>
     <string name="sapat_add_contact">Dodaj kontakt</string>
-    <string name="sapat_add_contact_desc">Upiši ime ili kod osobe koju želiš da dodaš. Njoj stiže tvoj zahtev, a ona odlučuje da li ga prihvata.</string>
+    <string name="sapat_add_contact_desc">Upiši ime ili kod osobe koju želiš da dodaš. Razgovor se otvara odmah.</string>
     <string name="sapat_name_or_code">Ime ili kod</string>
-    <string name="sapat_send_request">Pošalji zahtev</string>
+    <string name="sapat_send_request">Poveži se</string>
     <string name="sapat_error">Greška</string>
     <string name="sapat_name_and_code">Moje ime i kod</string>
     <string name="sapat_registering">Dobijanje koda…</string>
@@ -2722,7 +2722,7 @@
     <string name="sapat_search_hint">Pretraži razgovore</string>
     <string name="sapat_new_group">Nova grupa</string>
     <string name="sapat_empty_title">Još nema razgovora</string>
-    <string name="sapat_empty_text">Dodaj nekoga po imenu ili mu pošalji svoj pozivni link u bilo kojoj aplikaciji.</string>
+    <string name="sapat_empty_text">Dodaj nekoga po imenu ili kodu, ili mu pošalji svoje ime da on doda tebe.</string>
     <string name="sapat_send_invite_link">Pošalji pozivni link</string>
     <string name="sapat_search_none">Nema takvih razgovora</string>
     <string name="sapat_search_add_by_name">Dodaj „%s“ u kontakte</string>
@@ -2752,4 +2752,8 @@
     <string name="sapat_choose_name_unreachable">Ime nije moglo da se proveri. Proveri vezu i probaj ponovo.</string>
     <string name="sapat_choose_name_later">Nastavi bez imena</string>
     <string name="sapat_choose_name_later_text">Pitaćemo te ponovo kad sledeći put otvoriš aplikaciju.</string>
+    <string name="sapat_my_name_text">Pošalji ime onome ko želi da te doda. Može i kod: %s</string>
+    <string name="sapat_share_my_name">Dodaj me na Shapat. Moje ime: %1$s (kod %2$s)</string>
+    <string name="sapat_manual_accept">Ručno odobravam ko me dodaje</string>
+    <string name="sapat_manual_accept_text">Kad je isključeno, ko upiše tvoje ime ili kod odmah je povezan sa tobom. Kad je uključeno, stiže ti zahtev koji prihvataš ili odbijaš.</string>
 </resources>

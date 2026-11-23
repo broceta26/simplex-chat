@@ -9,14 +9,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import chat.simplex.common.model.SapatDirectory
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
+import chat.simplex.common.model.*
+import chat.simplex.common.platform.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import chat.simplex.common.views.helpers.*
-import chat.simplex.common.platform.ColumnWithScrollBar
 import chat.simplex.common.ui.theme.DEFAULT_PADDING
 import chat.simplex.res.*
 import dev.icerock.moko.resources.compose.stringResource
 
-// Shapat: add a contact by name or code. The other side gets a contact request and approves it.
+// Shapat: add a contact by name or code, in one step. The other side is connected at once, unless they chose to approve each request.
 @Composable
 fun AddByNameView(rhId: Long?, close: () -> Unit) {
   var text by remember { mutableStateOf("") }
@@ -28,7 +34,7 @@ fun AddByNameView(rhId: Long?, close: () -> Unit) {
     inProgress = true
     withBGApi {
       try {
-        planAndConnect(rhId, t, close = close, cleanup = { inProgress = false })
+        sapatConnect(rhId, t, close)
       } finally {
         inProgress = false
       }
@@ -42,7 +48,7 @@ fun AddByNameView(rhId: Long?, close: () -> Unit) {
       Spacer(Modifier.height(DEFAULT_PADDING))
       OutlinedTextField(
         value = text,
-        onValueChange = { text = it.trim() },
+        onValueChange = { text = it.trimStart() },
         modifier = Modifier.fillMaxWidth(),
         shape = sapatFieldShape(),
         colors = sapatFieldColors(),
@@ -54,10 +60,60 @@ fun AddByNameView(rhId: Long?, close: () -> Unit) {
       )
       Spacer(Modifier.height(DEFAULT_PADDING))
       SapatPrimaryButton(stringResource(MR.strings.sapat_send_request), { connect() }, enabled = target != null && !inProgress)
-      Spacer(Modifier.height(12.dp))
-      SapatSecondaryButton(stringResource(MR.strings.sapat_send_invite_link), {
-        ModalManager.start.showModalCloseable { _ -> NewChatView(chat.simplex.common.model.ChatModel.currentRemoteHost.value, NewChatOption.INVITE, close = close) }
-      }, Modifier.fillMaxWidth())
+      Spacer(Modifier.height(DEFAULT_PADDING * 2))
+      SapatMyName()
+    }
+  }
+}
+
+// The request is sent as soon as the name or code resolves: the chat opens connected, with nothing more to tap.
+// Anything else the name resolves to (a known contact, the user's own name, a group) is shown as for any link.
+private suspend fun sapatConnect(rhId: Long?, target: String, close: () -> Unit) {
+  val inProgress = mutableStateOf(true)
+  val r = chatModel.controller.apiConnectPlan(rhId, target, inProgress = inProgress) ?: return
+  val plan = (r.connectionPlan as? ConnectionPlan.ContactAddress)?.contactAddressPlan
+  val lapsed = (r.connectionPlan.nameChange as? NameChange.Lapsed)?.nameWarning != null
+  val data = (plan as? ContactAddressPlan.Ok)?.contactSLinkData_
+  val prepared = (plan as? ContactAddressPlan.ContactViaAddress)?.contact?.takeIf { it.nextConnectPrepared }
+  when {
+    lapsed -> planAndConnect(rhId, target, close = close)
+    data != null -> {
+      val chat = chatModel.controller.apiPrepareContact(rhId, r.connLink, data, r.planSimplexName?.nameDomain) ?: return
+      withContext(Dispatchers.Main) { chatModel.chatsContext.addChat(chat) }
+      sapatConnectPrepared(rhId, chat.chatInfo.apiId)
+      withContext(Dispatchers.Main) { openChat_(chatModel, rhId, close, chat) }
+    }
+    prepared != null -> {
+      sapatConnectPrepared(rhId, prepared.contactId)
+      withContext(Dispatchers.Main) { openKnownContact(chatModel, rhId, close, prepared) }
+    }
+    else -> planAndConnect(rhId, target, close = close)
+  }
+}
+
+private suspend fun sapatConnectPrepared(rhId: Long?, contactId: Long) {
+  val contact = chatModel.controller.apiConnectPreparedContact(rhId, contactId, incognito = false, msg = null) ?: return
+  withContext(Dispatchers.Main) { chatModel.chatsContext.updateContact(rhId, contact) }
+}
+
+// The user's own name and code, to send to the people who want to add them.
+@Composable
+fun SapatMyName() {
+  val userId = chatModel.currentUser.value?.userId ?: return
+  val entry by produceState(SapatDirectory.entry(userId), userId, chatModel.chatRunning.value) {
+    if (chatModel.chatRunning.value == true) value = SapatDirectory.ensureRegistered(chatModel.remoteHostId()) ?: value
+  }
+  val e = entry ?: return
+  val name = e.name ?: e.code
+  val clipboard = LocalClipboardManager.current
+  val invite = String.format(generalGetString(MR.strings.sapat_share_my_name), name, e.code)
+  Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    SapatLabel(stringResource(MR.strings.sapat_your_name))
+    Text(name, fontSize = 22.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onBackground)
+    Text(String.format(generalGetString(MR.strings.sapat_my_name_text), e.code.chunked(3).joinToString("-")), color = MaterialTheme.colors.secondary, fontSize = 14.sp)
+    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+      SapatSecondaryButton(stringResource(MR.strings.copy_verb), { clipboard.setText(AnnotatedString(name)) }, Modifier.weight(1f))
+      SapatSecondaryButton(stringResource(MR.strings.share_verb), { clipboard.shareText(invite) }, Modifier.weight(1f))
     }
   }
 }

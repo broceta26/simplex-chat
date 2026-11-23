@@ -118,7 +118,9 @@ object SapatDirectory {
 
   /** What the core resolves: a name or a code, as a contact name in the directory's top-level part. */
   fun connectTarget(input: String): String? {
-    val s = input.trim().removePrefix("@").lowercase()
+    val typed = input.trim().removePrefix("@").lowercase()
+    // a code is shown and read in groups of three, with hyphens or spaces between them
+    val s = if (typed.any { it.isDigit() } && typed.all { it.isDigit() || it == '-' || it == ' ' }) typed.filter { it.isDigit() } else typed
     val ok = Regex("^[a-z0-9][a-z0-9-]{2,31}$").matches(s)
     return if (ok) "@$s.$TLD" else null
   }
@@ -137,10 +139,24 @@ object SapatDirectory {
     )
 
   private suspend fun currentAddress(rh: Long?): String? {
-    val link = chatModel.userAddress.value?.connLinkContact
-      ?: chatModel.controller.apiGetUserAddressRec(rh)?.connLinkContact
-      ?: createAddressSilently(rh)
+    val link = chatModel.controller.apiGetUserAddressRec(rh)?.connLinkContact ?: createAddressSilently(rh)
+    if (link != null) applyAccept(rh)
     return link?.connShortLink ?: link?.connFullLink
+  }
+
+  /** The address settings to set, or null when they already are as the user wants them. */
+  fun acceptSettings(current: AddressSettings, manualAccept: Boolean): AddressSettings? = when {
+    manualAccept && current.autoAccept != null -> current.copy(autoAccept = null)
+    !manualAccept && current.autoAccept == null -> current.copy(autoAccept = AutoAccept(acceptIncognito = false))
+    else -> null
+  }
+
+  // Whoever enters the name or code is connected at once, unless the user chose to approve each request.
+  suspend fun applyAccept(rh: Long?) {
+    val rec = chatModel.controller.apiGetUserAddressRec(rh) ?: return
+    val settings = acceptSettings(rec.addressSettings, appPrefs.sapatManualAccept.get()) ?: return
+    val updated = chatModel.controller.apiSetUserAddressSettings(rh, settings)
+    if (updated != null) chatModel.userAddress.value = updated
   }
 
   // No alerts: this runs in the background on start; a failure is retried on the next start.

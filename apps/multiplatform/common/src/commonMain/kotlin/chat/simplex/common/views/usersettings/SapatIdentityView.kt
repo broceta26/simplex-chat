@@ -95,7 +95,7 @@ fun SapatIdentityView() {
         colors = sapatFieldColors(),
       )
       if (!e.reserved) {
-        SapatPrimaryButton(stringResource(MR.strings.sapat_save_name), { run { SapatDirectory.setName(userId, nameText) } }, enabled = !busy && nameText != (e.name ?: "") && SapatDirectory.connectTarget(nameText) != null)
+        SapatPrimaryButton(stringResource(MR.strings.sapat_save_name), { run { SapatDirectory.setName(userId, nameText) } }, enabled = !busy && nameText != (e.name ?: "") && SapatDirectory.validName(nameText))
       }
       Text(
         when {
@@ -109,6 +109,10 @@ fun SapatIdentityView() {
         SapatSecondaryButton(stringResource(MR.strings.sapat_reserve_name), { run { SapatDirectory.reserveName(userId) } }, Modifier.fillMaxWidth(), enabled = !busy)
       }
       Text(stringResource(MR.strings.sapat_identity_footer), color = MaterialTheme.colors.secondary, fontSize = 13.sp)
+      SettingsPreferenceItem(null, stringResource(MR.strings.sapat_manual_accept), chatModel.controller.appPrefs.sapatManualAccept) {
+        withBGApi { SapatDirectory.applyAccept(chatModel.remoteHostId()) }
+      }
+      Text(stringResource(MR.strings.sapat_manual_accept_text), color = MaterialTheme.colors.secondary, fontSize = 13.sp)
     }
   }
 }

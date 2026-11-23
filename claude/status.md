@@ -10,10 +10,14 @@ Poslednja izmena: 23.11.2026.
 - Bez PIN-a nema ulaska: prvi ekran nove instalacije postavlja PIN; zaključavanje ne može da se isključi.
 - Pogrešan PIN: pauza koja raste (30 s, 1 min, 5 min, 15 min). Brisanje posle 3 greške samo ako ga korisnik uključi. PIN-ovi za uništavanje rade uvek.
 - Ime profila = jedinstveno ime u imeniku = prikazno ime. Ako imenik nije dostupan, traži se pri sledećem otvaranju.
+- Povezivanje: upiše se ime ili kod i dodirne „Poveži se“; zahtev ide odmah i druga strana ga prihvata automatski (osim ako uključi „Ručno odobravam ko me dodaje“ u „Ime i kod“). Početni ekran i ekran „Dodaj kontakt“ pokazuju sopstveno ime sa „Kopiraj“ i „Podeli“.
+- Nema QR kodova ni pozivnih linkova za povezivanje. QR ostaje samo za prelazak na drugi uređaj, bezbednosni kod i adresu servera.
 
 ## Otvoreno
 1. Adresa i otisak sertifikata imenika su upisani u `SapatDirectory.kt` u javnom repou, suprotno pravilu projekta da adrese servera ne ulaze u repo. Treba odluka: domen umesto IP adrese, ili privatni repo.
 2. CI (`android-emu`) registruje probne profile i imena (`ci-<vreme>`) u pravom imeniku; treba probni imenik za CI.
 3. `NameAlertsTest` (20 testova) pada i pre ove izmene: očekuje `@ime.simplex`, a Shapat prikazuje `@ime`.
 4. Promena prikaznog imena u podešavanjima profila ne menja ime u imeniku (i obrnuto, osim pri prvom izboru).
-5. Stavke iz `claude/shapat-pregled.md`, odeljak „Otvoreno“ (iOS, produkcijski ključ, preimenovanje repoa…).
+5. Povezivanje dva telefona nije provereno u CI (emulator je jedan); provera je ručna, sa dva uređaja.
+6. Stari APK-ovi kod korisnika nemaju ove izmene: svi moraju da instaliraju novi build.
+7. Stavke iz `claude/shapat-pregled.md`, odeljak „Otvoreno“ (iOS, produkcijski ključ, preimenovanje repoa…).

@@ -29,6 +29,7 @@ fun SimpleXCreatedLinkQRCode(
   withLogo: Boolean = true,
   onShare: (() -> Unit)? = null,
 ) {
+  if (sapatNoConnectionQR()) return
   QRCode(
     connLink.simplexChatUri(short),
     small = short && connLink.connShortLink != null,
@@ -48,7 +49,9 @@ fun SimpleXLinkQRCode(
   tintColor: Color = Color(0xff062d56),
   withLogo: Boolean = true,
   onShare: (() -> Unit)? = null,
+  migration: Boolean = false,
 ) {
+  if (sapatNoConnectionQR() && !migration) return
   QRCode(
     simplexChatLink(connReq),
     small = connReq.count() < 200,
@@ -59,6 +62,10 @@ fun SimpleXLinkQRCode(
     onShare,
   )
 }
+
+// Shapat: people connect by name or code, so on Android no QR code of a contact or group link is shown or scanned.
+// The QR codes of moving to another device, of the security code and of a server address are not for connecting, and stay.
+fun sapatNoConnectionQR(): Boolean = appPlatform.isAndroid
 
 val LocalFixedQRCode = staticCompositionLocalOf<ImageBitmap?> { null }
 

@@ -151,7 +151,7 @@ private fun SapatTopBar(chatModel: ChatModel, userPickerState: MutableStateFlow<
 @Composable
 private fun SapatEmptyHome(stopped: Boolean) {
   Column(
-    Modifier.fillMaxSize().padding(horizontal = 32.dp).padding(bottom = 80.dp),
+    Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 32.dp).padding(top = 16.dp, bottom = 80.dp),
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Center
   ) {
@@ -166,14 +166,12 @@ private fun SapatEmptyHome(stopped: Boolean) {
     Button({ if (!stopped) openAddContact() }, Modifier.fillMaxWidth().height(48.dp), shape = RoundedCornerShape(24.dp), elevation = null) {
       Text(stringResource(MR.strings.sapat_add_contact), color = Color.White, fontWeight = FontWeight.Medium)
     }
-    Spacer(Modifier.height(12.dp))
-    OutlinedButton({ if (!stopped) openInviteLink() }, Modifier.fillMaxWidth().height(48.dp), shape = RoundedCornerShape(24.dp)) {
-      Text(stringResource(MR.strings.sapat_send_invite_link), color = MaterialTheme.colors.primary, fontWeight = FontWeight.Medium)
-    }
     Spacer(Modifier.height(4.dp))
     TextButton({ if (!stopped) openNewGroup() }) {
       Text(stringResource(MR.strings.sapat_new_group), color = MaterialTheme.colors.primary)
     }
+    Spacer(Modifier.height(20.dp))
+    SapatMyName()
   }
 }
 
@@ -193,7 +191,6 @@ private fun showSapatNewSheet() {
     Column(Modifier.fillMaxWidth().padding(top = 8.dp)) {
       AppBarTitle(stringResource(MR.strings.sapat_new))
       SapatNewItem(painterResource(MR.images.ic_person_add), stringResource(MR.strings.sapat_add_contact), stringResource(MR.strings.sapat_add_contact_descr)) { close(); openAddContact() }
-      SapatNewItem(painterResource(MR.images.ic_link), stringResource(MR.strings.sapat_send_invite_link), stringResource(MR.strings.sapat_send_invite_link_descr)) { close(); openInviteLink() }
       SapatNewItem(painterResource(MR.images.ic_group), stringResource(MR.strings.sapat_new_group), stringResource(MR.strings.sapat_new_group_descr)) { close(); openNewGroup() }
     }
   }
@@ -215,11 +212,6 @@ private fun SapatNewItem(icon: androidx.compose.ui.graphics.painter.Painter, tit
 private fun openAddContact() {
   val closeAll = { ModalManager.start.closeModals() }
   ModalManager.start.showModalCloseable { _ -> AddByNameView(chatModel.currentRemoteHost.value?.remoteHostId, close = closeAll) }
-}
-
-private fun openInviteLink() {
-  val closeAll = { ModalManager.start.closeModals() }
-  ModalManager.start.showModalCloseable { _ -> NewChatView(chatModel.currentRemoteHost.value, NewChatOption.INVITE, close = closeAll) }
 }
 
 private fun openNewGroup() {

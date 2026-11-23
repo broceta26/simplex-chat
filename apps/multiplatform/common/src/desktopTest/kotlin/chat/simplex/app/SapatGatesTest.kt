@@ -11,6 +11,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import chat.simplex.common.AppLock
 import chat.simplex.common.simplexWindowState
+import chat.simplex.common.model.AddressSettings
+import chat.simplex.common.model.AutoAccept
 import chat.simplex.common.model.SapatDirectory
 import chat.simplex.common.ui.theme.SimpleXTheme
 import chat.simplex.common.views.chatlist.SapatName
@@ -114,5 +116,30 @@ class SapatGatesTest {
     assertIs<SapatName.Check.Nothing>(check(android = false))
     assertIs<SapatName.Check.Nothing>(check(remote = true))
     assertIs<SapatName.Check.Nothing>(check(hidden = true))
+  }
+
+  // A code is shown in groups of three ("123-456-789" or "123 456 789"): it has to connect as it is read or typed.
+  @Test
+  fun codeConnectsAsItIsShown() {
+    for (code in listOf("123456789", "123-456-789", "123 456 789", " 123-456 789 ")) assertEquals("@123456789.simplex", SapatDirectory.connectTarget(code), code)
+  }
+
+  @Test
+  fun nameConnects() {
+    assertEquals("@nikola.simplex", SapatDirectory.connectTarget("Nikola"))
+    assertEquals("@nikola.simplex", SapatDirectory.connectTarget("@nikola "))
+    assertEquals("@ana-2.simplex", SapatDirectory.connectTarget("ana-2"))
+    for (bad in listOf("", "ab", "ana maria", "-ana", "ana.b")) assertEquals(null, SapatDirectory.connectTarget(bad), bad)
+  }
+
+  // Shapat: whoever enters the name or code is connected at once, unless the user chose to approve each request.
+  @Test
+  fun addressAcceptsRequestsUnlessManual() {
+    val manual = AddressSettings(businessAddress = false, autoAccept = null, autoReply = null)
+    val auto = manual.copy(autoAccept = AutoAccept(acceptIncognito = false))
+    assertEquals(auto, SapatDirectory.acceptSettings(manual, manualAccept = false))
+    assertEquals(null, SapatDirectory.acceptSettings(auto, manualAccept = false))
+    assertEquals(manual, SapatDirectory.acceptSettings(auto, manualAccept = true))
+    assertEquals(null, SapatDirectory.acceptSettings(manual, manualAccept = true))
   }
 }

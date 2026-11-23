@@ -636,7 +636,7 @@ private fun ConnectView(rhId: Long?, showQRCodeScanner: MutableState<Boolean>, p
     PasteLinkView(rhId, pastedLink, showQRCodeScanner, close)
   }
 
-  if (appPlatform.isAndroid) {
+  if (appPlatform.isAndroid && !sapatNoConnectionQR()) {
     Spacer(Modifier.height(10.dp))
 
     SectionView(stringResource(MR.strings.or_scan_qr_code), headerBottomPadding = 5.dp) {
