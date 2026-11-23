@@ -265,7 +265,7 @@ fun ChatView(
       }
     }
     val clipboard = LocalClipboardManager.current
-    val terminal = !sapatStyleB() && chatInfo.activeChatLayout(user) == ChatLayoutMode.Terminal
+    val terminal = sapatStyleTerminal() && chatInfo.activeChatLayout(user) == ChatLayoutMode.Terminal
     CompositionLocalProvider(
       LocalAppBarHandler provides rememberAppBarHandler(chatInfo.id, keyboardCoversBar = false),
       LocalSelectionManager provides selectionManager,

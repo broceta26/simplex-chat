@@ -770,7 +770,51 @@ val GraphiteColorPaletteApp = AppColors(
   receivedQuote = Color(0xFF2A2D31),
 )
 
+val GoldColorPalette = darkColors(
+  primary = Color(0xFFD9A93C),
+  primaryVariant = Color(0xFFD9A93C),
+  secondary = Color(0xFF8C9CC0),
+  secondaryVariant = Color(0xFF2A3E6B),
+  background = Color(0xFF0B1B3A),
+  surface = Color(0xFF12285A),
+  error = Color(0xFFFF6B6B),
+  onPrimary = Color(0xFF0B1B3A),
+  onBackground = Color(0xFFF1ECE0),
+  onSurface = Color(0xFFF1ECE0),
+)
+val GoldColorPaletteApp = AppColors(
+  title = Color(0xFFF1ECE0),
+  primaryVariant2 = Color(0xFF1B3470),
+  sentMessage = Color(0xFFD9A93C),
+  sentQuote = Color(0xFFB88A28),
+  receivedMessage = Color(0xFF1B3470),
+  receivedQuote = Color(0xFF2A4A8F),
+)
+
+val NordColorPalette = darkColors(
+  primary = Color(0xFF88C0D0),
+  primaryVariant = Color(0xFF88C0D0),
+  secondary = Color(0xFFA9B3CA),
+  secondaryVariant = Color(0xFF4C566A),
+  background = Color(0xFF2E3440),
+  surface = Color(0xFF3B4252),
+  error = Color(0xFFE58A93),
+  onPrimary = Color(0xFF2E3440),
+  onBackground = Color(0xFFD8DEE9),
+  onSurface = Color(0xFFD8DEE9),
+)
+val NordColorPaletteApp = AppColors(
+  title = Color(0xFFD8DEE9),
+  primaryVariant2 = Color(0xFF434C5E),
+  sentMessage = Color(0xFF434C5E),
+  sentQuote = Color(0xFF4C566A),
+  receivedMessage = Color(0xFF3B4252),
+  receivedQuote = Color(0xFF434C5E),
+)
+
 fun sapatStyleB(): Boolean = appPreferences.sapatStyle.get() != "A"
+
+fun sapatStyleTerminal(): Boolean = appPreferences.sapatStyle.get().let { it == "A" || it == "T" }
 
 var systemInDarkThemeCurrently: Boolean = isInNightMode()
 
