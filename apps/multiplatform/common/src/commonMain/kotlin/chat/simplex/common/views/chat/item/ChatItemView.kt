@@ -23,6 +23,7 @@ import androidx.compose.ui.text.*
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.*
@@ -67,6 +68,7 @@ data class ChatItemReactionMenuItem (
 
 private val REACTION_SPACING = 5.dp
 private val REACTION_PADDING = 2.dp
+private val REACTION_OVERLAP = 10.dp
 
 // Spec: spec/client/chat-view.md#ChatItemView
 @Composable
@@ -145,7 +147,12 @@ fun ChatItemView(
 
     @Composable
     fun ChatItemReactions() {
-      Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.chatItemOffset(cItem, itemSeparation.largeGap, inverted = true, revealed = true).padding(start = if (terminal) CHAT_ITEM_TEXT_PADDING - REACTION_SPACING - REACTION_PADDING else 0.dp)) {
+      val pill = sapatStyleB() && !terminal
+      Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.chatItemOffset(cItem, itemSeparation.largeGap, inverted = true, revealed = true).padding(start = if (terminal) CHAT_ITEM_TEXT_PADDING - REACTION_SPACING - REACTION_PADDING else 0.dp).then(if (pill) Modifier.layout { m, c ->
+        val p = m.measure(c)
+        val up = REACTION_OVERLAP.roundToPx()
+        layout(p.width, p.height - up) { p.place(0, -up) }
+      } else Modifier)) {
         cItem.reactions.forEach { r ->
           val showReactionMenu = remember { mutableStateOf(false) }
           val reactionMenuItems = remember { mutableStateOf(emptyList<ChatItemReactionMenuItem>()) }
@@ -159,7 +166,8 @@ fun ChatItemView(
             }
           }
 
-          var modifier = Modifier.padding(horizontal = REACTION_SPACING, vertical = 2.dp).clip(RoundedCornerShape(8.dp))
+          var modifier = Modifier.padding(horizontal = REACTION_SPACING, vertical = 2.dp).clip(if (pill) RoundedCornerShape(50) else RoundedCornerShape(8.dp))
+            .then(if (pill) Modifier.background(MaterialTheme.colors.surface).border(1.5.dp, MaterialTheme.colors.background, RoundedCornerShape(50)) else Modifier)
           if (cInfo.featureEnabled(ChatFeature.Reactions)) {
             fun showReactionsMenu() {
               when (cInfo) {
