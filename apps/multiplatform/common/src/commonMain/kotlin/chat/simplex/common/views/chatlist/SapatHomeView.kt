@@ -188,7 +188,7 @@ private fun SapatSearchEmpty(q: String) {
 private fun showSapatNewSheet() {
   ModalManager.start.closeModals()
   ModalManager.start.showModalCloseable { close ->
-    Column(Modifier.fillMaxWidth().padding(top = 8.dp)) {
+    Column(Modifier.fillMaxWidth().systemBarsPadding().padding(top = 8.dp)) {
       AppBarTitle(stringResource(MR.strings.sapat_new))
       SapatNewItem(painterResource(MR.images.ic_person_add), stringResource(MR.strings.sapat_add_contact), stringResource(MR.strings.sapat_add_contact_descr)) { close(); openAddContact() }
       SapatNewItem(painterResource(MR.images.ic_group), stringResource(MR.strings.sapat_new_group), stringResource(MR.strings.sapat_new_group_descr)) { close(); openNewGroup() }
