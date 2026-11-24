@@ -106,7 +106,7 @@ object SapatDirectory {
     if (user.profile.contactDomain?.domain == domain) return
     // shortcut: apiSetUserDomain shows the core's error as an alert, kept while the name claim is being verified on devices
     try {
-      val u = chatModel.controller.apiSetUserDomain(rh, "@$domain")
+      val u = chatModel.controller.apiSetUserDomain(rh, domain)
       withContext(Dispatchers.Main) { chatModel.updateUser(u) }
     } catch (e: Exception) {
       Log.e(TAG, "SapatDirectory.claimName: ${e.message}")
