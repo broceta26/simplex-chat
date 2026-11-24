@@ -241,9 +241,9 @@ test_server() {
   "$ui" relaunch
 }
 
-# A group of the user's own: without chats the chat list shows the onboarding pages, not the search field. The new
-# group's name field has the focus.
+# A group of the user's own, from the plus button of the chat list. The new group's name field has the focus.
 create_local_chat() {
+  "$ui" click-text "New" 10
   "$ui" click-text "New group" 10
   "$ui" wait "Enter group name" 10
   "$ui" type "$local_chat"
