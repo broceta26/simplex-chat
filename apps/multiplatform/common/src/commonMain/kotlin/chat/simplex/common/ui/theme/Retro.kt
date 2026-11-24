@@ -5,6 +5,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
+import chat.simplex.common.platform.appPreferences
 
 // Shapat: the chat screen looks like a terminal — Commodore 64 colours in the dark theme,
 // a paper terminal in the light theme, monospace text in both.
@@ -23,7 +24,7 @@ private val PaperAccent = Color(0xFF2F4F9F)
 
 fun retroTheme(theme: ThemeManager.ActiveTheme): ThemeManager.ActiveTheme {
   val dark = !theme.colors.isLight
-  val colors = if (dark) darkColors(
+  val colors = if (appPreferences.sapatStyle.get() == "T") NordColorPalette else if (dark) darkColors(
     primary = C64Bright,
     primaryVariant = C64Text,
     secondary = C64TextDim,

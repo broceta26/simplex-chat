@@ -75,15 +75,15 @@ class SapatShotsTest {
     appPrefs.themeOverrides.set(listOf())
     val chats = sampleChats()
     try {
-      for ((st, base) in listOf("A" to DefaultTheme.LIGHT, "A" to DefaultTheme.DARK, "B" to DefaultTheme.DARK)) {
+      for ((st, base) in listOf("A" to DefaultTheme.LIGHT, "A" to DefaultTheme.DARK, "B" to DefaultTheme.DARK, "C" to DefaultTheme.DARK, "T" to DefaultTheme.DARK)) {
         appPrefs.sapatStyle.set(st)
         ThemeManager.applyTheme(base.themeName)
-        val tag = if (st == "B") "B" else "A-${base.name.lowercase()}"
+        val tag = if (st == "A") "A-${base.name.lowercase()}" else st
         ChatModel.chatRunning.value = true
         ChatModel.chatsContext.chats.value = androidx.compose.runtime.snapshots.SnapshotStateList<Chat>().apply { addAll(chats) }
         shot(File(dir, "$tag-1-pocetna.png")) { SapatHomeView(ChatModel, MutableStateFlow(AnimatedViewState.GONE), stopped = false) }
         shot(File(dir, "$tag-2-razgovor.png")) {
-          if (st == "A") {
+          if (st == "A" || st == "T") {
             SimpleXThemeOverride(retroTheme(CurrentColors.collectAsState().value), RetroTypography) { PreviewGroupChatLayoutTerminal() }
           } else PreviewChatLayout()
         }

@@ -3446,7 +3446,9 @@
   <string name="sapat_style">Style</string>
   <string name="sapat_style_a">A · Classic</string>
   <string name="sapat_style_b">B · Graphite</string>
-  <string name="sapat_style_footer">Classic: blue, with chats like an old terminal. Graphite: dark with amber, with chat bubbles; always dark.</string>
+  <string name="sapat_style_c">C · Midnight and gold</string>
+  <string name="sapat_style_t">T · Nord tmux</string>
+  <string name="sapat_style_footer">Classic: blue, with chats like an old terminal. Graphite: dark with amber, with chat bubbles; always dark. Midnight and gold: dark blue with gold, with chat bubbles. Nord tmux: cool dark colours, with chats like a terminal.</string>
   <string name="sapat_messages">Messages</string>
   <string name="sapat_profiles">Profiles</string>
   <string name="sapat_verified">Verified</string>
