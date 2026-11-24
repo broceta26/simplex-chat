@@ -27,7 +27,7 @@ val ShapatTmux = ShapatPalette(
     bg = Color(0xFF2E3440), surface = Color(0xFF3B4252),
     incomingBubble = Color(0xFF2E3440), onIncoming = Color(0xFFD8DEE9), // nema balona, samo linije
     outgoingBubble = Color(0xFF2E3440), onOutgoing = Color(0xFFA3BE8C),
-    onBg = Color(0xFFD8DEE9), muted = Color(0xFF9AA5BE),
+    onBg = Color(0xFFD8DEE9), muted = Color(0xFFA9B3CA),
     accent = Color(0xFF88C0D0), onAccent = Color(0xFF2E3440),
     divider = Color(0xFF4C566A), danger = Color(0xFFE58A93),
 )
