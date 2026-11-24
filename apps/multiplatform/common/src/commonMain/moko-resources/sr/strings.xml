@@ -2741,6 +2741,15 @@
     <string name="sapat_filter_groups">Grupe</string>
     <string name="sapat_tab_chats">Razgovori</string>
     <string name="sapat_tab_devices">Uređaji</string>
+    <string name="sapat_invite_contacts">Pozovi kontakte</string>
+    <string name="sapat_invite_text">Pridruži mi se na Shapat-u. Dodaj me po imenu @%1$s ili po kodu %2$s.</string>
+    <string name="sapat_invite_permission">Da biste izabrali koga da pozovete, Shapat mora da pročita kontakte sa telefona. Oni se nigde ne šalju.</string>
+    <string name="sapat_invite_grant">Dozvoli pristup kontaktima</string>
+    <string name="sapat_invite_next">Dalje (%1$d)</string>
+    <string name="sapat_invite_send">Pošalji poziv</string>
+    <string name="sapat_invite_sent">Poslato</string>
+    <string name="sapat_invite_none">Nema kontakata sa brojem telefona</string>
+    <string name="sapat_invite_desktop">Pozivanje iz imenika je dostupno u aplikaciji na telefonu.</string>
     <string name="sapat_style_footer">Klasični: plavi, razgovori kao stari terminal. Grafit: tamni sa ćilibarom, razgovori u oblačićima; uvek taman. Ponoć i zlato: tamnoplavi sa zlatom, razgovori u oblačićima. Nord tmux: hladne tamne boje, razgovori kao u terminalu.</string>
     <string name="sapat_messages">Poruke</string>
     <string name="sapat_profiles">Profili</string>

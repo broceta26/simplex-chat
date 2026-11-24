@@ -3453,6 +3453,15 @@
   <string name="sapat_filter_groups">Groups</string>
   <string name="sapat_tab_chats">Chats</string>
   <string name="sapat_tab_devices">Devices</string>
+  <string name="sapat_invite_contacts">Invite contacts</string>
+  <string name="sapat_invite_text">Join me on Shapat. Add me by name @%1$s or by code %2$s.</string>
+  <string name="sapat_invite_permission">To pick people to invite, Shapat needs to read your phone contacts. They are not uploaded anywhere.</string>
+  <string name="sapat_invite_grant">Allow access to contacts</string>
+  <string name="sapat_invite_next">Next (%1$d)</string>
+  <string name="sapat_invite_send">Send invite</string>
+  <string name="sapat_invite_sent">Sent</string>
+  <string name="sapat_invite_none">No contacts with a phone number</string>
+  <string name="sapat_invite_desktop">Inviting from contacts is available on the phone app.</string>
   <string name="sapat_style_footer">Classic: blue, with chats like an old terminal. Graphite: dark with amber, with chat bubbles; always dark. Midnight and gold: dark blue with gold, with chat bubbles. Nord tmux: cool dark colours, with chats like a terminal.</string>
   <string name="sapat_messages">Messages</string>
   <string name="sapat_profiles">Profiles</string>

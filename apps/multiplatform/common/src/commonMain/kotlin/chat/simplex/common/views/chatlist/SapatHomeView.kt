@@ -75,7 +75,6 @@ fun SapatHomeView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animat
           }
       }
       }
-      if (styleB) SapatBottomBar(stopped)
     }
     if (!styleB && !searching.value && chatModel.chatRunning.value == true) {
       FloatingActionButton(
@@ -337,25 +336,6 @@ private fun SapatFilterChips(filter: MutableState<Int>) {
 }
 
 @Composable
-private fun SapatBottomBar(stopped: Boolean) {
-  Row(Modifier.fillMaxWidth().background(MaterialTheme.colors.surface).navigationBarsPadding().height(64.dp)) {
-    SapatTab(MR.images.ic_chat_bubble, MR.strings.sapat_tab_chats, true) {}
-    SapatTab(MR.images.ic_desktop, MR.strings.sapat_tab_devices, false) {
-      if (!stopped) ModalManager.start.showCustomModal { close -> chat.simplex.common.views.remote.ConnectDesktopView(close) }
-    }
-  }
-}
-
-@Composable
-private fun RowScope.SapatTab(icon: dev.icerock.moko.resources.ImageResource, label: dev.icerock.moko.resources.StringResource, active: Boolean, onClick: () -> Unit) {
-  val color = if (active) MaterialTheme.colors.primary else MaterialTheme.colors.secondary
-  Column(Modifier.weight(1f).fillMaxHeight().clickable(onClick = onClick), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-    Icon(painterResource(icon), null, Modifier.size(24.dp), tint = color)
-    Text(stringResource(label), fontSize = 12.sp, color = color)
-  }
-}
-
-@Composable
 private fun SapatTopBarB(chatModel: ChatModel, userPickerState: MutableStateFlow<AnimatedViewState>, search: MutableState<String>, stopped: Boolean) {
   Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp)) {
     Row(Modifier.fillMaxWidth().padding(top = 18.dp, bottom = 14.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -373,6 +353,16 @@ private fun SapatTopBarB(chatModel: ChatModel, userPickerState: MutableStateFlow
           ItemAction(stringResource(MR.strings.sapat_name_and_code), painterResource(MR.images.ic_person_add), onClick = {
             menu.value = false
             ModalManager.start.showModalCloseable { _ -> SapatIdentityView() }
+          })
+          if (appPlatform.isAndroid) ItemAction(stringResource(MR.strings.sapat_invite_contacts), painterResource(MR.images.ic_group), onClick = {
+            menu.value = false
+            val e = chatModel.currentUser.value?.userId?.let { SapatDirectory.entry(it) }
+            val text = String.format(generalGetString(MR.strings.sapat_invite_text), e?.name ?: chatModel.currentUser.value?.profile?.displayName ?: "", e?.code ?: "")
+            ModalManager.start.showModalCloseable { _ -> SapatInviteContactsView(text) }
+          })
+          ItemAction(stringResource(MR.strings.sapat_tab_devices), painterResource(MR.images.ic_desktop), onClick = {
+            menu.value = false
+            if (!stopped) ModalManager.start.showCustomModal { close -> chat.simplex.common.views.remote.ConnectDesktopView(close) }
           })
           ItemAction(stringResource(MR.strings.settings_section_title_settings), painterResource(MR.images.ic_settings), onClick = {
             menu.value = false
