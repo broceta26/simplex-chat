@@ -17,11 +17,9 @@ import androidx.compose.ui.unit.sp
 import chat.simplex.common.platform.androidAppContext
 import chat.simplex.common.ui.theme.DEFAULT_PADDING
 import chat.simplex.common.views.helpers.*
-import chat.simplex.res.MR
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import dev.icerock.moko.resources.compose.stringResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -52,7 +50,7 @@ private fun openSms(number: String, text: String) {
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-actual fun SapatInviteContactsView(inviteText: String) {
+actual fun SapatInviteContactsView(inviteText: String, labels: SapatInviteLabels) {
   val permission = rememberPermissionState(Manifest.permission.READ_CONTACTS)
   var contacts by remember { mutableStateOf<List<PhoneContact>?>(null) }
   val selected = remember { mutableStateListOf<String>() }
@@ -62,14 +60,14 @@ actual fun SapatInviteContactsView(inviteText: String) {
     if (permission.status.isGranted) contacts = readContacts()
   }
   Column(Modifier.fillMaxSize()) {
-    AppBarTitle(stringResource(MR.strings.sapat_invite_contacts))
+    AppBarTitle(labels.title)
     when {
       !permission.status.isGranted -> Column(Modifier.padding(DEFAULT_PADDING), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        Text(stringResource(MR.strings.sapat_invite_permission), color = MaterialTheme.colors.secondary)
-        Button({ permission.launchPermissionRequest() }, Modifier.fillMaxWidth()) { Text(stringResource(MR.strings.sapat_invite_grant)) }
+        Text(labels.permission, color = MaterialTheme.colors.secondary)
+        Button({ permission.launchPermissionRequest() }, Modifier.fillMaxWidth()) { Text(labels.grant) }
       }
       contacts == null -> {}
-      contacts!!.isEmpty() -> Text(stringResource(MR.strings.sapat_invite_none), Modifier.padding(DEFAULT_PADDING), color = MaterialTheme.colors.secondary)
+      contacts!!.isEmpty() -> Text(labels.none, Modifier.padding(DEFAULT_PADDING), color = MaterialTheme.colors.secondary)
       else -> {
         val list = if (sending) contacts!!.filter { it.number in selected } else contacts!!
         LazyColumn(Modifier.weight(1f)) {
@@ -87,13 +85,13 @@ actual fun SapatInviteContactsView(inviteText: String) {
                 Text(c.name, fontSize = 16.sp, color = MaterialTheme.colors.onBackground)
                 Text(c.number, fontSize = 13.sp, color = MaterialTheme.colors.secondary)
               }
-              if (sending) Text(stringResource(if (c.number in sent) MR.strings.sapat_invite_sent else MR.strings.sapat_invite_send), fontSize = 13.sp, color = MaterialTheme.colors.primary)
+              if (sending) Text(if (c.number in sent) labels.sent else labels.send, fontSize = 13.sp, color = MaterialTheme.colors.primary)
             }
           }
         }
         if (!sending) Button(
           { sending = true }, Modifier.fillMaxWidth().padding(DEFAULT_PADDING).navigationBarsPadding(), enabled = selected.isNotEmpty()
-        ) { Text(String.format(stringResource(MR.strings.sapat_invite_next), selected.size)) }
+        ) { Text(labels.next(selected.size)) }
       }
     }
   }

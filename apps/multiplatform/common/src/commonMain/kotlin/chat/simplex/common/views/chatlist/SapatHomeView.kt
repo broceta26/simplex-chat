@@ -358,7 +358,10 @@ private fun SapatTopBarB(chatModel: ChatModel, userPickerState: MutableStateFlow
             menu.value = false
             val e = chatModel.currentUser.value?.userId?.let { SapatDirectory.entry(it) }
             val text = String.format(generalGetString(MR.strings.sapat_invite_text), e?.name ?: chatModel.currentUser.value?.profile?.displayName ?: "", e?.code ?: "")
-            ModalManager.start.showModalCloseable { _ -> SapatInviteContactsView(text) }
+            ModalManager.start.showModalCloseable { _ -> SapatInviteContactsView(text, SapatInviteLabels(
+              generalGetString(MR.strings.sapat_invite_contacts), generalGetString(MR.strings.sapat_invite_permission), generalGetString(MR.strings.sapat_invite_grant),
+              generalGetString(MR.strings.sapat_invite_none), generalGetString(MR.strings.sapat_invite_sent), generalGetString(MR.strings.sapat_invite_send),
+              { n -> String.format(generalGetString(MR.strings.sapat_invite_next), n) })) }
           })
           ItemAction(stringResource(MR.strings.sapat_tab_devices), painterResource(MR.images.ic_desktop), onClick = {
             menu.value = false
