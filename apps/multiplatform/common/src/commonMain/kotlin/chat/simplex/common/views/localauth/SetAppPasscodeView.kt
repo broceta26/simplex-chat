@@ -38,7 +38,7 @@ fun SetAppPasscodeView(
       }
     }
     BackHandler(onBack = back)
-    PasscodeView(passcode, title = title, reason = reason, submitLabel = submitLabel, submitEnabled = submitEnabled, showCancel = !mandatory || confirming, submit = submit, cancel = back)
+    PasscodeView(passcode, title = title, reason = reason, submitLabel = submitLabel, submitEnabled = submitEnabled, showCancel = !mandatory || confirming, checkOnly = mandatory, submit = submit, cancel = back)
   }
 
   if (confirming) {

@@ -2,7 +2,12 @@ package chat.simplex.common.views.localauth
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.draw.clip
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +31,7 @@ fun PasscodeView(
   submitEnabled: ((String) -> Boolean)? = null,
   buttonsEnabled: State<Boolean> = remember { mutableStateOf(true) },
   showCancel: Boolean = true,
+  checkOnly: Boolean = false,
   submit: () -> Unit,
   cancel: () -> Unit,
 ) {
@@ -76,7 +82,20 @@ fun PasscodeView(
         }
       }
       PasscodeEntry(passcode, true, Modifier.weight(1f, fill = false))
-      Row(Modifier.heightIn(min = 70.dp), verticalAlignment = Alignment.CenterVertically) {
+      if (checkOnly) {
+        // Shapat: the confirm button is a round check in the bottom right corner
+        val enabled = !(submitEnabled?.invoke(passcode.value) == false || passcode.value.length < 4 || !buttonsEnabled.value)
+        Row(Modifier.fillMaxWidth().heightIn(min = 70.dp).padding(horizontal = 24.dp), verticalAlignment = Alignment.CenterVertically) {
+          if (showCancel) SimpleButton(generalGetString(MR.strings.cancel_verb), icon = painterResource(MR.images.ic_close), disabled = !buttonsEnabled.value, click = cancel)
+          Spacer(Modifier.weight(1f))
+          Box(
+            Modifier.size(56.dp).clip(CircleShape).background(if (enabled) MaterialTheme.colors.primary else MaterialTheme.colors.secondary.copy(alpha = 0.3f)).clickable(enabled = enabled, onClick = submit),
+            contentAlignment = Alignment.Center
+          ) {
+            Icon(painterResource(MR.images.ic_done_filled), submitLabel, Modifier.size(28.dp), tint = MaterialTheme.colors.onPrimary)
+          }
+        }
+      } else Row(Modifier.heightIn(min = 70.dp), verticalAlignment = Alignment.CenterVertically) {
         if (showCancel) {
           SimpleButton(generalGetString(MR.strings.cancel_verb), icon = painterResource(MR.images.ic_close), disabled = !buttonsEnabled.value, click = cancel)
           Spacer(Modifier.size(20.dp))
