@@ -66,7 +66,7 @@ fun SapatHomeView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animat
         shown.isEmpty() && search.value.isNotEmpty() ->
           SapatSearchEmpty(search.value)
         shown.isEmpty() ->
-          SapatEmptyHome(stopped)
+          Box(Modifier.fillMaxSize())
         else ->
           LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(bottom = 96.dp)) {
             items(shown, key = { it.remoteHostId to it.id }) { chat ->
@@ -75,6 +75,12 @@ fun SapatHomeView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animat
           }
       }
       }
+    }
+    if (styleB) IconButton(
+      { ModalManager.start.showModalCloseable(cardScreen = true) { close -> SettingsView(chatModel, AppLock::setPerformLA, close) } },
+      Modifier.navigationBarsPadding().padding(start = 12.dp, bottom = 8.dp).size(52.dp).align(Alignment.BottomStart)
+    ) {
+      Icon(painterResource(MR.images.ic_settings), stringResource(MR.strings.settings_section_title_settings), Modifier.size(28.dp), tint = MaterialTheme.colors.secondary)
     }
     if (!styleB && !searching.value && chatModel.chatRunning.value == true) {
       FloatingActionButton(
@@ -154,33 +160,6 @@ private fun SapatTopBar(chatModel: ChatModel, userPickerState: MutableStateFlow<
 }
 
 @Composable
-private fun SapatEmptyHome(stopped: Boolean) {
-  Column(
-    Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 32.dp).padding(top = 16.dp, bottom = 80.dp),
-    horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center
-  ) {
-    Box(Modifier.size(96.dp).clip(CircleShape).background(MaterialTheme.colors.primary.copy(alpha = 0.12f)), contentAlignment = Alignment.Center) {
-      Icon(painterResource(MR.images.ic_chat_bubble), null, Modifier.size(44.dp), tint = MaterialTheme.colors.primary)
-    }
-    Spacer(Modifier.height(24.dp))
-    Text(stringResource(MR.strings.sapat_empty_title), style = MaterialTheme.typography.h3.copy(fontSize = 20.sp, fontWeight = FontWeight.SemiBold), color = MaterialTheme.colors.onBackground)
-    Spacer(Modifier.height(8.dp))
-    Text(stringResource(MR.strings.sapat_empty_text), color = MaterialTheme.colors.secondary, fontSize = 15.sp, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
-    Spacer(Modifier.height(28.dp))
-    Button({ if (!stopped) openAddContact() }, Modifier.fillMaxWidth().height(48.dp), shape = RoundedCornerShape(24.dp), elevation = null) {
-      Text(stringResource(MR.strings.sapat_add_contact), color = Color.White, fontWeight = FontWeight.Medium)
-    }
-    Spacer(Modifier.height(4.dp))
-    TextButton({ if (!stopped) openNewGroup() }) {
-      Text(stringResource(MR.strings.sapat_new_group), color = MaterialTheme.colors.primary)
-    }
-    Spacer(Modifier.height(20.dp))
-    SapatMyName()
-  }
-}
-
-@Composable
 private fun SapatSearchEmpty(q: String) {
   Column(Modifier.fillMaxSize().padding(32.dp), horizontalAlignment = Alignment.CenterHorizontally) {
     Spacer(Modifier.height(48.dp))
@@ -197,6 +176,7 @@ private fun showSapatNewSheet() {
       AppBarTitle(stringResource(MR.strings.sapat_new))
       SapatNewItem(painterResource(MR.images.ic_person_add), stringResource(MR.strings.sapat_add_contact), stringResource(MR.strings.sapat_add_contact_descr)) { close(); openAddContact() }
       SapatNewItem(painterResource(MR.images.ic_group), stringResource(MR.strings.sapat_new_group), stringResource(MR.strings.sapat_new_group_descr)) { close(); openNewGroup() }
+      if (appPlatform.isAndroid) SapatNewItem(painterResource(MR.images.ic_person_add), stringResource(MR.strings.sapat_invite_contacts), "") { close(); openInviteContacts() }
     }
   }
 }
@@ -212,6 +192,15 @@ private fun SapatNewItem(icon: androidx.compose.ui.graphics.painter.Painter, tit
       Text(descr, fontSize = 14.sp, color = MaterialTheme.colors.secondary)
     }
   }
+}
+
+private fun openInviteContacts() {
+  val e = chatModel.currentUser.value?.userId?.let { SapatDirectory.entry(it) }
+  val text = String.format(generalGetString(MR.strings.sapat_invite_text), e?.name ?: chatModel.currentUser.value?.profile?.displayName ?: "", e?.code ?: "")
+  ModalManager.start.showModalCloseable { _ -> SapatInviteContactsView(text, SapatInviteLabels(
+    generalGetString(MR.strings.sapat_invite_contacts), generalGetString(MR.strings.sapat_invite_permission), generalGetString(MR.strings.sapat_invite_grant),
+    generalGetString(MR.strings.sapat_invite_none), generalGetString(MR.strings.sapat_invite_sent), generalGetString(MR.strings.sapat_invite_send),
+    { n -> String.format(generalGetString(MR.strings.sapat_invite_next), n) })) }
 }
 
 private fun openAddContact() {
@@ -343,36 +332,6 @@ private fun SapatTopBarB(chatModel: ChatModel, userPickerState: MutableStateFlow
         stringResource(MR.strings.sapat_messages), Modifier.weight(1f),
         fontSize = 28.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onBackground
       )
-      val menu = remember { mutableStateOf(false) }
-      Box {
-        IconButton({ menu.value = true }) {
-          Icon(painterResource(MR.images.ic_more_vert), null, tint = MaterialTheme.colors.onBackground)
-        }
-        DefaultDropdownMenu(menu) {
-          ItemAction(stringResource(MR.strings.sapat_profiles), painterResource(MR.images.ic_person_add), onClick = { menu.value = false; userPickerState.value = AnimatedViewState.VISIBLE })
-          ItemAction(stringResource(MR.strings.sapat_name_and_code), painterResource(MR.images.ic_person_add), onClick = {
-            menu.value = false
-            ModalManager.start.showModalCloseable { _ -> SapatIdentityView() }
-          })
-          if (appPlatform.isAndroid) ItemAction(stringResource(MR.strings.sapat_invite_contacts), painterResource(MR.images.ic_group), onClick = {
-            menu.value = false
-            val e = chatModel.currentUser.value?.userId?.let { SapatDirectory.entry(it) }
-            val text = String.format(generalGetString(MR.strings.sapat_invite_text), e?.name ?: chatModel.currentUser.value?.profile?.displayName ?: "", e?.code ?: "")
-            ModalManager.start.showModalCloseable { _ -> SapatInviteContactsView(text, SapatInviteLabels(
-              generalGetString(MR.strings.sapat_invite_contacts), generalGetString(MR.strings.sapat_invite_permission), generalGetString(MR.strings.sapat_invite_grant),
-              generalGetString(MR.strings.sapat_invite_none), generalGetString(MR.strings.sapat_invite_sent), generalGetString(MR.strings.sapat_invite_send),
-              { n -> String.format(generalGetString(MR.strings.sapat_invite_next), n) })) }
-          })
-          ItemAction(stringResource(MR.strings.sapat_tab_devices), painterResource(MR.images.ic_desktop), onClick = {
-            menu.value = false
-            if (!stopped) ModalManager.start.showCustomModal { close -> chat.simplex.common.views.remote.ConnectDesktopView(close) }
-          })
-          ItemAction(stringResource(MR.strings.settings_section_title_settings), painterResource(MR.images.ic_settings), onClick = {
-            menu.value = false
-            ModalManager.start.showModalCloseable(cardScreen = true) { close -> SettingsView(chatModel, AppLock::setPerformLA, close) }
-          })
-        }
-      }
       Box(
         Modifier.padding(start = 4.dp).size(44.dp).clip(RoundedCornerShape(12.dp)).background(MaterialTheme.colors.primary)
           .clickable { if (!stopped) showSapatNewSheet() },
