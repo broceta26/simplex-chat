@@ -242,7 +242,9 @@ fun MainScreen() {
       }
     }
     if (!unauthorized.value && onboarding == OnboardingStage.OnboardingComplete && !pinRequired) {
-      SapatNameGate()
+      CompositionLocalProvider(LocalAppBarHandler provides rememberAppBarHandler()) {
+        SapatNameGate()
+      }
     }
     if (!unauthorized.value) {
       ModalManager.fullscreen.showOneTimePasscodeInView()
