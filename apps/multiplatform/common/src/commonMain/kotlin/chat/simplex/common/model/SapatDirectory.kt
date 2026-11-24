@@ -90,28 +90,44 @@ object SapatDirectory {
     val address = currentAddress(rh) ?: return@withLock null
     val existing = entry(userId)
     try {
-      when {
-        existing == null -> {
-          val r = post("register", buildJsonObject { put("address", address) }, null)
-          fromStatus(r, r["token"]!!.jsonPrimitive.content, address).also { save(userId, it) }
-        }
-        existing.address != address -> {
-          val r = post("address", buildJsonObject { put("address", address) }, existing.token)
-          fromStatus(r, existing.token, address, existing.chosen).also { save(userId, it) }
-        }
-        System.currentTimeMillis() - existing.checkedAt > HEARTBEAT_EVERY_MS -> {
-          val r = post("heartbeat", buildJsonObject { }, existing.token)
-          fromStatus(r, existing.token, address, existing.chosen).also { save(userId, it) }
-        }
-        else -> existing
-      }
+      registerOrRefresh(userId, address, existing).also { claimName(rh, it.name) }
     } catch (e: Exception) {
       Log.e(TAG, "SapatDirectory.ensureRegistered: ${e.message}")
       existing
     }
   }
 
-  suspend fun setName(userId: Long, name: String): Entry = update(userId, "name", buildJsonObject { put("name", name.trim().lowercase()) }, chosen = true)
+  // The core accepts a contact request by name only when the profile behind the address claims the same name.
+  // shortcut: only the name is claimed, a code alone does not resolve to a confirmed contact.
+  private suspend fun claimName(rh: Long?, name: String?) {
+    if (name == null) return
+    val user = chatModel.currentUser.value ?: return
+    val domain = "$name.$TLD"
+    if (user.profile.contactDomain?.domain == domain) return
+    val r = chatModel.controller.sendCmd(rh, CC.ApiSetUserDomain(user.userId, "@$domain"))
+    if (r is API.Result && r.res is CR.UserProfileUpdated) withContext(Dispatchers.Main) { chatModel.updateUser(r.res.user.updateRemoteHostId(rh)) }
+    else Log.e(TAG, "SapatDirectory.claimName: ${r.responseType}")
+  }
+
+  private suspend fun registerOrRefresh(userId: Long, address: String, existing: Entry?): Entry = when {
+    existing == null -> {
+      val r = post("register", buildJsonObject { put("address", address) }, null)
+      fromStatus(r, r["token"]!!.jsonPrimitive.content, address).also { save(userId, it) }
+    }
+    existing.address != address -> {
+      val r = post("address", buildJsonObject { put("address", address) }, existing.token)
+      fromStatus(r, existing.token, address, existing.chosen).also { save(userId, it) }
+    }
+    System.currentTimeMillis() - existing.checkedAt > HEARTBEAT_EVERY_MS -> {
+      val r = post("heartbeat", buildJsonObject { }, existing.token)
+      fromStatus(r, existing.token, address, existing.chosen).also { save(userId, it) }
+    }
+    else -> existing
+  }
+
+  suspend fun setName(userId: Long, name: String): Entry =
+    update(userId, "name", buildJsonObject { put("name", name.trim().lowercase()) }, chosen = true)
+      .also { claimName(chatModel.remoteHostId(), it.name) }
   suspend fun reserveName(userId: Long): Entry = update(userId, "reserve", buildJsonObject { })
   suspend fun newCode(userId: Long): Entry = update(userId, "rotate", buildJsonObject { })
 
