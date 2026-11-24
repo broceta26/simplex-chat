@@ -2736,6 +2736,11 @@
     <string name="sapat_style_b">B · Grafit</string>
     <string name="sapat_style_c">C · Ponoć i zlato</string>
     <string name="sapat_style_t">T · Nord tmux</string>
+    <string name="sapat_filter_all">Svi</string>
+    <string name="sapat_filter_unread">Nepročitano</string>
+    <string name="sapat_filter_groups">Grupe</string>
+    <string name="sapat_tab_chats">Razgovori</string>
+    <string name="sapat_tab_devices">Uređaji</string>
     <string name="sapat_style_footer">Klasični: plavi, razgovori kao stari terminal. Grafit: tamni sa ćilibarom, razgovori u oblačićima; uvek taman. Ponoć i zlato: tamnoplavi sa zlatom, razgovori u oblačićima. Nord tmux: hladne tamne boje, razgovori kao u terminalu.</string>
     <string name="sapat_messages">Poruke</string>
     <string name="sapat_profiles">Profili</string>

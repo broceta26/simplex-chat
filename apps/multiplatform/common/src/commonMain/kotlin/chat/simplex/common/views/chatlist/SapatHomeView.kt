@@ -46,16 +46,20 @@ fun SapatHomeView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animat
   }
   val searching = remember { mutableStateOf(false) }
   val search = remember { mutableStateOf("") }
+  val filter = remember { mutableStateOf(0) }
   val chats = chatModel.chats.value
-  val shown = remember(chats.toList(), search.value) {
+  val shown = remember(chats.toList(), search.value, filter.value) {
     val q = search.value.trim().lowercase()
     chats.filter { it.chatInfo.chatType != ChatType.Local || q.isNotEmpty() }
+      .filter { when (filter.value) { 1 -> it.chatStats.unreadCount > 0 || it.chatStats.unreadChat; 2 -> it.chatInfo.chatType == ChatType.Group; else -> true } }
       .filter { q.isEmpty() || it.chatInfo.chatViewName.lowercase().contains(q) }
   }
   Box(Modifier.fillMaxSize().background(MaterialTheme.colors.background)) {
     val styleB = remember { chatModel.controller.appPrefs.sapatStyle.state }.value != "A"
     Column(Modifier.fillMaxSize().statusBarsPadding()) {
       if (styleB) SapatTopBarB(chatModel, userPickerState, search, stopped) else SapatTopBar(chatModel, userPickerState, searching, search)
+      if (styleB) SapatFilterChips(filter)
+      Box(Modifier.weight(1f)) {
       when {
         chatModel.chatRunning.value == null ->
           Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text(stringResource(MR.strings.loading_chats), color = MaterialTheme.colors.secondary) }
@@ -70,6 +74,8 @@ fun SapatHomeView(chatModel: ChatModel, userPickerState: MutableStateFlow<Animat
             }
           }
       }
+      }
+      if (styleB) SapatBottomBar(stopped)
     }
     if (!styleB && !searching.value && chatModel.chatRunning.value == true) {
       FloatingActionButton(
@@ -308,6 +314,44 @@ fun SapatAvatar(cInfo: ChatInfo, size: androidx.compose.ui.unit.Dp) {
     }
     cInfo is ChatInfo.Direct -> SapatInitials(cInfo.chatViewName, size)
     else -> ChatInfoImage(cInfo, size = size)
+  }
+}
+
+@Composable
+private fun SapatFilterChips(filter: MutableState<Int>) {
+  Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+    listOf(MR.strings.sapat_filter_all, MR.strings.sapat_filter_unread, MR.strings.sapat_filter_groups).forEachIndexed { i, label ->
+      val on = filter.value == i
+      Box(Modifier.height(48.dp).clickable { filter.value = i }.padding(vertical = 8.dp), contentAlignment = Alignment.Center) {
+        Box(
+          Modifier.fillMaxHeight().clip(RoundedCornerShape(16.dp))
+            .then(if (on) Modifier.background(MaterialTheme.colors.primary) else Modifier.border(1.dp, MaterialTheme.colors.secondaryVariant, RoundedCornerShape(16.dp)))
+            .padding(horizontal = 14.dp),
+          contentAlignment = Alignment.Center
+        ) {
+          Text(stringResource(label), fontSize = 13.sp, color = if (on) MaterialTheme.colors.onPrimary else MaterialTheme.colors.secondary)
+        }
+      }
+    }
+  }
+}
+
+@Composable
+private fun SapatBottomBar(stopped: Boolean) {
+  Row(Modifier.fillMaxWidth().background(MaterialTheme.colors.surface).navigationBarsPadding().height(64.dp)) {
+    SapatTab(MR.images.ic_chat_bubble, MR.strings.sapat_tab_chats, true) {}
+    SapatTab(MR.images.ic_desktop, MR.strings.sapat_tab_devices, false) {
+      if (!stopped) ModalManager.start.showCustomModal { close -> chat.simplex.common.views.remote.ConnectDesktopView(close) }
+    }
+  }
+}
+
+@Composable
+private fun RowScope.SapatTab(icon: dev.icerock.moko.resources.ImageResource, label: dev.icerock.moko.resources.StringResource, active: Boolean, onClick: () -> Unit) {
+  val color = if (active) MaterialTheme.colors.primary else MaterialTheme.colors.secondary
+  Column(Modifier.weight(1f).fillMaxHeight().clickable(onClick = onClick), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+    Icon(painterResource(icon), null, Modifier.size(24.dp), tint = color)
+    Text(stringResource(label), fontSize = 12.sp, color = color)
   }
 }
 
