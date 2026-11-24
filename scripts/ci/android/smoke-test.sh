@@ -151,7 +151,7 @@ set_pin() {
 # system's battery dialog, each with "Allow". The conditions show for a moment between the two.
 allow_notifications_and_accept() {
   local deadline=$((SECONDS + 120))
-  until "$ui" find "Search chats" > /dev/null 2>&1; do
+  until "$ui" find "Unread" > /dev/null 2>&1; do
     if "$ui" find "Allow" > /dev/null 2>&1; then
       "$ui" shot notifications
       "$ui" click-text "Allow"
@@ -330,7 +330,7 @@ started=$SECONDS
 # the app locks after 10 minutes in the background, not 30 s: the system's image picker covers it for longer under ARM translation
 "$ui" start "$apk" NetworkSMPProxyMode=Unknown DeveloperTools=true LogLevel=DEBUG LocalAuthenticationLockDelay=600
 set_pin || fail "no PIN screen 180 s after the start, or the PIN was not set: the app's crashes in logcat are below"
-check "no chat list before the PIN is set: onboarding follows" not_found "Search chats"
+check "no chat list before the PIN is set: onboarding follows" not_found "Unread"
 first_screen || fail "no first onboarding screen 180 s after the start, or the app stopped: its crashes in logcat are below"
 echo "first screen after $((SECONDS - started)) s"
 "$ui" shot first-screen
