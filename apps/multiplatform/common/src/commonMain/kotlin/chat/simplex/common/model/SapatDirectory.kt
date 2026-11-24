@@ -104,9 +104,13 @@ object SapatDirectory {
     val user = chatModel.currentUser.value ?: return
     val domain = "$name.$TLD"
     if (user.profile.contactDomain?.domain == domain) return
-    val r = chatModel.controller.sendCmd(rh, CC.ApiSetUserDomain(user.userId, "@$domain"))
-    if (r is API.Result && r.res is CR.UserProfileUpdated) withContext(Dispatchers.Main) { chatModel.updateUser(r.res.user.updateRemoteHostId(rh)) }
-    else Log.e(TAG, "SapatDirectory.claimName: ${r.responseType}")
+    // shortcut: apiSetUserDomain shows the core's error as an alert, kept while the name claim is being verified on devices
+    try {
+      val u = chatModel.controller.apiSetUserDomain(rh, "@$domain")
+      withContext(Dispatchers.Main) { chatModel.updateUser(u) }
+    } catch (e: Exception) {
+      Log.e(TAG, "SapatDirectory.claimName: ${e.message}")
+    }
   }
 
   private suspend fun registerOrRefresh(userId: Long, address: String, existing: Entry?): Entry = when {
